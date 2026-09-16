@@ -1,0 +1,67 @@
+{
+  "schema_version": 2,
+  "id": null,
+  "title": null,
+  "workspace_id": null,
+  "profile": null,
+  "target": {
+    "module": null,
+    "menu": null,
+    "page": null
+  },
+  "lifecycle": {
+    "status": "Active",
+    "archived_at": null,
+    "reason": null
+  },
+  "requirements": {
+    "change_goal": null,
+    "user_scenario": null,
+    "inputs": [],
+    "ui_and_interaction": [],
+    "acceptance_criteria": [],
+    "constraints": [],
+    "out_of_scope": []
+  },
+  "delivery": {
+    "mode": "pending",
+    "backend": "pending",
+    "demo_data": "pending",
+    "demo_data_source": "pending",
+    "integration": "pending"
+  },
+  "original_system_change": {
+    "status": "pending",
+    "applies_to_extension": null,
+    "snapshot_confirmed": false,
+    "approved_paths": [],
+    "scope": [],
+    "authorized_at": null,
+    "basis": null
+  },
+  "workflow": {
+    "current_iteration": "ITER-001",
+    "phase": "Requirements",
+    "requirements_confirmed": false,
+    "next_action": "Collect requirements and bind a profile"
+  },
+  "validation": {
+    "status": "NotReady",
+    "requested_at": null,
+    "responded_at": null,
+    "feedback": null
+  },
+  "knowledge_capture": {
+    "candidates": [],
+    "promoted": []
+  },
+  "iteration_history": [],
+  "result": {
+    "summary": null,
+    "artifacts": [],
+    "completed_at": null
+  },
+  "status": "Draft",
+  "environment_snapshot": null,
+  "created_at": null
+}

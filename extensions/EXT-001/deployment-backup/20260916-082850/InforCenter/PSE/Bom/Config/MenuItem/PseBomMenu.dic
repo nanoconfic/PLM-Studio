@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DictionarySerializer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Context Name="PseBomMenu" IsWeb="true" IsAutoGenerator="false">
+    <Label Name="ChangeView">
+      <LocalizedLabel LanguageRef="zhs">切换视图</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ビューを切り替え</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Switch view</LocalizedLabel>
+    </Label>
+    <Label Name="StructEffect">
+      <LocalizedLabel LanguageRef="zhs">结构有效性</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">構造の有効性</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Structure Validity </LocalizedLabel>
+    </Label>
+    <Label Name="CheckOut">
+      <LocalizedLabel LanguageRef="zhs">检出</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックアウト</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check out</LocalizedLabel>
+    </Label>
+    <Label Name="AddQuery">
+      <LocalizedLabel LanguageRef="zhs">添加</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">追加</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Add</LocalizedLabel>
+    </Label>
+    <Label Name="CheckIn">
+      <LocalizedLabel LanguageRef="zhs">检入</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックイン</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check in</LocalizedLabel>
+    </Label>
+    <Label Name="UnCheckOut">
+      <LocalizedLabel LanguageRef="zhs">撤销检出</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックアウトを取り消す</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Undo check-out</LocalizedLabel>
+    </Label>
+    <Label Name="Remove">
+      <LocalizedLabel LanguageRef="zhs">移除</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Remove</LocalizedLabel>
+    </Label>
+    <Label Name="RemoveUnion">
+      <LocalizedLabel LanguageRef="zhs">移除中间件</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ミドルウェアを削除</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">RemoveUnion</LocalizedLabel>
+    </Label>
+    <Label Name="DeleteBom">
+      <LocalizedLabel LanguageRef="zhs">删除BOM</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">BOMを削除</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Delete BOM</LocalizedLabel>
+    </Label>
+    <Label Name="UsingPaste">
+      <LocalizedLabel LanguageRef="zhs">粘贴</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">貼り付け</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Paste</LocalizedLabel>
+    </Label>
+    <Label Name="PsePaste">
+      <LocalizedLabel LanguageRef="zhs">粘贴复制</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">複製と貼付け</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Paste and Copy</LocalizedLabel>
+    </Label>
+    <Label Name="ChangeWorkflow">
+      <LocalizedLabel LanguageRef="zhs">转生命周期</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ライフサイクル</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Change life cycle</LocalizedLabel>
+    </Label>
+    <Label Name="Refesh">
+      <LocalizedLabel LanguageRef="zhs">刷新</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">更新</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Refesh</LocalizedLabel>
+    </Label>
+    <Label Name="BatchDownLoad">
+      <LocalizedLabel LanguageRef="zhs">批量下载图文档</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">一括ダウンロード</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Batch download</LocalizedLabel>
+    </Label>
+    <Label Name="BomCompare">
+      <LocalizedLabel LanguageRef="zhs">差异比较</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">差異を比較</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Difference comparison</LocalizedLabel>
+    </Label>
+    <Label Name="BomStat">
+      <LocalizedLabel LanguageRef="zhs">综合BOM汇总</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">総合BOM集計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Consolidated BOM summary</LocalizedLabel>
+    </Label>
+    <Label Name="BomStat1">
+      <LocalizedLabel LanguageRef="zhs">元件BOM汇总</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">コンポーネントBOM集計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Component BOM summary</LocalizedLabel>
+    </Label>
+    <Label Name="BomleafStat">
+      <LocalizedLabel LanguageRef="zhs">元件BOM汇总</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">コンポーネントBOM集計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Component BOM summary</LocalizedLabel>
+    </Label>
+    <Label Name="BomSourceStat">
+      <LocalizedLabel LanguageRef="zhs">来源BOM汇总</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ソースBOM集計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Source BOM summary</LocalizedLabel>
+    </Label>
+    <Label Name="BomUsingStat">
+      <LocalizedLabel LanguageRef="zhs">产品结构系数统计</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">製品構成割合統計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Product structure factor statistics</LocalizedLabel>
+    </Label>
+    <Label Name="BomSourceStat2">
+      <LocalizedLabel LanguageRef="zhs">来源BOM汇总</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ソースBOM集計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Source BOM summary</LocalizedLabel>
+    </Label>
+    <Label Name="BomCompareStat">
+      <LocalizedLabel LanguageRef="zhs">差异BOM比较</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">差異BOMの比較</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Difference BOM comparison</LocalizedLabel>
+    </Label>
+    <Label Name="BomChangeStat">
+      <LocalizedLabel LanguageRef="zhs">修改BOM比对</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">BOMペアを修正</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Modify BOM comparison</LocalizedLabel>
+    </Label>
+    <Label Name="CheckOutItem">
+      <LocalizedLabel LanguageRef="zhs">检出</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">コンポーネントのチェックアウト</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check out the component</LocalizedLabel>
+    </Label>
+    <Label Name="CheckOutView">
+      <LocalizedLabel LanguageRef="zhs">检出视图</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックアウトビュー</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check out view</LocalizedLabel>
+    </Label>
+    <Label Name="BOMEdit">
+      <LocalizedLabel LanguageRef="zhs">BOM操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">BOM Edit</LocalizedLabel>
+    </Label>
+    <Label Name="BOMCheck">
+      <LocalizedLabel LanguageRef="zhs">检入检出</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックイン・チェックアウト</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check in and check out</LocalizedLabel>
+    </Label>
+    <Label Name="BOMCut">
+      <LocalizedLabel LanguageRef="zhs">剪切板</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">クリップボード</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Clipboard</LocalizedLabel>
+    </Label>
+    <Label Name="BOMCommon">
+      <LocalizedLabel LanguageRef="zhs">通用操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">汎用操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">General operation</LocalizedLabel>
+    </Label>
+    <Label Name="BOMStatistics">
+      <LocalizedLabel LanguageRef="zhs">汇总下载</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">統計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Statistics summary</LocalizedLabel>
+    </Label>
+    <Label Name="DataPanle">
+      <LocalizedLabel LanguageRef="zhs">数据面板</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">データパネル</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Data panel</LocalizedLabel>
+    </Label>
+    <Label Name="DoublePanle">
+      <LocalizedLabel LanguageRef="zhs">双窗口</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ダブルウィンドウ</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Double windows</LocalizedLabel>
+    </Label>
+    <Label Name="BOMDataPanle">
+      <LocalizedLabel LanguageRef="zhs">切换面板</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">データパネル</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Data panel</LocalizedLabel>
+    </Label>
+    <Label Name="WorkFlowAction">
+      <LocalizedLabel LanguageRef="zhs">流程操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">WorkFlowAction</LocalizedLabel>
+    </Label>
+    <Label Name="BOMAdd">
+      <LocalizedLabel LanguageRef="zhs">添加</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">追加</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Add</LocalizedLabel>
+    </Label>
+    <Label Name="BOMRemove">
+      <LocalizedLabel LanguageRef="zhs">移除</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">リムーブ</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Remove</LocalizedLabel>
+    </Label>
+    <Label Name="BOMWorkflow">
+      <LocalizedLabel LanguageRef="zhs">流程</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">フロー</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Process</LocalizedLabel>
+    </Label>
+    <Label Name="AddQueryRoot">
+      <LocalizedLabel LanguageRef="zhs">添加根节点</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">ルートノードを追加</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Add root node</LocalizedLabel>
+    </Label>
+    <Label Name="BomCheckOut">
+      <LocalizedLabel LanguageRef="zhs">检出</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックアウト</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check out</LocalizedLabel>
+    </Label>
+    <Label Name="BOMCheckIn">
+      <LocalizedLabel LanguageRef="zhs">检入</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">チェックイン</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Check in</LocalizedLabel>
+    </Label>
+    <Label Name="BOMCompare">
+      <LocalizedLabel LanguageRef="zhs">检查比较</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">差異を比較</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Difference comparison</LocalizedLabel>
+    </Label>
+    <Label Name="BOMDelete">
+      <LocalizedLabel LanguageRef="zhs">删除</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">削除</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Delete</LocalizedLabel>
+    </Label>
+    <Label Name="MyCheckOut">
+      <LocalizedLabel LanguageRef="zhs">我的检出</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">自分のチェックアウト</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">My check-out</LocalizedLabel>
+    </Label>
+    <Label Name="BOMEffectmanager">
+      <LocalizedLabel LanguageRef="zhs">版本规则&amp;有效性</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">バージョンルール&amp;有効性</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Version rule &amp;validity</LocalizedLabel>
+    </Label>
+    <Label Name="BOMVersionmanager">
+      <LocalizedLabel LanguageRef="zhs">版本规则</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">バージョンのルール</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Version rule</LocalizedLabel>
+    </Label>
+    <Label Name="ExpandAll">
+      <LocalizedLabel LanguageRef="zhs">全部展开</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">すべて展開</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Extend all</LocalizedLabel>
+    </Label>
+    <Label Name="ExpandTo">
+      <LocalizedLabel LanguageRef="zhs">展开到</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">展開先</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Expand</LocalizedLabel>
+    </Label>
+    <Label Name="Replace">
+      <LocalizedLabel LanguageRef="zhs">替换</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">切り替え</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Replace</LocalizedLabel>
+    </Label>
+    <Label Name="ImportItem">
+      <LocalizedLabel LanguageRef="zhs">导入零组件</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">コンポーネントをインポート</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Import the component </LocalizedLabel>
+    </Label>
+    <Label Name="ImportBom">
+      <LocalizedLabel LanguageRef="zhs">导入Bom</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">Bomをインポート</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Import BOM</LocalizedLabel>
+    </Label>
+    <Label Name="IntegrityCheck">
+      <LocalizedLabel LanguageRef="zhs">设计图样完整性检查</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">完全性検査</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Design Pattern Integrity Check</LocalizedLabel>
+    </Label>
+    <Label Name="BatchObjectPermission">
+      <LocalizedLabel LanguageRef="zhs">批量授权</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">一括権限付与</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Batch licensing</LocalizedLabel>
+    </Label>
+    <Label Name="ConfigPanle">
+      <LocalizedLabel LanguageRef="zhs">配置面板</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">配置変数パネル</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">ConfigPanle</LocalizedLabel>
+    </Label>
+    <Label Name="BomMaterialConsumptionSummary">
+      <LocalizedLabel LanguageRef="zhs">材料定额汇总</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">材料定額集計</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Material consumption summary</LocalizedLabel>
+    </Label>
+    <Label Name="ViewItemDoc">
+      <LocalizedLabel LanguageRef="zhs">浏览图文档</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">図形ドキュメントを閲覧</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">ViewItemDoc</LocalizedLabel>
+    </Label>
+    <Label Name="AlternatesParts">
+      <LocalizedLabel LanguageRef="zhs">替换件管理</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">交換部品管理 </LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">AlternatesParts</LocalizedLabel>
+    </Label>
+    <Label Name="GlobalAlternates">
+      <LocalizedLabel LanguageRef="zhs">全局备选件</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">グローバルオプション </LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">GlobalAlternates</LocalizedLabel>
+    </Label>
+    <Label Name="Alternates">
+      <LocalizedLabel LanguageRef="zhs">局部备选件</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">部分オプション </LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Alternates</LocalizedLabel>
+    </Label>
+    <Label Name="SendToOtherUser">
+      <LocalizedLabel LanguageRef="zhs">发送给其他用户</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">他のユーザーに送信</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">SendToOtherUser</LocalizedLabel>
+    </Label>
+    <Label Name="BatchReplace">
+      <LocalizedLabel LanguageRef="zhs">批量更改BOM</LocalizedLabel>
+      <LocalizedLabel LanguageRef="jp">一括変更BOM</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Batch Replace</LocalizedLabel>
+    </Label>
+    <Label Name="newItem1">
+      <LocalizedLabel LanguageRef="zhs">浏览操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Browse</LocalizedLabel>
+    </Label>
+    <Label Name="BomBrowse">
+      <LocalizedLabel LanguageRef="zhs">浏览操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Browse</LocalizedLabel>
+    </Label>
+    <Label Name="LoadRootNode">
+      <LocalizedLabel LanguageRef="zhs">加载根节点</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">LoadRootNode</LocalizedLabel>
+    </Label>
+    <Label Name="LoadBaseLineBom">
+      <LocalizedLabel LanguageRef="zhs">加载基线</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">LoadBaseLineBom</LocalizedLabel>
+    </Label>
+    <Label Name="ChangeBaseLineBom">
+      <LocalizedLabel LanguageRef="zhs">切换基线Bom</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">ChangeBaseLineBom</LocalizedLabel>
+    </Label>
+    <Label Name="SaveBaseLine">
+      <LocalizedLabel LanguageRef="zhs">保存基线</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">SaveBaseLine</LocalizedLabel>
+    </Label>
+    <Label Name="ChoseView">
+      <LocalizedLabel LanguageRef="zhs">筛选视图</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">ChoseView</LocalizedLabel>
+    </Label>
+    <Label Name="CancelChoseView">
+      <LocalizedLabel LanguageRef="zhs">取消筛选视图</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">CancelChoseView</LocalizedLabel>
+    </Label>
+    <Label Name="ChangeDefaultView">
+      <LocalizedLabel LanguageRef="zhs">切换默认视图</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">ChangeDefaultView</LocalizedLabel>
+    </Label>
+    <Label Name="SpecsDocShow/Hide">
+      <LocalizedLabel LanguageRef="zhs">文档显示/隐藏</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">SpecsDocShow/Hide</LocalizedLabel>
+    </Label>
+    <Label Name="SearchCustomEffecticenessView">
+      <LocalizedLabel LanguageRef="zhs">切换有效性</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">SearchCustomEffecticenessView</LocalizedLabel>
+    </Label>
+    <Label Name="newChildrenItem1">
+      <LocalizedLabel LanguageRef="zhs">保存自定义有效性视图规则</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">SaveCustomEffectivenessViewRule</LocalizedLabel>
+    </Label>
+    <Label Name="Avalability">
+      <LocalizedLabel LanguageRef="zhs">有效性面板</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Avalability</LocalizedLabel>
+    </Label>
+    <Label Name="SelectPSEItem">
+      <LocalizedLabel LanguageRef="zhs">请选择零组件</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Please select PSEItem</LocalizedLabel>
+    </Label>
+    <Label Name="GetErpDataMenu">
+      <LocalizedLabel LanguageRef="zhs">ERP集成</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">GetErpDataMenu</LocalizedLabel>
+    </Label>
+    <Label Name="PseItemAction">
+      <LocalizedLabel LanguageRef="zhs">零部件操作</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">PseItemAction</LocalizedLabel>
+    </Label>
+    <Label Name="Refresh">
+      <LocalizedLabel LanguageRef="zhs">刷新</LocalizedLabel>
+      <LocalizedLabel LanguageRef="en">Refresh</LocalizedLabel>
+    </Label>
+  </Context>
+</DictionarySerializer>

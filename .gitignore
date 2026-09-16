@@ -1,0 +1,7 @@
+**/runtime/**
+sources/mirror/**
+tools/browser/media/**
+tools/browser/chromium/**
+archive/**
+**/.env*
+**/storage-state*.json

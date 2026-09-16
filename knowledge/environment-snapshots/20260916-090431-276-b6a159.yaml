@@ -1,0 +1,288 @@
+﻿{
+    "captured_at":  "2026-09-16T01:04:31.2841627Z",
+    "workspace":  {
+                      "schema_version":  1,
+                      "workspace_id":  "xindazhou-honda-inforcenter-9.6",
+                      "project":  {
+                                      "id":  "新大洲本田",
+                                      "name":  "新大洲本田"
+                                  },
+                      "product":  {
+                                      "name":  "inforcenter",
+                                      "version":  "9.6"
+                                  },
+                      "active_profile":  "DEV",
+                      "profiles":  {
+                                       "DEV":  {
+                                                   "os":  {
+                                                              "name":  "Windows Server",
+                                                              "version":  "2025",
+                                                              "username":  null,
+                                                              "password":  null
+                                                          },
+                                                   "database":  {
+                                                                    "required":  true,
+                                                                    "engine":  "关系型/sqlserver",
+                                                                    "version":  "2025",
+                                                                    "host":  "192.168.40.76",
+                                                                    "name":  "SQLHD",
+                                                                    "secret_ref":  null,
+                                                                    "username":  null,
+                                                                    "password":  null
+                                                                },
+                                                   "application_server":  {
+                                                                              "kind":  "IIS",
+                                                                              "version":  "unknown (user does not know IIS version)",
+                                                                              "host":  "192.168.40.76",
+                                                                              "username":  null,
+                                                                              "password":  null
+                                                                          },
+                                                   "web":  {
+                                                               "url":  "http://192.168.40.76/",
+                                                               "login_mode":  "manual",
+                                                               "secret_ref":  null,
+                                                               "username":  "system",
+                                                               "password":  "123",
+                                                               "token":  null
+                                                           },
+                                                   "browser":  {
+                                                                   "enabled":  true,
+                                                                   "driver":  "playwright",
+                                                                   "mode":  "launch",
+                                                                   "cdp_endpoint":  null,
+                                                                   "storage_state_ref":  null
+                                                               },
+                                                   "source":  {
+                                                                  "auto_discover":  true,
+                                                                  "candidate_paths":  [
+                                                                                          "\\\\192.168.40.76\\1_Server"
+                                                                                      ],
+                                                                  "selected_path":  "\\\\192.168.40.76\\1_Server",
+                                                                  "discovery_depth":  2,
+                                                                  "exclude":  [
+                                                                                  "logs",
+                                                                                  "log",
+                                                                                  "cache",
+                                                                                  "tmp",
+                                                                                  "temp",
+                                                                                  "node_modules",
+                                                                                  "target",
+                                                                                  "bin",
+                                                                                  "obj",
+                                                                                  ".git"
+                                                                              ],
+                                                                  "exclude_files":  [
+                                                                                        ".env",
+                                                                                        ".env.*",
+                                                                                        "*.pfx",
+                                                                                        "*.key",
+                                                                                        "*.pem"
+                                                                                    ],
+                                                                  "review_sensitive_configs":  true,
+                                                                  "username":  null,
+                                                                  "password":  null,
+                                                                  "domain":  null
+                                                              },
+                                                   "capabilities":  {
+                                                                        "frontend":  true,
+                                                                        "backend":  true,
+                                                                        "backend_decision":  "pending user confirmation"
+                                                                    },
+                                                   "commands":  {
+                                                                    "build":  "not-applicable",
+                                                                    "run":  "not-applicable",
+                                                                    "test":  "not-applicable"
+                                                                },
+                                                   "secret_refs":  {
+
+                                                                   },
+                                                   "deployment":  {
+                                                                      "vm_workdir":  "\\192.168.40.76\\1_Server",
+                                                                      "service_name":  null,
+                                                                      "username":  null,
+                                                                      "password":  null
+                                                                  }
+                                               },
+                                       "TEST":  {
+                                                    "os":  {
+                                                               "name":  null,
+                                                               "version":  null,
+                                                               "username":  null,
+                                                               "password":  null
+                                                           },
+                                                    "database":  {
+                                                                     "required":  null,
+                                                                     "engine":  null,
+                                                                     "version":  null,
+                                                                     "host":  null,
+                                                                     "name":  null,
+                                                                     "secret_ref":  null,
+                                                                     "username":  null,
+                                                                     "password":  null
+                                                                 },
+                                                    "application_server":  {
+                                                                               "kind":  null,
+                                                                               "version":  null,
+                                                                               "host":  null,
+                                                                               "username":  null,
+                                                                               "password":  null
+                                                                           },
+                                                    "web":  {
+                                                                "url":  null,
+                                                                "login_mode":  null,
+                                                                "secret_ref":  null,
+                                                                "username":  null,
+                                                                "password":  null,
+                                                                "token":  null
+                                                            },
+                                                    "browser":  {
+                                                                    "enabled":  true,
+                                                                    "driver":  "playwright",
+                                                                    "mode":  "launch",
+                                                                    "cdp_endpoint":  null,
+                                                                    "storage_state_ref":  null
+                                                                },
+                                                    "source":  {
+                                                                   "auto_discover":  true,
+                                                                   "candidate_paths":  [
+
+                                                                                       ],
+                                                                   "selected_path":  null,
+                                                                   "discovery_depth":  2,
+                                                                   "exclude":  [
+                                                                                   "logs",
+                                                                                   "log",
+                                                                                   "cache",
+                                                                                   "tmp",
+                                                                                   "temp",
+                                                                                   "node_modules",
+                                                                                   "target",
+                                                                                   "bin",
+                                                                                   "obj",
+                                                                                   ".git"
+                                                                               ],
+                                                                   "exclude_files":  [
+                                                                                         ".env",
+                                                                                         ".env.*",
+                                                                                         "*.pfx",
+                                                                                         "*.key",
+                                                                                         "*.pem"
+                                                                                     ],
+                                                                   "review_sensitive_configs":  true,
+                                                                   "username":  null,
+                                                                   "password":  null,
+                                                                   "domain":  null
+                                                               },
+                                                    "capabilities":  {
+                                                                         "frontend":  null,
+                                                                         "backend":  null,
+                                                                         "backend_decision":  null
+                                                                     },
+                                                    "commands":  {
+                                                                     "build":  null,
+                                                                     "run":  null,
+                                                                     "test":  null
+                                                                 },
+                                                    "secret_refs":  {
+
+                                                                    },
+                                                    "deployment":  {
+                                                                       "vm_workdir":  null,
+                                                                       "service_name":  null,
+                                                                       "username":  null,
+                                                                       "password":  null
+                                                                   }
+                                                },
+                                       "PROD":  {
+                                                    "os":  {
+                                                               "name":  null,
+                                                               "version":  null,
+                                                               "username":  null,
+                                                               "password":  null
+                                                           },
+                                                    "database":  {
+                                                                     "required":  null,
+                                                                     "engine":  null,
+                                                                     "version":  null,
+                                                                     "host":  null,
+                                                                     "name":  null,
+                                                                     "secret_ref":  null,
+                                                                     "username":  null,
+                                                                     "password":  null
+                                                                 },
+                                                    "application_server":  {
+                                                                               "kind":  null,
+                                                                               "version":  null,
+                                                                               "host":  null,
+                                                                               "username":  null,
+                                                                               "password":  null
+                                                                           },
+                                                    "web":  {
+                                                                "url":  null,
+                                                                "login_mode":  null,
+                                                                "secret_ref":  null,
+                                                                "username":  null,
+                                                                "password":  null,
+                                                                "token":  null
+                                                            },
+                                                    "browser":  {
+                                                                    "enabled":  true,
+                                                                    "driver":  "playwright",
+                                                                    "mode":  "launch",
+                                                                    "cdp_endpoint":  null,
+                                                                    "storage_state_ref":  null
+                                                                },
+                                                    "source":  {
+                                                                   "auto_discover":  true,
+                                                                   "candidate_paths":  [
+
+                                                                                       ],
+                                                                   "selected_path":  null,
+                                                                   "discovery_depth":  2,
+                                                                   "exclude":  [
+                                                                                   "logs",
+                                                                                   "log",
+                                                                                   "cache",
+                                                                                   "tmp",
+                                                                                   "temp",
+                                                                                   "node_modules",
+                                                                                   "target",
+                                                                                   "bin",
+                                                                                   "obj",
+                                                                                   ".git"
+                                                                               ],
+                                                                   "exclude_files":  [
+                                                                                         ".env",
+                                                                                         ".env.*",
+                                                                                         "*.pfx",
+                                                                                         "*.key",
+                                                                                         "*.pem"
+                                                                                     ],
+                                                                   "review_sensitive_configs":  true,
+                                                                   "username":  null,
+                                                                   "password":  null,
+                                                                   "domain":  null
+                                                               },
+                                                    "capabilities":  {
+                                                                         "frontend":  null,
+                                                                         "backend":  null,
+                                                                         "backend_decision":  null
+                                                                     },
+                                                    "commands":  {
+                                                                     "build":  null,
+                                                                     "run":  null,
+                                                                     "test":  null
+                                                                 },
+                                                    "secret_refs":  {
+
+                                                                    },
+                                                    "deployment":  {
+                                                                       "vm_workdir":  null,
+                                                                       "service_name":  null,
+                                                                       "username":  null,
+                                                                       "password":  null
+                                                                   }
+                                                }
+                                   }
+                  }
+}

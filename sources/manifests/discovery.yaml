@@ -1,0 +1,2844 @@
+﻿{
+    "schema_version":  1,
+    "workspace_id":  "xindazhou-honda-inforcenter-9.6",
+    "profile":  "DEV",
+    "generated_at":  "2026-09-16T08:34:06.0329262+08:00",
+    "candidates":  [
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server",
+                           "kind":  "source",
+                           "markers":  [
+                                           "Default.aspx",
+                                           "Default.aspx.cs",
+                                           "error.aspx",
+                                           "error.aspx.cs",
+                                           "Global.asax.cs",
+                                           "H5Default.aspx",
+                                           "H5Default.aspx.cs",
+                                           "IntegrationBasePage.aspx",
+                                           "IntegrationBasePage.aspx.cs",
+                                           "MobileDefault.aspx",
+                                           "MobileDefault.aspx.cs",
+                                           "S6_HD!Integrate!Bin!Hoteam.HD.Integrate.Business.dll",
+                                           "S6_HD!Integrate!Bin!Hoteam.HD.Integrate.Parameter.dll",
+                                           "Web.config"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\Base",
+                           "kind":  "source",
+                           "markers":  [
+                                           "BasePage.aspx",
+                                           "BasePage.aspx.cs",
+                                           "H5BasePage.aspx",
+                                           "H5BasePage.aspx.cs"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\CodeGenerator",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "CodeSmith.Engine.dll",
+                                           "CodeSmith.Gui.dll",
+                                           "CodeSmith.Insight.Client.Windows.dll",
+                                           "Hoteam.InforCenter.Developer.Interface.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\Interface",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Hoteam.InforCenter.AccessRecord.Interface.dll",
+                                           "Hoteam.InforCenter.Base.Interface.dll",
+                                           "Hoteam.InforCenter.BaseLine.Interface.dll",
+                                           "Hoteam.InforCenter.BaseLine.ObjectValue.dll",
+                                           "Hoteam.InforCenter.BomStatistics.Interface.dll",
+                                           "Hoteam.InforCenter.BomValidity.Interface.dll",
+                                           "Hoteam.InforCenter.BomVariable.Interface.dll",
+                                           "Hoteam.InforCenter.CAD.Interface.dll",
+                                           "Hoteam.InforCenter.CADCIS.Interface.dll",
+                                           "Hoteam.InforCenter.Capp.Interface.dll",
+                                           "Hoteam.InforCenter.CappResource.Interface.dll",
+                                           "Hoteam.InforCenter.ChangeApply.Interface.dll",
+                                           "Hoteam.InforCenter.ChangeNotice.Interface.dll",
+                                           "Hoteam.InforCenter.ChangeProblem.Interface.dll",
+                                           "Hoteam.InforCenter.ChangeRelation.Interface.dll",
+                                           "Hoteam.InforCenter.ClassifyAttrbute.Interface.dll",
+                                           "Hoteam.InforCenter.ClassifyEdit.Interface.dll",
+                                           "Hoteam.InforCenter.ClassifyUse.Interface.dll",
+                                           "Hoteam.InforCenter.Coding.Maintenance.Interface.dll",
+                                           "Hoteam.InforCenter.CommandServiceExtendsion.Interface.dll",
+                                           "Hoteam.InforCenter.Common.ImportInitDataInterface.dll",
+                                           "Hoteam.InforCenter.Communication.Interface.dll",
+                                           "Hoteam.InforCenter.CompanyRule.Interface.dll",
+                                           "Hoteam.InforCenter.ConsumptionStation.Interface.dll",
+                                           "Hoteam.InforCenter.Coordination.Interface.dll",
+                                           "Hoteam.InforCenter.CReportEdit.Interface.dll",
+                                           "Hoteam.InforCenter.CrownIntegrate.Interface.dll",
+                                           "Hoteam.InforCenter.DataSetType.Interface.dll",
+                                           "Hoteam.InforCenter.DeployCode.Interface.dll",
+                                           "Hoteam.InforCenter.Distribute.Interface.dll",
+                                           "Hoteam.InforCenter.DocModel.Interface.dll",
+                                           "Hoteam.InforCenter.DocTemplate.Interface.dll",
+                                           "Hoteam.InforCenter.Enumeration.Interface.dll",
+                                           "Hoteam.InforCenter.Favorite.Interface.dll",
+                                           "Hoteam.InforCenter.FileManage.Interface.dll",
+                                           "Hoteam.InforCenter.FlatDisplay.Interface.dll",
+                                           "Hoteam.InforCenter.Formula.Interface.dll",
+                                           "Hoteam.InforCenter.GrManagement.Interface.dll",
+                                           "Hoteam.InforCenter.ImportExport.Interface.dll",
+                                           "Hoteam.InforCenter.IntegrationERP.Interface.dll",
+                                           "Hoteam.InforCenter.IntergrationCommunication.Interface.dll",
+                                           "Hoteam.InforCenter.InternalMail.Interface.dll",
+                                           "Hoteam.InforCenter.Interval.Interface.dll",
+                                           "Hoteam.InforCenter.Issue.Interface.dll",
+                                           "Hoteam.InforCenter.ISTF16949.Interface.dll",
+                                           "Hoteam.InforCenter.ItemPortal.Interface.dll",
+                                           "Hoteam.InforCenter.MazyTable.Interface.dll",
+                                           "Hoteam.InforCenter.MessageQueuing.Interface.dll",
+                                           "Hoteam.InforCenter.MobilePermission.Interface.dll",
+                                           "Hoteam.InforCenter.ModelGenerator.Interface.dll",
+                                           "Hoteam.InforCenter.ModelGenerator.Utility.dll",
+                                           "Hoteam.InforCenter.ModulePermission.Interface.dll",
+                                           "Hoteam.InforCenter.MSE.Interface.dll",
+                                           "Hoteam.InforCenter.MSEConfig.Interface.dll",
+                                           "Hoteam.InforCenter.MSEParaDesign.Interface.dll",
+                                           "Hoteam.InforCenter.MyProject.Interface.dll",
+                                           "Hoteam.InforCenter.Organization.GroupInterface.dll",
+                                           "Hoteam.InforCenter.Organization.GroupRuleInterface.dll",
+                                           "Hoteam.InforCenter.PDMInternalMail.Interface.dll",
+                                           "Hoteam.InforCenter.PMTask.Interface.dll",
+                                           "Hoteam.InforCenter.PositionManager.Interface.dll",
+                                           "Hoteam.InforCenter.ProcessPlanEdit.Interface.dll",
+                                           "Hoteam.InforCenter.ProcessPlanTemplate.Inteface.dll",
+                                           "Hoteam.InforCenter.ProcessRoute.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectBaseLine.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectChange.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectCost.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectEps.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectFolderTemplate.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectPlan.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectTask.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectTeam.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectTemplate.Interface.dll",
+                                           "Hoteam.InforCenter.ProjectWorkflow.Interface.dll",
+                                           "Hoteam.InforCenter.PSEBom.Interface.dll",
+                                           "Hoteam.InforCenter.PSEItem.Interface.dll",
+                                           "Hoteam.InforCenter.PseValidity.Interface.dll",
+                                           "Hoteam.InforCenter.QProblem.Interface.dll",
+                                           "Hoteam.InforCenter.QProblemLibrary.Interface.dll",
+                                           "Hoteam.InforCenter.Registered.Interface.dll",
+                                           "Hoteam.InforCenter.RegisteredCompanyLink.Interface.dll",
+                                           "Hoteam.InforCenter.Resource.Interface.dll",
+                                           "Hoteam.InforCenter.Risk.Interface.dll",
+                                           "Hoteam.InforCenter.Rule.Interface.dll",
+                                           "Hoteam.InforCenter.SuOrganize.Interface.dll",
+                                           "Hoteam.InforCenter.SystemSettings.Interface.dll",
+                                           "Hoteam.InforCenter.ThreeManagement.Interface.dll",
+                                           "Hoteam.InforCenter.ThreeRoleAuthPlatform.Interface.dll",
+                                           "Hoteam.InforCenter.TimeQuota.Interface.dll",
+                                           "Hoteam.InforCenter.Tooling.Interface.dll",
+                                           "Hoteam.InforCenter.TSManagement.Interface.dll",
+                                           "Hoteam.InforCenter.TSManagementNew.Interface.dll",
+                                           "Hoteam.InforCenter.VirtualTreeWorkSpace.Interface.dll",
+                                           "Hoteam.InforCenter.WebStudio.View.Interface.dll",
+                                           "Hoteam.InforCenter.WorkFlowExtend.Interface.dll",
+                                           "Hoteam.InforCenter.WorkReport.Interface.dll",
+                                           "Hoteam.InforCenter.WorkSpace.Interface.dll",
+                                           "Hoteam.InforCenterCrownCADIntegrate.CAD.Interface.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\MobileBase",
+                           "kind":  "source",
+                           "markers":  [
+                                           "MobileBasePage.aspx",
+                                           "MobileBasePage.aspx.cs",
+                                           "MobileBasePageNoCache.aspx",
+                                           "MobileBasePageNoCache.aspx.cs"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\Registered\\ResetPassword",
+                           "kind":  "source",
+                           "markers":  [
+                                           "CheckChangeUser.aspx",
+                                           "CheckChangeUser.aspx.cs",
+                                           "CodeGif.aspx",
+                                           "CodeGif.aspx.cs",
+                                           "GetLoginUrl.aspx",
+                                           "GetLoginUrl.aspx.cs",
+                                           "IdentityVerification.aspx",
+                                           "IdentityVerification.aspx.cs"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\InforCenter\\PLMAI\\Extend",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Hoteam.Inforcenter.PLMAI.SimilarityFunctions.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\Platform\\ReportMangement\\aspx",
+                           "kind":  "source",
+                           "markers":  [
+                                           "DesignReport.aspx",
+                                           "DesignReport.aspx.cs",
+                                           "ViewByDataSource.aspx",
+                                           "ViewByDataSource.aspx.cs",
+                                           "ViewReport.aspx",
+                                           "ViewReport.aspx.cs"
+                                       ]
+                       },
+                       {
+                           "path":  "\\\\192.168.40.76\\1_Server\\Example\\Config\\Pages\\ReportExample",
+                           "kind":  "source",
+                           "markers":  [
+                                           "Designer.aspx",
+                                           "Designer.aspx.cs",
+                                           "View.aspx",
+                                           "View.aspx.cs"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\Desktop",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "dwg2pdf.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.agent-browser\\browsers\\chrome-150.0.7871.24",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "chrome.dll",
+                                           "chrome_elf.dll",
+                                           "chrome_wer.dll",
+                                           "D3DCompiler_47.dll",
+                                           "dxcompiler.dll",
+                                           "dxil.dll",
+                                           "libEGL.dll",
+                                           "libGLESv2.dll",
+                                           "vk_swiftshader.dll",
+                                           "vulkan-1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.dsh\\profiles\\web",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\.a9277f97-ddde-41a2-890c-f6d0ac7b8afa",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ahmadalli.vscode-nginx-conf-0.3.5",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\albert.tabout-0.2.4",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\anthropic.claude-code-2.1.272-win32-x64",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\cstrap.python-snippets-0.1.2",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\dotjoshjohnson.xml-2.5.1",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\dracula-theme.theme-dracula-2.25.1",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\humao.rest-client-0.25.1",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\johnpapa.winteriscoming-1.5.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\mechatroner.rainbow-csv-3.24.1",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\mermaidchart.vscode-mermaid-chart-2.7.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\mongodb.mongodb-vscode-1.16.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-azuretools.vscode-docker-2.0.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.black-formatter-2026.6.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.python-2026.4.0-win32-x64",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.vscode-pylance-2026.3.1",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.vscode-python-envs-1.36.0-win32-x64",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode-remote.remote-ssh-0.124.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode-remote.remote-ssh-0.126.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode-remote.remote-ssh-0.128.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode-remote.remote-ssh-edit-0.87.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode-remote.remote-wsl-0.104.3",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode-remote.remote-wsl-recommender-0.0.20",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-vscode.remote-explorer-0.5.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\oracle.sql-developer-26.1.2-win32-x64",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\phplasma.csv-to-table-1.4.1",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\redhat.vscode-xml-0.29.3-win32-x64",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\shd101wyy.markdown-preview-enhanced-0.8.22",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\tomoki1207.pdf-1.2.2",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\wscats.cors-browser-1.0.11",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\QQChatExporter",
+                           "kind":  "source",
+                           "markers":  [
+                                           "NapCatWinBootHook.dll",
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\leidian9",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ldopengl32x.dll",
+                                           "msvcp120.dll",
+                                           "msvcr120.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\Downloads\\A0_fps击杀反馈等5项文件\\A0_fps击杀反馈",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ModernFPSFeedback.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\Downloads\\A0_fps击杀反馈等5项文件\\ZZZ_CATUI",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "CATUI.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.claude\\plugins\\marketplaces\\claude-hud",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\mermaidchart.vscode-mermaid-chart-2.7.0\\out",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\mermaidchart.vscode-mermaid-chart-2.7.0\\webview",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.vscode-python-envs-1.36.0-win32-x64\\api",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\WeiyunApp",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "api-ms-win-core-console-l1-1-0.dll",
+                                           "api-ms-win-core-datetime-l1-1-0.dll",
+                                           "api-ms-win-core-debug-l1-1-0.dll",
+                                           "api-ms-win-core-errorhandling-l1-1-0.dll",
+                                           "api-ms-win-core-fibers-l1-1-0.dll",
+                                           "api-ms-win-core-file-l1-1-0.dll",
+                                           "api-ms-win-core-file-l1-2-0.dll",
+                                           "api-ms-win-core-file-l2-1-0.dll",
+                                           "api-ms-win-core-handle-l1-1-0.dll",
+                                           "api-ms-win-core-heap-l1-1-0.dll",
+                                           "api-ms-win-core-interlocked-l1-1-0.dll",
+                                           "api-ms-win-core-io-l1-1-0.dll",
+                                           "api-ms-win-core-libraryloader-l1-1-0.dll",
+                                           "api-ms-win-core-localization-l1-1-0.dll",
+                                           "api-ms-win-core-localization-l1-2-0.dll",
+                                           "api-ms-win-core-memory-l1-1-0.dll",
+                                           "api-ms-win-core-misc-l1-1-0.dll",
+                                           "api-ms-win-core-namedpipe-l1-1-0.dll",
+                                           "api-ms-win-core-processenvironment-l1-1-0.dll",
+                                           "api-ms-win-core-processthreads-l1-1-0.dll",
+                                           "api-ms-win-core-processthreads-l1-1-1.dll",
+                                           "api-ms-win-core-profile-l1-1-0.dll",
+                                           "api-ms-win-core-rtlsupport-l1-1-0.dll",
+                                           "api-ms-win-core-string-l1-1-0.dll",
+                                           "api-ms-win-core-synch-l1-1-0.dll",
+                                           "api-ms-win-core-synch-l1-2-0.dll",
+                                           "api-ms-win-core-sysinfo-l1-1-0.dll",
+                                           "api-ms-win-core-threadpool-l1-1-0.dll",
+                                           "api-ms-win-core-timezone-l1-1-0.dll",
+                                           "api-ms-win-core-util-l1-1-0.dll",
+                                           "api-ms-win-crt-conio-l1-1-0.dll",
+                                           "api-ms-win-crt-convert-l1-1-0.dll",
+                                           "api-ms-win-crt-environment-l1-1-0.dll",
+                                           "api-ms-win-crt-filesystem-l1-1-0.dll",
+                                           "api-ms-win-crt-heap-l1-1-0.dll",
+                                           "api-ms-win-crt-locale-l1-1-0.dll",
+                                           "api-ms-win-crt-math-l1-1-0.dll",
+                                           "api-ms-win-crt-multibyte-l1-1-0.dll",
+                                           "api-ms-win-crt-private-l1-1-0.dll",
+                                           "api-ms-win-crt-process-l1-1-0.dll",
+                                           "api-ms-win-crt-runtime-l1-1-0.dll",
+                                           "api-ms-win-crt-stdio-l1-1-0.dll",
+                                           "api-ms-win-crt-string-l1-1-0.dll",
+                                           "api-ms-win-crt-time-l1-1-0.dll",
+                                           "api-ms-win-crt-utility-l1-1-0.dll",
+                                           "api-ms-win-security-base-l1-1-0.dll",
+                                           "d3dcompiler_47.dll",
+                                           "ffmpeg.dll",
+                                           "libEGL.dll",
+                                           "libGLESv2.dll",
+                                           "ucrtbase.dll",
+                                           "vk_swiftshader.dll",
+                                           "vulkan-1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Xmind",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "d3dcompiler_47.dll",
+                                           "ffmpeg.dll",
+                                           "libEGL.dll",
+                                           "libGLESv2.dll",
+                                           "vk_swiftshader.dll",
+                                           "vulkan-1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "e_sqlite3.dll",
+                                           "STranslate.dll",
+                                           "STranslate.Plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\ScreenShare\\bundle",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "avcodec-59.dll",
+                                           "avutil-57.dll",
+                                           "dongle_lwip_hid.dll",
+                                           "eslog.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "python3.dll",
+                                           "python312.dll",
+                                           "vcruntime140.dll",
+                                           "vcruntime140_1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\plugin-eval",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\superhuman",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.python-2026.4.0-win32-x64\\out\\client",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\oracle.sql-developer-26.1.2-win32-x64\\media\\editors",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Microsoft\\TypeScript\\6.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\ms-playwright\\chromium-1243\\chrome-win64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "chrome.dll",
+                                           "chrome_elf.dll",
+                                           "chrome_wer.dll",
+                                           "D3DCompiler_47.dll",
+                                           "dxcompiler.dll",
+                                           "dxil.dll",
+                                           "libEGL.dll",
+                                           "libGLESv2.dll",
+                                           "vk_swiftshader.dll",
+                                           "vulkan-1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\npm-cache\\_npx\\1e7f6d9597241db0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\npm-cache\\_npx\\32026684e21afda6",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\npm-cache\\_npx\\97822dc5f189d233",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\npm-cache\\_npx\\ac0ed6aa23b37c1e",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\npm-cache\\_npx\\cd91540867942c9c",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\QQChatExporter\\native\\napi2native",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ffmpeg.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\QQChatExporter\\plugins\\napcat-plugin-qce",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Accessibility.dll",
+                                           "clretwrc.dll",
+                                           "clrgc.dll",
+                                           "clrgcexp.dll",
+                                           "clrjit.dll",
+                                           "coreclr.dll",
+                                           "D3DCompiler_47_cor3.dll",
+                                           "DirectWriteForwarder.dll",
+                                           "getfilesiginforedist.dll",
+                                           "getfilesiginforedistwrapper.dll",
+                                           "hostfxr.dll",
+                                           "hostpolicy.dll",
+                                           "Humanizer.dll",
+                                           "Json.More.dll",
+                                           "JsonPointer.Net.dll",
+                                           "JsonSchema.Net.dll",
+                                           "Markdig.Signed.dll",
+                                           "Microsoft.ApplicationInsights.dll",
+                                           "Microsoft.Bcl.AsyncInterfaces.dll",
+                                           "Microsoft.CodeAnalysis.CSharp.dll",
+                                           "Microsoft.CodeAnalysis.dll",
+                                           "Microsoft.CSharp.dll",
+                                           "Microsoft.Extensions.ObjectPool.dll",
+                                           "Microsoft.Management.Infrastructure.CimCmdlets.dll",
+                                           "microsoft.management.infrastructure.dll",
+                                           "microsoft.management.infrastructure.native.dll",
+                                           "microsoft.management.infrastructure.native.unmanaged.dll",
+                                           "Microsoft.PowerShell.Commands.Diagnostics.dll",
+                                           "Microsoft.PowerShell.Commands.Management.dll",
+                                           "Microsoft.PowerShell.Commands.Utility.dll",
+                                           "Microsoft.PowerShell.ConsoleHost.dll",
+                                           "Microsoft.PowerShell.CoreCLR.Eventing.dll",
+                                           "Microsoft.PowerShell.GraphicalHost.dll",
+                                           "Microsoft.PowerShell.MarkdownRender.dll",
+                                           "Microsoft.PowerShell.SDK.dll",
+                                           "Microsoft.PowerShell.Security.dll",
+                                           "Microsoft.VisualBasic.Core.dll",
+                                           "Microsoft.VisualBasic.dll",
+                                           "Microsoft.VisualBasic.Forms.dll",
+                                           "Microsoft.Win32.Primitives.dll",
+                                           "Microsoft.Win32.Registry.AccessControl.dll",
+                                           "Microsoft.Win32.Registry.dll",
+                                           "Microsoft.Win32.SystemEvents.dll",
+                                           "Microsoft.WSMan.Management.dll",
+                                           "Microsoft.WSMan.Runtime.dll",
+                                           "mscordaccore.dll",
+                                           "mscordaccore_amd64_amd64_10.0.1126.37416.dll",
+                                           "mscordbi.dll",
+                                           "mscorlib.dll",
+                                           "mscorrc.dll",
+                                           "msquic.dll",
+                                           "netstandard.dll",
+                                           "Newtonsoft.Json.dll",
+                                           "PenImc_cor3.dll",
+                                           "PowerShell.Core.Instrumentation.dll",
+                                           "PresentationCore.dll",
+                                           "PresentationFramework-SystemCore.dll",
+                                           "PresentationFramework-SystemData.dll",
+                                           "PresentationFramework-SystemDrawing.dll",
+                                           "PresentationFramework-SystemXml.dll",
+                                           "PresentationFramework-SystemXmlLinq.dll",
+                                           "PresentationFramework.Aero.dll",
+                                           "PresentationFramework.Aero2.dll",
+                                           "PresentationFramework.AeroLite.dll",
+                                           "PresentationFramework.Classic.dll",
+                                           "PresentationFramework.dll",
+                                           "PresentationFramework.Fluent.dll",
+                                           "PresentationFramework.Luna.dll",
+                                           "PresentationFramework.Royale.dll",
+                                           "PresentationNative_cor3.dll",
+                                           "PresentationUI.dll",
+                                           "pwrshplugin.dll",
+                                           "pwsh.dll",
+                                           "ReachFramework.dll",
+                                           "sni.dll",
+                                           "System.AppContext.dll",
+                                           "System.Buffers.dll",
+                                           "System.CodeDom.dll",
+                                           "System.Collections.Concurrent.dll",
+                                           "System.Collections.dll",
+                                           "System.Collections.Immutable.dll",
+                                           "System.Collections.NonGeneric.dll",
+                                           "System.Collections.Specialized.dll",
+                                           "System.ComponentModel.Annotations.dll",
+                                           "System.ComponentModel.Composition.dll",
+                                           "System.ComponentModel.Composition.Registration.dll",
+                                           "System.ComponentModel.DataAnnotations.dll",
+                                           "System.ComponentModel.dll",
+                                           "System.ComponentModel.EventBasedAsync.dll",
+                                           "System.ComponentModel.Primitives.dll",
+                                           "System.ComponentModel.TypeConverter.dll",
+                                           "System.Configuration.ConfigurationManager.dll",
+                                           "System.Configuration.dll",
+                                           "System.Console.dll",
+                                           "System.Core.dll",
+                                           "System.Data.Common.dll",
+                                           "System.Data.DataSetExtensions.dll",
+                                           "System.Data.dll",
+                                           "System.Data.Odbc.dll",
+                                           "System.Data.OleDb.dll",
+                                           "System.Data.SqlClient.dll",
+                                           "System.Design.dll",
+                                           "System.Diagnostics.Contracts.dll",
+                                           "System.Diagnostics.Debug.dll",
+                                           "System.Diagnostics.DiagnosticSource.dll",
+                                           "System.Diagnostics.EventLog.dll",
+                                           "System.Diagnostics.EventLog.Messages.dll",
+                                           "System.Diagnostics.FileVersionInfo.dll",
+                                           "System.Diagnostics.PerformanceCounter.dll",
+                                           "System.Diagnostics.Process.dll",
+                                           "System.Diagnostics.StackTrace.dll",
+                                           "System.Diagnostics.TextWriterTraceListener.dll",
+                                           "System.Diagnostics.Tools.dll",
+                                           "System.Diagnostics.TraceSource.dll",
+                                           "System.Diagnostics.Tracing.dll",
+                                           "System.DirectoryServices.AccountManagement.dll",
+                                           "System.DirectoryServices.dll",
+                                           "System.DirectoryServices.Protocols.dll",
+                                           "System.dll",
+                                           "System.Drawing.Common.dll",
+                                           "System.Drawing.Design.dll",
+                                           "System.Drawing.dll",
+                                           "System.Drawing.Primitives.dll",
+                                           "System.Dynamic.Runtime.dll",
+                                           "System.Formats.Asn1.dll",
+                                           "System.Formats.Nrbf.dll",
+                                           "System.Formats.Tar.dll",
+                                           "System.Globalization.Calendars.dll",
+                                           "System.Globalization.dll",
+                                           "System.Globalization.Extensions.dll",
+                                           "System.IO.Compression.Brotli.dll",
+                                           "System.IO.Compression.dll",
+                                           "System.IO.Compression.FileSystem.dll",
+                                           "System.IO.Compression.Native.dll",
+                                           "System.IO.Compression.ZipFile.dll",
+                                           "System.IO.dll",
+                                           "System.IO.FileSystem.AccessControl.dll",
+                                           "System.IO.FileSystem.dll",
+                                           "System.IO.FileSystem.DriveInfo.dll",
+                                           "System.IO.FileSystem.Primitives.dll",
+                                           "System.IO.FileSystem.Watcher.dll",
+                                           "System.IO.IsolatedStorage.dll",
+                                           "System.IO.MemoryMappedFiles.dll",
+                                           "System.IO.Packaging.dll",
+                                           "System.IO.Pipelines.dll",
+                                           "System.IO.Pipes.AccessControl.dll",
+                                           "System.IO.Pipes.dll",
+                                           "System.IO.Ports.dll",
+                                           "System.IO.UnmanagedMemoryStream.dll",
+                                           "System.Linq.AsyncEnumerable.dll",
+                                           "System.Linq.dll",
+                                           "System.Linq.Expressions.dll",
+                                           "System.Linq.Parallel.dll",
+                                           "System.Linq.Queryable.dll",
+                                           "System.Management.Automation.dll",
+                                           "System.Management.dll",
+                                           "System.Memory.dll",
+                                           "System.Net.dll",
+                                           "System.Net.Http.dll",
+                                           "System.Net.Http.Json.dll",
+                                           "System.Net.Http.WinHttpHandler.dll",
+                                           "System.Net.HttpListener.dll",
+                                           "System.Net.Mail.dll",
+                                           "System.Net.NameResolution.dll",
+                                           "System.Net.NetworkInformation.dll",
+                                           "System.Net.Ping.dll",
+                                           "System.Net.Primitives.dll",
+                                           "System.Net.Quic.dll",
+                                           "System.Net.Requests.dll",
+                                           "System.Net.Security.dll",
+                                           "System.Net.ServerSentEvents.dll",
+                                           "System.Net.ServicePoint.dll",
+                                           "System.Net.Sockets.dll",
+                                           "System.Net.WebClient.dll",
+                                           "System.Net.WebHeaderCollection.dll",
+                                           "System.Net.WebProxy.dll",
+                                           "System.Net.WebSockets.Client.dll",
+                                           "System.Net.WebSockets.dll",
+                                           "System.Numerics.dll",
+                                           "System.Numerics.Vectors.dll",
+                                           "System.ObjectModel.dll",
+                                           "System.Printing.dll",
+                                           "System.Private.CoreLib.dll",
+                                           "System.Private.DataContractSerialization.dll",
+                                           "System.Private.Uri.dll",
+                                           "System.Private.Windows.Core.dll",
+                                           "System.Private.Windows.GdiPlus.dll",
+                                           "System.Private.Xml.dll",
+                                           "System.Private.Xml.Linq.dll",
+                                           "System.Reflection.Context.dll",
+                                           "System.Reflection.DispatchProxy.dll",
+                                           "System.Reflection.dll",
+                                           "System.Reflection.Emit.dll",
+                                           "System.Reflection.Emit.ILGeneration.dll",
+                                           "System.Reflection.Emit.Lightweight.dll",
+                                           "System.Reflection.Extensions.dll",
+                                           "System.Reflection.Metadata.dll",
+                                           "System.Reflection.Primitives.dll",
+                                           "System.Reflection.TypeExtensions.dll",
+                                           "System.Resources.Extensions.dll",
+                                           "System.Resources.Reader.dll",
+                                           "System.Resources.ResourceManager.dll",
+                                           "System.Resources.Writer.dll",
+                                           "System.Runtime.Caching.dll",
+                                           "System.Runtime.CompilerServices.Unsafe.dll",
+                                           "System.Runtime.CompilerServices.VisualC.dll",
+                                           "System.Runtime.dll",
+                                           "System.Runtime.Extensions.dll",
+                                           "System.Runtime.Handles.dll",
+                                           "System.Runtime.InteropServices.dll",
+                                           "System.Runtime.InteropServices.JavaScript.dll",
+                                           "System.Runtime.InteropServices.RuntimeInformation.dll",
+                                           "System.Runtime.Intrinsics.dll",
+                                           "System.Runtime.Loader.dll",
+                                           "System.Runtime.Numerics.dll",
+                                           "System.Runtime.Serialization.dll",
+                                           "System.Runtime.Serialization.Formatters.dll",
+                                           "System.Runtime.Serialization.Json.dll",
+                                           "System.Runtime.Serialization.Primitives.dll",
+                                           "System.Runtime.Serialization.Xml.dll",
+                                           "System.Security.AccessControl.dll",
+                                           "System.Security.Claims.dll",
+                                           "System.Security.Cryptography.Algorithms.dll",
+                                           "System.Security.Cryptography.Cng.dll",
+                                           "System.Security.Cryptography.Csp.dll",
+                                           "System.Security.Cryptography.dll",
+                                           "System.Security.Cryptography.Encoding.dll",
+                                           "System.Security.Cryptography.OpenSsl.dll",
+                                           "System.Security.Cryptography.Pkcs.dll",
+                                           "System.Security.Cryptography.Primitives.dll",
+                                           "System.Security.Cryptography.ProtectedData.dll",
+                                           "System.Security.Cryptography.X509Certificates.dll",
+                                           "System.Security.Cryptography.Xml.dll",
+                                           "System.Security.dll",
+                                           "System.Security.Permissions.dll",
+                                           "System.Security.Principal.dll",
+                                           "System.Security.Principal.Windows.dll",
+                                           "System.Security.SecureString.dll",
+                                           "System.ServiceModel.dll",
+                                           "System.ServiceModel.Duplex.dll",
+                                           "System.ServiceModel.Http.dll",
+                                           "System.ServiceModel.NetFramingBase.dll",
+                                           "System.ServiceModel.NetTcp.dll",
+                                           "System.ServiceModel.Primitives.dll",
+                                           "System.ServiceModel.Security.dll",
+                                           "System.ServiceModel.Syndication.dll",
+                                           "System.ServiceModel.Web.dll",
+                                           "System.ServiceProcess.dll",
+                                           "System.ServiceProcess.ServiceController.dll",
+                                           "System.Speech.dll",
+                                           "System.Text.Encoding.CodePages.dll",
+                                           "System.Text.Encoding.dll",
+                                           "System.Text.Encoding.Extensions.dll",
+                                           "System.Text.Encodings.Web.dll",
+                                           "System.Text.Json.dll",
+                                           "System.Text.RegularExpressions.dll",
+                                           "System.Threading.AccessControl.dll",
+                                           "System.Threading.Channels.dll",
+                                           "System.Threading.dll",
+                                           "System.Threading.Overlapped.dll",
+                                           "System.Threading.Tasks.Dataflow.dll",
+                                           "System.Threading.Tasks.dll",
+                                           "System.Threading.Tasks.Extensions.dll",
+                                           "System.Threading.Tasks.Parallel.dll",
+                                           "System.Threading.Thread.dll",
+                                           "System.Threading.ThreadPool.dll",
+                                           "System.Threading.Timer.dll",
+                                           "System.Transactions.dll",
+                                           "System.Transactions.Local.dll",
+                                           "System.ValueTuple.dll",
+                                           "System.Web.dll",
+                                           "System.Web.HttpUtility.dll",
+                                           "System.Web.Services.Description.dll",
+                                           "System.Windows.Controls.Ribbon.dll",
+                                           "System.Windows.dll",
+                                           "System.Windows.Extensions.dll",
+                                           "System.Windows.Forms.Design.dll",
+                                           "System.Windows.Forms.Design.Editors.dll",
+                                           "System.Windows.Forms.dll",
+                                           "System.Windows.Forms.Primitives.dll",
+                                           "System.Windows.Input.Manipulations.dll",
+                                           "System.Windows.Presentation.dll",
+                                           "System.Windows.Primitives.dll",
+                                           "System.Xaml.dll",
+                                           "System.Xml.dll",
+                                           "System.Xml.Linq.dll",
+                                           "System.Xml.ReaderWriter.dll",
+                                           "System.Xml.Serialization.dll",
+                                           "System.Xml.XDocument.dll",
+                                           "System.Xml.XmlDocument.dll",
+                                           "System.Xml.XmlSerializer.dll",
+                                           "System.Xml.XPath.dll",
+                                           "System.Xml.XPath.XDocument.dll",
+                                           "UIAutomationClient.dll",
+                                           "UIAutomationClientSideProviders.dll",
+                                           "UIAutomationProvider.dll",
+                                           "UIAutomationTypes.dll",
+                                           "vcruntime140_cor3.dll",
+                                           "WindowsBase.dll",
+                                           "WindowsFormsIntegration.dll",
+                                           "wpfgfx_cor3.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\DLLs",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libcrypto-3-x64.dll",
+                                           "libffi-8.dll",
+                                           "libssl-3-x64.dll",
+                                           "sqlite3.dll",
+                                           "tcl86t.dll",
+                                           "tk86t.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.claude\\plugins\\marketplaces\\claude-plugins-official\\external_plugins\\discord",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.claude\\plugins\\marketplaces\\claude-plugins-official\\external_plugins\\fakechat",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.claude\\plugins\\marketplaces\\claude-plugins-official\\external_plugins\\imessage",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.claude\\plugins\\marketplaces\\claude-plugins-official\\external_plugins\\telegram",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\com.ccswitch.desktop\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\com.example.easycli\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\com.quark.clouddrive.desktopwidget.independent\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\liren.project-graph\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ppagiehdogdjlomggmoejfamedbjggdggnjbilhe\\1.311.3",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "butils.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Ollama\\lib\\ollama",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ggml-base.dll",
+                                           "ggml-cpu-alderlake.dll",
+                                           "ggml-cpu-cannonlake.dll",
+                                           "ggml-cpu-cascadelake.dll",
+                                           "ggml-cpu-cooperlake.dll",
+                                           "ggml-cpu-haswell.dll",
+                                           "ggml-cpu-icelake.dll",
+                                           "ggml-cpu-ivybridge.dll",
+                                           "ggml-cpu-piledriver.dll",
+                                           "ggml-cpu-sandybridge.dll",
+                                           "ggml-cpu-sapphirerapids.dll",
+                                           "ggml-cpu-skylakex.dll",
+                                           "ggml-cpu-sse42.dll",
+                                           "ggml-cpu-x64.dll",
+                                           "ggml-cpu-zen4.dll",
+                                           "ggml.dll",
+                                           "libc++.dll",
+                                           "libllama-common.dll",
+                                           "libllama-quantize-impl.dll",
+                                           "libllama-server-impl.dll",
+                                           "libllama.dll",
+                                           "libmtmd.dll",
+                                           "libomp.dll",
+                                           "libunwind.dll",
+                                           "libwinpthread-1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\QQChatExporter\\native\\pty\\win32.x64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "winpty.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.Baidu",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Ocr.Baidu.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.Google",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Ocr.Google.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.OcrSpace",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Ocr.OcrSpace.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.OpenAI",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Ocr.OpenAI.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.Tencent",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Ocr.Tencent.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.WeChatBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Google.Protobuf.dll",
+                                           "Newtonsoft.Json.dll",
+                                           "STranslate.Plugin.Ocr.WeChatBuiltIn.dll",
+                                           "WeChatOcr.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.Youdao",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Ocr.Youdao.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.Baidu",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.Baidu.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.BigModel",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.BigModel.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.DeepL",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.DeepL.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.GoogleBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.GoogleBuiltIn.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.ICibaBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.ICibaBuiltIn.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.ICibaTranslateBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.ICibaTranslateBuiltIn.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.MicrosoftBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.MicrosoftBuiltIn.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.MTranServer",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.MTranServer.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.OpenAI",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.OpenAI.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.TransmartBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.TransmartBuiltIn.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.YandexBuiltIn",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.YandexBuiltIn.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Translate.Youdao",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Translate.Youdao.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Tts.MicrosoftEdge",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Tts.MicrosoftEdge.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Vocabulary.Eudict",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "STranslate.Plugin.Vocabulary.Eudict.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\wiki.sdjz.qce.installer\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\ollama app.exe\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Python\\Python314\\site-packages\\numpy.libs",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libscipy_openblas64_-b788215d9d47792bcba3a2e2a7114320.dll",
+                                           "msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Python\\Python314\\site-packages\\pymupdf",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "mupdfcpp64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\ref",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CSharp.dll",
+                                           "Microsoft.VisualBasic.Core.dll",
+                                           "Microsoft.VisualBasic.dll",
+                                           "Microsoft.Win32.Primitives.dll",
+                                           "Microsoft.Win32.Registry.dll",
+                                           "mscorlib.dll",
+                                           "netstandard.dll",
+                                           "System.AppContext.dll",
+                                           "System.Buffers.dll",
+                                           "System.Collections.Concurrent.dll",
+                                           "System.Collections.dll",
+                                           "System.Collections.Immutable.dll",
+                                           "System.Collections.NonGeneric.dll",
+                                           "System.Collections.Specialized.dll",
+                                           "System.ComponentModel.Annotations.dll",
+                                           "System.ComponentModel.DataAnnotations.dll",
+                                           "System.ComponentModel.dll",
+                                           "System.ComponentModel.EventBasedAsync.dll",
+                                           "System.ComponentModel.Primitives.dll",
+                                           "System.ComponentModel.TypeConverter.dll",
+                                           "System.Configuration.dll",
+                                           "System.Console.dll",
+                                           "System.Core.dll",
+                                           "System.Data.Common.dll",
+                                           "System.Data.DataSetExtensions.dll",
+                                           "System.Data.dll",
+                                           "System.Diagnostics.Contracts.dll",
+                                           "System.Diagnostics.Debug.dll",
+                                           "System.Diagnostics.DiagnosticSource.dll",
+                                           "System.Diagnostics.FileVersionInfo.dll",
+                                           "System.Diagnostics.Process.dll",
+                                           "System.Diagnostics.StackTrace.dll",
+                                           "System.Diagnostics.TextWriterTraceListener.dll",
+                                           "System.Diagnostics.Tools.dll",
+                                           "System.Diagnostics.TraceSource.dll",
+                                           "System.Diagnostics.Tracing.dll",
+                                           "System.dll",
+                                           "System.Drawing.dll",
+                                           "System.Drawing.Primitives.dll",
+                                           "System.Dynamic.Runtime.dll",
+                                           "System.Formats.Asn1.dll",
+                                           "System.Formats.Tar.dll",
+                                           "System.Globalization.Calendars.dll",
+                                           "System.Globalization.dll",
+                                           "System.Globalization.Extensions.dll",
+                                           "System.IO.Compression.Brotli.dll",
+                                           "System.IO.Compression.dll",
+                                           "System.IO.Compression.FileSystem.dll",
+                                           "System.IO.Compression.ZipFile.dll",
+                                           "System.IO.dll",
+                                           "System.IO.FileSystem.AccessControl.dll",
+                                           "System.IO.FileSystem.dll",
+                                           "System.IO.FileSystem.DriveInfo.dll",
+                                           "System.IO.FileSystem.Primitives.dll",
+                                           "System.IO.FileSystem.Watcher.dll",
+                                           "System.IO.IsolatedStorage.dll",
+                                           "System.IO.MemoryMappedFiles.dll",
+                                           "System.IO.Pipelines.dll",
+                                           "System.IO.Pipes.AccessControl.dll",
+                                           "System.IO.Pipes.dll",
+                                           "System.IO.UnmanagedMemoryStream.dll",
+                                           "System.Linq.AsyncEnumerable.dll",
+                                           "System.Linq.dll",
+                                           "System.Linq.Expressions.dll",
+                                           "System.Linq.Parallel.dll",
+                                           "System.Linq.Queryable.dll",
+                                           "System.Memory.dll",
+                                           "System.Net.dll",
+                                           "System.Net.Http.dll",
+                                           "System.Net.Http.Json.dll",
+                                           "System.Net.HttpListener.dll",
+                                           "System.Net.Mail.dll",
+                                           "System.Net.NameResolution.dll",
+                                           "System.Net.NetworkInformation.dll",
+                                           "System.Net.Ping.dll",
+                                           "System.Net.Primitives.dll",
+                                           "System.Net.Quic.dll",
+                                           "System.Net.Requests.dll",
+                                           "System.Net.Security.dll",
+                                           "System.Net.ServerSentEvents.dll",
+                                           "System.Net.ServicePoint.dll",
+                                           "System.Net.Sockets.dll",
+                                           "System.Net.WebClient.dll",
+                                           "System.Net.WebHeaderCollection.dll",
+                                           "System.Net.WebProxy.dll",
+                                           "System.Net.WebSockets.Client.dll",
+                                           "System.Net.WebSockets.dll",
+                                           "System.Numerics.dll",
+                                           "System.Numerics.Vectors.dll",
+                                           "System.ObjectModel.dll",
+                                           "System.Reflection.DispatchProxy.dll",
+                                           "System.Reflection.dll",
+                                           "System.Reflection.Emit.dll",
+                                           "System.Reflection.Emit.ILGeneration.dll",
+                                           "System.Reflection.Emit.Lightweight.dll",
+                                           "System.Reflection.Extensions.dll",
+                                           "System.Reflection.Metadata.dll",
+                                           "System.Reflection.Primitives.dll",
+                                           "System.Reflection.TypeExtensions.dll",
+                                           "System.Resources.Reader.dll",
+                                           "System.Resources.ResourceManager.dll",
+                                           "System.Resources.Writer.dll",
+                                           "System.Runtime.CompilerServices.Unsafe.dll",
+                                           "System.Runtime.CompilerServices.VisualC.dll",
+                                           "System.Runtime.dll",
+                                           "System.Runtime.Extensions.dll",
+                                           "System.Runtime.Handles.dll",
+                                           "System.Runtime.InteropServices.dll",
+                                           "System.Runtime.InteropServices.JavaScript.dll",
+                                           "System.Runtime.InteropServices.RuntimeInformation.dll",
+                                           "System.Runtime.Intrinsics.dll",
+                                           "System.Runtime.Loader.dll",
+                                           "System.Runtime.Numerics.dll",
+                                           "System.Runtime.Serialization.dll",
+                                           "System.Runtime.Serialization.Formatters.dll",
+                                           "System.Runtime.Serialization.Json.dll",
+                                           "System.Runtime.Serialization.Primitives.dll",
+                                           "System.Runtime.Serialization.Xml.dll",
+                                           "System.Security.AccessControl.dll",
+                                           "System.Security.Claims.dll",
+                                           "System.Security.Cryptography.Algorithms.dll",
+                                           "System.Security.Cryptography.Cng.dll",
+                                           "System.Security.Cryptography.Csp.dll",
+                                           "System.Security.Cryptography.dll",
+                                           "System.Security.Cryptography.Encoding.dll",
+                                           "System.Security.Cryptography.OpenSsl.dll",
+                                           "System.Security.Cryptography.Primitives.dll",
+                                           "System.Security.Cryptography.X509Certificates.dll",
+                                           "System.Security.dll",
+                                           "System.Security.Principal.dll",
+                                           "System.Security.Principal.Windows.dll",
+                                           "System.Security.SecureString.dll",
+                                           "System.ServiceModel.Web.dll",
+                                           "System.ServiceProcess.dll",
+                                           "System.Text.Encoding.CodePages.dll",
+                                           "System.Text.Encoding.dll",
+                                           "System.Text.Encoding.Extensions.dll",
+                                           "System.Text.Encodings.Web.dll",
+                                           "System.Text.Json.dll",
+                                           "System.Text.RegularExpressions.dll",
+                                           "System.Threading.AccessControl.dll",
+                                           "System.Threading.Channels.dll",
+                                           "System.Threading.dll",
+                                           "System.Threading.Overlapped.dll",
+                                           "System.Threading.Tasks.Dataflow.dll",
+                                           "System.Threading.Tasks.dll",
+                                           "System.Threading.Tasks.Extensions.dll",
+                                           "System.Threading.Tasks.Parallel.dll",
+                                           "System.Threading.Thread.dll",
+                                           "System.Threading.ThreadPool.dll",
+                                           "System.Threading.Timer.dll",
+                                           "System.Transactions.dll",
+                                           "System.Transactions.Local.dll",
+                                           "System.ValueTuple.dll",
+                                           "System.Web.dll",
+                                           "System.Web.HttpUtility.dll",
+                                           "System.Windows.dll",
+                                           "System.Xml.dll",
+                                           "System.Xml.Linq.dll",
+                                           "System.Xml.ReaderWriter.dll",
+                                           "System.Xml.Serialization.dll",
+                                           "System.Xml.XDocument.dll",
+                                           "System.Xml.XmlDocument.dll",
+                                           "System.Xml.XmlSerializer.dll",
+                                           "System.Xml.XPath.dll",
+                                           "System.Xml.XPath.XDocument.dll",
+                                           "WindowsBase.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\tcl\\dde1.4",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "tcldde14.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\tcl\\reg1.3",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "tclreg13.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\tcl\\tix8.4.3",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "tix84.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-hydrogen",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-liquid",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-polaris-admin-extensions",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-polaris-app-home",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-polaris-checkout-extensions",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-polaris-customer-account-extensions",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\shopify\\skills\\shopify-pos-ui",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\flutter_webview_windows\\wetype_update\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\GameViewer\\webviewcache\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Microsoft\\Edge\\User Data\\Domain Actions\\3.0.0.20",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "domain_actions.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Microsoft\\Edge\\User Data\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Microsoft\\Edge\\User Data\\Well Known Domains\\1.2.0.0",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "well_known_domains.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\node\\corepack\\v1\\pnpm\\11.21.0",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ecbhmmfmjonpojpbedhhhbjanafifbbcjofikdim\\310.0.1\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "simple-io-plugin64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ggfmakpbllghoepnmfelddbminamnbmfelbahfdp\\312.4.3\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "experimental-plugin.dll",
+                                           "GEPPlugin64.dll",
+                                           "simple-io-plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ggfmakpbllghoepnmfelddbminamnbmfelbahfdp\\312.5.2\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "experimental-plugin.dll",
+                                           "GEPPlugin64.dll",
+                                           "simple-io-plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\lnknbakkpommmjjdnelmfbjjdbocfpnpbkijjnob\\18.17.2\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "DeepCloner.dll",
+                                           "DiscordRPC.dll",
+                                           "DiscordRPCPlugin.dll",
+                                           "HpCipher.dll",
+                                           "Microsoft.Toolkit.Uwp.Notifications.dll",
+                                           "OverwolfUnitySpy.dll",
+                                           "OwBgReconnector.dll",
+                                           "OwUtils.dll",
+                                           "System.ValueTuple.dll",
+                                           "System.Windows.Forms.dll",
+                                           "UnitySpy.dll",
+                                           "UnitySpy.HearthstoneLib.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\lnknbakkpommmjjdnelmfbjjdbocfpnpbkijjnob\\19.0.2\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "DeepCloner.dll",
+                                           "DiscordRPC.dll",
+                                           "DiscordRPCPlugin.dll",
+                                           "HpCipher.dll",
+                                           "Microsoft.Toolkit.Uwp.Notifications.dll",
+                                           "ModsWsHub.dll",
+                                           "OverwolfUnitySpy.dll",
+                                           "OwBgReconnector.dll",
+                                           "OwUtils.dll",
+                                           "System.ValueTuple.dll",
+                                           "System.Windows.Forms.dll",
+                                           "UnitySpy.dll",
+                                           "UnitySpy.HearthstoneLib.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ojgnfnbjckbpfaciphphehonokbggjhpnnoafack\\307.0.20\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "downloader.dll",
+                                           "simple-io-plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\oldfhfbggeglgjgenidckaneodejpjkaggklojma\\304.0.4\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "downloader.dll",
+                                           "simple-io-plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ppagiehdogdjlomggmoejfamedbjggdggnjbilhe\\1.311.3\\plugins",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "simple-io-plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\cuda_v12",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "concrt140.dll",
+                                           "cublas64_12.dll",
+                                           "cublasLt64_12.dll",
+                                           "cudart64_12.dll",
+                                           "ggml-cuda.dll",
+                                           "msvcp140.dll",
+                                           "msvcp140_1.dll",
+                                           "msvcp140_2.dll",
+                                           "msvcp140_atomic_wait.dll",
+                                           "msvcp140_codecvt_ids.dll",
+                                           "vccorlib140.dll",
+                                           "vcruntime140.dll",
+                                           "vcruntime140_1.dll",
+                                           "vcruntime140_threads.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\cuda_v13",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "concrt140.dll",
+                                           "cublas64_13.dll",
+                                           "cublasLt64_13.dll",
+                                           "ggml-cuda.dll",
+                                           "msvcp140.dll",
+                                           "msvcp140_1.dll",
+                                           "msvcp140_2.dll",
+                                           "msvcp140_atomic_wait.dll",
+                                           "msvcp140_codecvt_ids.dll",
+                                           "vccorlib140.dll",
+                                           "vcruntime140.dll",
+                                           "vcruntime140_1.dll",
+                                           "vcruntime140_threads.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\rocm_v7_1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "amdhip64_7.dll",
+                                           "amd_comgr0701.dll",
+                                           "amd_comgr_3.dll",
+                                           "concrt140.dll",
+                                           "ggml-hip.dll",
+                                           "libhipblas.dll",
+                                           "libhipblaslt.dll",
+                                           "msvcp140.dll",
+                                           "msvcp140_1.dll",
+                                           "msvcp140_2.dll",
+                                           "msvcp140_atomic_wait.dll",
+                                           "msvcp140_codecvt_ids.dll",
+                                           "rocblas.dll",
+                                           "vccorlib140.dll",
+                                           "vcruntime140.dll",
+                                           "vcruntime140_1.dll",
+                                           "vcruntime140_threads.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Ollama\\lib\\ollama\\vulkan",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "concrt140.dll",
+                                           "ggml-vulkan.dll",
+                                           "msvcp140.dll",
+                                           "msvcp140_1.dll",
+                                           "msvcp140_2.dll",
+                                           "msvcp140_atomic_wait.dll",
+                                           "msvcp140_codecvt_ids.dll",
+                                           "vccorlib140.dll",
+                                           "vcruntime140.dll",
+                                           "vcruntime140_1.dll",
+                                           "vcruntime140_threads.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\STranslate\\current\\Plugins\\STranslate.Plugin.Ocr.WeChatBuiltIn\\wco_data",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "mmmojo.dll",
+                                           "mmmojo_64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\DBeaverData\\drivers\\maven\\maven-central\\com.microsoft.sqlserver",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "mssql-jdbc_auth-13.2.1.x64.dll",
+                                           "mssql-jdbc_auth-13.4.0.x64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Python\\share\\jupyter\\labextensions\\jupyterlab_pygments",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\QQ\\qqex\\dynamic_package\\exMiniProgram\\3.3.13",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\Microsoft.PowerShell.PSResourceGet",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.PowerShell.PSResourceGet.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\Microsoft.PowerShell.ThreadJob",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.PowerShell.ThreadJob.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\PSReadLine",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.PowerShell.Pager.dll",
+                                           "Microsoft.PowerShell.PSReadLine.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\site-packages\\numpy.libs",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libscipy_openblas64_-9e3e5a4229c1ca39f10dc82bba9e2b2b.dll",
+                                           "msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\site-packages\\pandas.libs",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\Lib\\site-packages\\pypdfium2_raw",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "pdfium.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\tcl\\tix8.4.3\\pref",
+                           "kind":  "source",
+                           "markers":  [
+                                           "Bisque.cs",
+                                           "Blue.cs",
+                                           "Gray.cs",
+                                           "SGIGray.cs",
+                                           "TixGray.cs",
+                                           "TK.cs",
+                                           "TkWin.cs",
+                                           "WmDefault.cs"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\expo\\skills\\expo-cicd-workflows\\scripts",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\shd101wyy.markdown-preview-enhanced-0.8.22\\crossnote\\dependencies\\reveal\\plugin\\multiplex",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\05018893\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Options.ConfigurationExtensions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\0e06014b\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OfficePLUS.OpenTelemetryWrapper.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\12e841cc\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Newtonsoft.Json.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\1311bd7f\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OpenTelemetry.PersistentStorage.FileSystem.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\19f4aff7\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Logging.Abstractions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\1a9a8fd9\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Office.Tools.Common.v4.0.Utilities.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\1d4cb6be\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OpenTelemetry.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\207f3850\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.ValueTuple.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\2158c45b\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OpenTelemetry.PersistentStorage.Abstractions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\34084fba\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Runtime.CompilerServices.Unsafe.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\389dde87\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Threading.Tasks.Extensions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\39669d5c\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OpenTelemetry.Api.ProviderBuilderExtensions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\576872e1\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Azure.Monitor.OpenTelemetry.Exporter.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\5c1f9242\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Azure.Core.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\674b3696\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Configuration.Binder.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\6876fd70\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.DependencyInjection.Abstractions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\6ced8f69\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OfficePLUS.Client.Common.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\7169ac58\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Text.Encodings.Web.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\74783cb8\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Web.WebView2.Core.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\7b9d1301\\001304bb_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Primitives.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\7c98e45e\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Bcl.AsyncInterfaces.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\7e5edea5\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "MSOPPowerPNTAddin.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\8480cd61\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Diagnostics.DiagnosticSource.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\8ab34b29\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Polly.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\923a0afd\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Http.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\953318c9\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Numerics.Vectors.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\97946eb5\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OpenTelemetry.Api.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\9e86af7a\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Text.Json.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\a5cf4bd6\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Memory.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\afec0613\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Configuration.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\bbbbdbbd\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.DependencyInjection.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\bea8332c\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Options.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\c8fc80d3\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Web.WebView2.WinForms.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\c92093ef\\001304bb_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Identity.Client.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\ce59f3c3\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Logging.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\d4cad6a8\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "MSOPExcelAddIn.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\d963ed6f\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "MSOPWordAddin.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\e01aa42d\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Buffers.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\e0e93dcb\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Logging.Configuration.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\e84aef71\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ExcelNumberFormat.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\ee897f36\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.Extensions.Configuration.Abstractions.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\f84d73d8\\00e6d2b9_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "OfficePLUS.Client.AddIn.Common.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\assembly\\dl3\\VZZOHTJ9.HL4\\02W5QRJT.NCB\\fbba1f7b\\00b9a1b8_dcf9dc01",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "System.Memory.Data.DLL"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\CefBrowserCache\\WidevineCdm\\4.10.3050.0\\_platform_specific\\win_x64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "widevinecdm.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ggfmakpbllghoepnmfelddbminamnbmfelbahfdp\\312.4.3\\plugins\\64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "gep_2xko.dll",
+                                           "gep_apex.dll",
+                                           "gep_arkascended.dll",
+                                           "gep_arknights.dll",
+                                           "gep_bedrock.dll",
+                                           "gep_bg3.dll",
+                                           "gep_cs2ext.dll",
+                                           "gep_darkndarker.dll",
+                                           "gep_deadlock.dll",
+                                           "gep_diablo.dll",
+                                           "gep_diablo4.dll",
+                                           "gep_dota.dll",
+                                           "gep_finalxiv.dll",
+                                           "gep_fortnite.dll",
+                                           "gep_genshinimpact.dll",
+                                           "gep_leaguex64.dll",
+                                           "gep_lolarena.dll",
+                                           "gep_lostark.dll",
+                                           "gep_marvelrivals.dll",
+                                           "gep_minecraft.dll",
+                                           "gep_mtga.dll",
+                                           "gep_newworld.dll",
+                                           "gep_overwatch2.dll",
+                                           "gep_palworld.dll",
+                                           "gep_pathofexile.dll",
+                                           "gep_poe2.dll",
+                                           "gep_pubg.dll",
+                                           "gep_rainbowsixsiege.dll",
+                                           "gep_rematch.dll",
+                                           "gep_rl.dll",
+                                           "gep_schedule.dll",
+                                           "gep_sotf.dll",
+                                           "gep_subnautica2.dll",
+                                           "gep_supervive.dll",
+                                           "gep_tarkov.dll",
+                                           "gep_tft.dll",
+                                           "gep_tftx64.dll",
+                                           "gep_valorant.dll",
+                                           "gep_warframeext.dll",
+                                           "gep_windrose.dll",
+                                           "gep_wow.dll",
+                                           "gep_xfortnite.dll",
+                                           "libowgameevents64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ggfmakpbllghoepnmfelddbminamnbmfelbahfdp\\312.5.2\\plugins\\64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "gep_2xko.dll",
+                                           "gep_apex.dll",
+                                           "gep_arkascended.dll",
+                                           "gep_arknights.dll",
+                                           "gep_bedrock.dll",
+                                           "gep_bg3.dll",
+                                           "gep_cs2ext.dll",
+                                           "gep_darkndarker.dll",
+                                           "gep_deadlock.dll",
+                                           "gep_diablo.dll",
+                                           "gep_diablo4.dll",
+                                           "gep_dota.dll",
+                                           "gep_finalxiv.dll",
+                                           "gep_fortnite.dll",
+                                           "gep_genshinimpact.dll",
+                                           "gep_leaguex64.dll",
+                                           "gep_lolarena.dll",
+                                           "gep_lostark.dll",
+                                           "gep_marvelrivals.dll",
+                                           "gep_minecraft.dll",
+                                           "gep_mtga.dll",
+                                           "gep_newworld.dll",
+                                           "gep_overwatch2.dll",
+                                           "gep_palworld.dll",
+                                           "gep_pathofexile.dll",
+                                           "gep_poe2.dll",
+                                           "gep_pubg.dll",
+                                           "gep_rainbowsixsiege.dll",
+                                           "gep_rematch.dll",
+                                           "gep_rl.dll",
+                                           "gep_schedule.dll",
+                                           "gep_sotf.dll",
+                                           "gep_subnautica2.dll",
+                                           "gep_supervive.dll",
+                                           "gep_tarkov.dll",
+                                           "gep_tft.dll",
+                                           "gep_tftx64.dll",
+                                           "gep_valorant.dll",
+                                           "gep_warframeext.dll",
+                                           "gep_windrose.dll",
+                                           "gep_wow.dll",
+                                           "gep_xfortnite.dll",
+                                           "libowgameevents64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Packages\\Microsoft.MicrosoftOfficeHub_8wekyb3d8bbwe\\LocalState\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Packages\\MicrosoftWindows.Client.CBS_cw5n1h2txyewy\\LocalState\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Packages\\MicrosoftWindows.Client.WebExperience_cw5n1h2txyewy\\LocalState\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\Xmind\\resources\\app.asar.unpacked\\static\\native",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "XMindShellExt.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Netease\\UU\\webview2cache\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\WeMeet\\Global\\Data\\DynamicResource\\f9c2030efa922cbf93d7e78836bb0dc0",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libdeepsr_cuda.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\Documents\\Codex\\2026-09-15\\referenced-chatgpt-conversation-this-is-an\\work\\studio-build\\scripts\\browser",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\mingw64\\lib\\engines-3",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "capi.dll",
+                                           "loader_attic.dll",
+                                           "padlock.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\mingw64\\lib\\ossl-modules",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "legacy.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\git\\usr\\lib\\sasl2",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "msys-anonymous-3.dll",
+                                           "msys-crammd5-3.dll",
+                                           "msys-digestmd5-3.dll",
+                                           "msys-gs2-3.dll",
+                                           "msys-gssapiv2-3.dll",
+                                           "msys-otp-3.dll",
+                                           "msys-plain-3.dll",
+                                           "msys-scram-3.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\Microsoft.PowerShell.PSResourceGet\\dependencies",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Azure.Core.dll",
+                                           "Azure.Identity.dll",
+                                           "Microsoft.Bcl.AsyncInterfaces.dll",
+                                           "Microsoft.Extensions.FileProviders.Abstractions.dll",
+                                           "Microsoft.Extensions.FileSystemGlobbing.dll",
+                                           "Microsoft.Extensions.Primitives.dll",
+                                           "Microsoft.Identity.Client.dll",
+                                           "Microsoft.Identity.Client.Extensions.Msal.dll",
+                                           "Microsoft.IdentityModel.Abstractions.dll",
+                                           "Newtonsoft.Json.dll",
+                                           "NuGet.Commands.dll",
+                                           "NuGet.Common.dll",
+                                           "NuGet.Configuration.dll",
+                                           "NuGet.Credentials.dll",
+                                           "NuGet.DependencyResolver.Core.dll",
+                                           "NuGet.Frameworks.dll",
+                                           "NuGet.LibraryModel.dll",
+                                           "NuGet.Packaging.dll",
+                                           "NuGet.ProjectModel.dll",
+                                           "NuGet.Protocol.dll",
+                                           "NuGet.Versioning.dll",
+                                           "System.Buffers.dll",
+                                           "System.Diagnostics.DiagnosticSource.dll",
+                                           "System.IO.FileSystem.AccessControl.dll",
+                                           "System.Memory.Data.dll",
+                                           "System.Memory.dll",
+                                           "System.Numerics.Vectors.dll",
+                                           "System.Runtime.CompilerServices.Unsafe.dll",
+                                           "System.Security.AccessControl.dll",
+                                           "System.Security.Cryptography.ProtectedData.dll",
+                                           "System.Security.Principal.Windows.dll",
+                                           "System.Text.Encodings.Web.dll",
+                                           "System.Text.Json.dll",
+                                           "System.Threading.Tasks.Extensions.dll",
+                                           "System.ValueTuple.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\PSReadLine\\net6plus",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.PowerShell.PSReadLine.Polyfiller.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\PSReadLine\\netstd",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.PowerShell.PSReadLine.Polyfiller.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.vscode\\extensions\\ms-python.debugpy-2026.6.0-win32-x64\\bundled\\libs\\debugpy\\_vendored\\pydevd\\pydevd_attach_to_process",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "attach_amd64.dll",
+                                           "attach_x86.dll",
+                                           "run_code_on_dllmain_amd64.dll",
+                                           "run_code_on_dllmain_x86.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Adobe\\Acrobat\\AVWebview2\\DC\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ncfplpkmiejjaklknfnkgcpapnhkggmlcppckhcb\\270.0.25\\obs\\obs-plugins\\64bit",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "coreaudio-encoder.dll",
+                                           "image-source.dll",
+                                           "obs-ffmpeg.dll",
+                                           "obs-filters.dll",
+                                           "obs-nvenc.dll",
+                                           "obs-outputs.dll",
+                                           "obs-qsv11.dll",
+                                           "obs-transitions.dll",
+                                           "obs-x264.dll",
+                                           "rtmp-services.dll",
+                                           "win-capture.dll",
+                                           "win-dshow.dll",
+                                           "win-wasapi.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatOcr\\8096\\extracted",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "wxocr.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "d3dcompiler_47.dll",
+                                           "libvlc.dll",
+                                           "libvlccore.dll",
+                                           "wxplayer.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatUtility\\6029\\extracted",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libFFmpeg.dll",
+                                           "libwxcodec.dll",
+                                           "wxutility.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\XEditor\\22585\\extracted",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "xeditor_app.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\XFilesOfficeReader\\7677\\extracted",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "xfile.dll",
+                                           "xfile_pdfium.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\XFilesOfficeReader\\7734\\extracted",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "xfile.dll",
+                                           "xfile_pdfium.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\native\\powershell\\Modules\\PackageManagement\\coreclr\\netstandard2.0",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.PackageManagement.ArchiverProviders.dll",
+                                           "Microsoft.PackageManagement.CoreProviders.dll",
+                                           "Microsoft.PackageManagement.dll",
+                                           "Microsoft.PackageManagement.MetaProvider.PowerShell.dll",
+                                           "Microsoft.PackageManagement.NuGetProvider.dll",
+                                           "Microsoft.PowerShell.PackageManagement.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\.codex\\.tmp\\plugins\\plugins\\vercel\\skills\\vercel-services\\references\\fastapi-vite\\frontend",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ncfplpkmiejjaklknfnkgcpapnhkggmlcppckhcb\\270.0.25\\obs\\data\\obs-plugins\\rtmp-services",
+                           "kind":  "source",
+                           "markers":  [
+                                           "package.json"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Overwolf\\Extensions\\ncfplpkmiejjaklknfnkgcpapnhkggmlcppckhcb\\270.0.25\\obs\\data\\obs-plugins\\win-capture",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ow-graphics-hook32.dll",
+                                           "ow-graphics-hook64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\DBeaverData\\workspace6\\.metadata\\.plugins\\org.eclipse.swt\\EBWebView\\Speech Recognition\\1.15.0.1",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "Microsoft.CognitiveServices.Speech.core.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\radium\\users\\e505002c931f0691343b68eac9cd0779\\udr\\super_resolution_dll\\60",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "super_resolution.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\RadiumWMPF\\25560\\extracted\\host",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "wmpf_host_export_x64.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\RadiumWMPF\\25560\\extracted\\runtime",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "ComponentVerification.dll",
+                                           "ConfSdk.dll",
+                                           "d3dcompiler_47.dll",
+                                           "dxcompiler.dll",
+                                           "dxil.dll",
+                                           "ffmpeg.dll",
+                                           "flue.dll",
+                                           "ilink2.dll",
+                                           "ilink_wrapper.dll",
+                                           "libamssdk.dll",
+                                           "libEGL.dll",
+                                           "libGLESv2.dll",
+                                           "liteav.dll",
+                                           "liteav_nonlinear_extension.dll",
+                                           "liteav_screen.dll",
+                                           "MSPSDK.dll",
+                                           "owl.dll",
+                                           "pcyyb_sdk_dll.dll",
+                                           "qimei.dll",
+                                           "txffmpeg.dll",
+                                           "txsoundtouch.dll",
+                                           "vk_swiftshader.dll",
+                                           "VoipEngine.dll",
+                                           "vulkan-1.dll",
+                                           "wxgame_client.dll",
+                                           "XNet.dll",
+                                           "xweb_elf.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Local\\Programs\\WeiyunApp\\resources\\app.asar.unpacked\\native\\sdk\\WeiyunSDKWin\\Release\\x64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "api-ms-win-core-console-l1-1-0.dll",
+                                           "api-ms-win-core-datetime-l1-1-0.dll",
+                                           "api-ms-win-core-debug-l1-1-0.dll",
+                                           "api-ms-win-core-errorhandling-l1-1-0.dll",
+                                           "api-ms-win-core-fibers-l1-1-0.dll",
+                                           "api-ms-win-core-file-l1-1-0.dll",
+                                           "api-ms-win-core-file-l1-2-0.dll",
+                                           "api-ms-win-core-file-l2-1-0.dll",
+                                           "api-ms-win-core-handle-l1-1-0.dll",
+                                           "api-ms-win-core-heap-l1-1-0.dll",
+                                           "api-ms-win-core-interlocked-l1-1-0.dll",
+                                           "api-ms-win-core-io-l1-1-0.dll",
+                                           "api-ms-win-core-libraryloader-l1-1-0.dll",
+                                           "api-ms-win-core-localization-l1-1-0.dll",
+                                           "api-ms-win-core-localization-l1-2-0.dll",
+                                           "api-ms-win-core-memory-l1-1-0.dll",
+                                           "api-ms-win-core-misc-l1-1-0.dll",
+                                           "api-ms-win-core-namedpipe-l1-1-0.dll",
+                                           "api-ms-win-core-processenvironment-l1-1-0.dll",
+                                           "api-ms-win-core-processthreads-l1-1-0.dll",
+                                           "api-ms-win-core-processthreads-l1-1-1.dll",
+                                           "api-ms-win-core-profile-l1-1-0.dll",
+                                           "api-ms-win-core-rtlsupport-l1-1-0.dll",
+                                           "api-ms-win-core-string-l1-1-0.dll",
+                                           "api-ms-win-core-synch-l1-1-0.dll",
+                                           "api-ms-win-core-synch-l1-2-0.dll",
+                                           "api-ms-win-core-sysinfo-l1-1-0.dll",
+                                           "api-ms-win-core-threadpool-l1-1-0.dll",
+                                           "api-ms-win-core-timezone-l1-1-0.dll",
+                                           "api-ms-win-core-util-l1-1-0.dll",
+                                           "api-ms-win-crt-conio-l1-1-0.dll",
+                                           "api-ms-win-crt-convert-l1-1-0.dll",
+                                           "api-ms-win-crt-environment-l1-1-0.dll",
+                                           "api-ms-win-crt-filesystem-l1-1-0.dll",
+                                           "api-ms-win-crt-heap-l1-1-0.dll",
+                                           "api-ms-win-crt-locale-l1-1-0.dll",
+                                           "api-ms-win-crt-math-l1-1-0.dll",
+                                           "api-ms-win-crt-multibyte-l1-1-0.dll",
+                                           "api-ms-win-crt-private-l1-1-0.dll",
+                                           "api-ms-win-crt-process-l1-1-0.dll",
+                                           "api-ms-win-crt-runtime-l1-1-0.dll",
+                                           "api-ms-win-crt-stdio-l1-1-0.dll",
+                                           "api-ms-win-crt-string-l1-1-0.dll",
+                                           "api-ms-win-crt-time-l1-1-0.dll",
+                                           "api-ms-win-crt-utility-l1-1-0.dll",
+                                           "api-ms-win-security-base-l1-1-0.dll",
+                                           "concrt140.dll",
+                                           "DiskMenuShell64.dll",
+                                           "DiskUpload64.dll",
+                                           "DownloadSDK.dll",
+                                           "ElectronNotifyChange.dll",
+                                           "libcrypto-1_1-x64.dll",
+                                           "libcurl.dll",
+                                           "libeay32.dll",
+                                           "libssl-1_1-x64.dll",
+                                           "MediaInfo.dll",
+                                           "msvcp140.dll",
+                                           "msvcp140_1.dll",
+                                           "msvcp140_2.dll",
+                                           "ssleay32.dll",
+                                           "ucrtbase.dll",
+                                           "vcamp140.dll",
+                                           "vccorlib140.dll",
+                                           "vcomp140.dll",
+                                           "vcruntime140.dll",
+                                           "vcruntime140_1.dll",
+                                           "WeiyunSDK.dll",
+                                           "WnsSDK.dll",
+                                           "xPlatform.dll",
+                                           "zlib1.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\access",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libfilesystem_plugin.dll",
+                                           "libimem_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\audio_filter",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libaudiobargraph_a_plugin.dll",
+                                           "libaudio_format_plugin.dll",
+                                           "libchorus_flanger_plugin.dll",
+                                           "libcompressor_plugin.dll",
+                                           "libdolby_surround_decoder_plugin.dll",
+                                           "libequalizer_plugin.dll",
+                                           "libgain_plugin.dll",
+                                           "libheadphone_channel_mixer_plugin.dll",
+                                           "libkaraoke_plugin.dll",
+                                           "libmad_plugin.dll",
+                                           "libmono_plugin.dll",
+                                           "libnormvol_plugin.dll",
+                                           "libparam_eq_plugin.dll",
+                                           "libremap_plugin.dll",
+                                           "libsamplerate_plugin.dll",
+                                           "libscaletempo_pitch_plugin.dll",
+                                           "libscaletempo_plugin.dll",
+                                           "libsimple_channel_mixer_plugin.dll",
+                                           "libspatialaudio_plugin.dll",
+                                           "libspatializer_plugin.dll",
+                                           "libspeex_resampler_plugin.dll",
+                                           "libstereo_widen_plugin.dll",
+                                           "libtospdif_plugin.dll",
+                                           "libtrivial_channel_mixer_plugin.dll",
+                                           "libugly_resampler_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\audio_mixer",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libfloat_mixer_plugin.dll",
+                                           "libinteger_mixer_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\audio_output",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libadummy_plugin.dll",
+                                           "libafile_plugin.dll",
+                                           "libamem_plugin.dll",
+                                           "libdirectsound_plugin.dll",
+                                           "libmmdevice_plugin.dll",
+                                           "libwasapi_plugin.dll",
+                                           "libwaveout_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\codec",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libavcodec_plugin.dll",
+                                           "libd3d11va_plugin.dll",
+                                           "libdxva2_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\d3d11",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libdirect3d11_filters_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\d3d9",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libdirect3d9_filters_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\demux",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libavformat_plugin.dll",
+                                           "libmp4_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\mux",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libmux_mp4_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\stream_filter",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libprefetch_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\video_chroma",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libchain_plugin.dll",
+                                           "libgrey_yuv_plugin.dll",
+                                           "libi420_10_p010_plugin.dll",
+                                           "libi420_nv12_plugin.dll",
+                                           "libi420_rgb_mmx_plugin.dll",
+                                           "libi420_rgb_plugin.dll",
+                                           "libi420_rgb_sse2_plugin.dll",
+                                           "libi420_yuy2_mmx_plugin.dll",
+                                           "libi420_yuy2_plugin.dll",
+                                           "libi420_yuy2_sse2_plugin.dll",
+                                           "libi422_i420_plugin.dll",
+                                           "libi422_yuy2_mmx_plugin.dll",
+                                           "libi422_yuy2_plugin.dll",
+                                           "libi422_yuy2_sse2_plugin.dll",
+                                           "librv32_plugin.dll",
+                                           "libswscale_plugin.dll",
+                                           "libyuvp_plugin.dll",
+                                           "libyuy2_i420_plugin.dll",
+                                           "libyuy2_i422_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WeChatPlayer\\5067\\extracted\\plugins\\video_output",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "libcaca_plugin.dll",
+                                           "libdirect3d11_plugin.dll",
+                                           "libdirect3d9_plugin.dll",
+                                           "libdrawable_plugin.dll",
+                                           "libflaschen_plugin.dll",
+                                           "libglinterop_dxva2_plugin.dll",
+                                           "libglwin32_plugin.dll",
+                                           "libgl_plugin.dll",
+                                           "libvdummy_plugin.dll",
+                                           "libvmem_plugin.dll",
+                                           "libwgl_plugin.dll",
+                                           "libwingdi_plugin.dll",
+                                           "libwinhibit_plugin.dll",
+                                           "libyuv_plugin.dll"
+                                       ]
+                       },
+                       {
+                           "path":  "C:\\Users\\11628\\AppData\\Roaming\\Tencent\\xwechat\\XPlugin\\Plugins\\WMPFDrm\\1004\\extracted\\WidevineCdm\\_platform_specific\\win_x64",
+                           "kind":  "deployment",
+                           "markers":  [
+                                           "widevinecdm.dll"
+                                       ]
+                       }
+                   ],
+    "unavailable_roots":  [
+                              "\\\\vmware-host\\Shared Folders"
+                          ],
+    "selected_path":  "\\\\192.168.40.76\\1_Server",
+    "mode":  "read-only-source/incremental-local-no-delete",
+    "exclude":  [
+                    "logs",
+                    "log",
+                    "cache",
+                    "tmp",
+                    "temp",
+                    "node_modules",
+                    "target",
+                    "bin",
+                    "obj",
+                    ".git"
+                ],
+    "exclude_files":  [
+                          ".env",
+                          ".env.*",
+                          "*.pfx",
+                          "*.key",
+                          "*.pem"
+                      ],
+    "files":  [
+
+              ],
+    "copied":  0,
+    "unchanged":  0,
+    "source_fingerprint":  null
+}

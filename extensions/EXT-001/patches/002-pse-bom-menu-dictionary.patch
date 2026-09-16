@@ -1,0 +1,16 @@
+--- a/InforCenter/PSE/Bom/Config/MenuItem/PseBomMenu.dic
++++ b/InforCenter/PSE/Bom/Config/MenuItem/PseBomMenu.dic
+@@ -366,5 +366,13 @@
+       <LocalizedLabel LanguageRef="zhs">刷新</LocalizedLabel>
+       <LocalizedLabel LanguageRef="en">Refresh</LocalizedLabel>
+     </Label>
++    <Label Name="TrialToMassProductionDemo">
++      <LocalizedLabel LanguageRef="zhs">试制转量产</LocalizedLabel>
++      <LocalizedLabel LanguageRef="en">Trial to Mass Production</LocalizedLabel>
++    </Label>
++    <Label Name="TrialToMassProductionOnlyModel">
++      <LocalizedLabel LanguageRef="zhs">仅可对车型进行转量产！！</LocalizedLabel>
++      <LocalizedLabel LanguageRef="en">Only model-level items can be converted to mass production.</LocalizedLabel>
++    </Label>
+   </Context>
+ </DictionarySerializer>

@@ -1,0 +1,17 @@
+﻿{
+    "deployed_at":  "2026-09-16T00:28:50.3828282Z",
+    "root":  "\\\\192.168.40.76\\1_Server",
+    "source_fingerprint":  "AD2ADDB08E41EE0125DCCFB864474F17B62ADBB99DBE1806B4EEABB709CDAA6B",
+    "backup":  "D:\\workspace\\PLM-Studio\\workspaces\\xindazhou-honda-inforcenter-9.6\\extensions\\EXT-001\\deployment-backup\\20260916-082850",
+    "originals":  {
+                      "InforCenter/PSE/Bom/Config/MenuItem/PseBomMenu.menu":  "355CFFDD563F9C926035A832614DE78894DCE5F7A15E9F74FE98079EF8F6CAF8",
+                      "InforCenter/PSE/Bom/Config/MenuItem/PseBomMenu.dic":  "0D28C1BD0DA84A2A6C49BB70222A3A4333EC8521130CFE94E8F3026D7076556A",
+                      "InforCenter/PSE/Bom/Config/PSEBomFileRef.fileref":  "303A20073ABF344C61FD71FAEC9CC257ED5CF138B724A602ED54B1B291DE1624"
+                  },
+    "new_files":  [
+                      "InforCenter/PSE/Bom/Js/TrialToMassProductionDemo.js",
+                      "InforCenter/PSE/Bom/Config/Pages/TrialToMassProductionDemo.page",
+                      "InforCenter/PSE/Bom/Config/Pages/TrialToMassProductionDemo.dic"
+                  ],
+    "service_restart":  "not performed"
+}

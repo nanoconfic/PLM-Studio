@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<root Name="TrialToMassProductionDemo">
+  <Settings Key="title" Value="TrialToMassProductionDemo.Title"/>
+  <Settings Key="width" Value="920"/>
+  <Settings Key="height" Value="620"/>
+  <PageHandlers>
+    <PageHandler HandlerName="OnCreate" Script="InforCenter_Custom_TrialToMassProductionDemo_OnCreate(pageEvent);"/>
+  </PageHandlers>
+  <PageControls>
+    <PageControl ControlID="RootLayout" ParentID="" TypeName="LayoutContainer">
+      <Settings Key="type" Value="vertical"/>
+      <Settings Key="padding" Value="6px 6px 6px 6px"/>
+      <Settings Key="item1"><Settings Key="size" Value="92"/><Settings Key="childid" Value="ContextContainer"/></Settings>
+      <Settings Key="item2"><Settings Key="size" Value="8"/></Settings>
+      <Settings Key="item3"><Settings Key="size" Value="100%"/><Settings Key="childid" Value="GridContainer"/></Settings>
+      <Settings Key="item4"><Settings Key="size" Value="70"/><Settings Key="childid" Value="RuleDescription"/></Settings>
+      <Settings Key="item5"><Settings Key="size" Value="42"/><Settings Key="childid" Value="ButtonContainer"/></Settings>
+    </PageControl>
+
+    <PageControl ControlID="ContextContainer" ParentID="RootLayout" TypeName="LayoutContainer">
+      <Settings Key="type" Value="vertical"/>
+      <Settings Key="border" Value="1 1 1 1"/>
+      <Settings Key="item1"><Settings Key="size" Value="30"/><Settings Key="childid" Value="ContextRow1"/></Settings>
+      <Settings Key="item2"><Settings Key="size" Value="30"/><Settings Key="childid" Value="ContextRow2"/></Settings>
+      <Settings Key="item3"><Settings Key="size" Value="30"/><Settings Key="childid" Value="ContextRow3"/></Settings>
+    </PageControl>
+
+    <PageControl ControlID="ContextRow1" ParentID="ContextContainer" TypeName="LayoutContainer">
+      <Settings Key="type" Value="horizontal"/>
+      <Settings Key="item1"><Settings Key="size" Value="100"/><Settings Key="childid" Value="CurrentItemCodeLabel"/></Settings>
+      <Settings Key="item2"><Settings Key="size" Value="260"/><Settings Key="childid" Value="CurrentItemCode"/></Settings>
+      <Settings Key="item3"><Settings Key="size" Value="100"/><Settings Key="childid" Value="CurrentItemNameLabel"/></Settings>
+      <Settings Key="item4"><Settings Key="size" Value="100%"/><Settings Key="childid" Value="CurrentItemName"/></Settings>
+    </PageControl>
+    <PageControl ControlID="ContextRow2" ParentID="ContextContainer" TypeName="LayoutContainer">
+      <Settings Key="type" Value="horizontal"/>
+      <Settings Key="item1"><Settings Key="size" Value="100"/><Settings Key="childid" Value="CurrentViewTypeLabel"/></Settings>
+      <Settings Key="item2"><Settings Key="size" Value="260"/><Settings Key="childid" Value="CurrentViewType"/></Settings>
+      <Settings Key="item3"><Settings Key="size" Value="100%"/></Settings>
+    </PageControl>
+    <PageControl ControlID="ContextRow3" ParentID="ContextContainer" TypeName="Label">
+      <Settings Key="position" Value="left"/>
+      <Settings Key="textId" Value="TrialToMassProductionDemo.DemoOnly"/>
+    </PageControl>
+
+    <PageControl ControlID="CurrentItemCodeLabel" ParentID="ContextRow1" TypeName="Label"><Settings Key="position" Value="right"/><Settings Key="textId" Value="TrialToMassProductionDemo.ItemCode"/></PageControl>
+    <PageControl ControlID="CurrentItemCode" ParentID="ContextRow1" TypeName="TextBox"><Settings Key="readOnly" Value="true"/></PageControl>
+    <PageControl ControlID="CurrentItemNameLabel" ParentID="ContextRow1" TypeName="Label"><Settings Key="position" Value="right"/><Settings Key="textId" Value="TrialToMassProductionDemo.ItemName"/></PageControl>
+    <PageControl ControlID="CurrentItemName" ParentID="ContextRow1" TypeName="TextBox"><Settings Key="readOnly" Value="true"/></PageControl>
+    <PageControl ControlID="CurrentViewTypeLabel" ParentID="ContextRow2" TypeName="Label"><Settings Key="position" Value="right"/><Settings Key="textId" Value="TrialToMassProductionDemo.ViewType"/></PageControl>
+    <PageControl ControlID="CurrentViewType" ParentID="ContextRow2" TypeName="TextBox"><Settings Key="readOnly" Value="true"/></PageControl>
+
+    <PageControl ControlID="GridContainer" ParentID="RootLayout" TypeName="Grid">
+      <PageHandlers><PageHandler HandlerName="OnLoadRows" Script="InforCenter_Custom_TrialToMassProductionDemo_LoadRows(ctrlEvent);"/></PageHandlers>
+      <Settings Key="autoLoadData" Value="true"/>
+      <Settings Key="multiselect" Value="false"/>
+      <Settings Key="item1"><Settings Key="textId" Value="TrialToMassProductionDemo.SourceCode"/><Settings Key="name" Value="SOURCECODE"/><Settings Key="sortable" Value="false"/></Settings>
+      <Settings Key="item2"><Settings Key="textId" Value="TrialToMassProductionDemo.SourceName"/><Settings Key="name" Value="SOURCENAME"/><Settings Key="sortable" Value="false"/></Settings>
+      <Settings Key="item3"><Settings Key="textId" Value="TrialToMassProductionDemo.TargetCode"/><Settings Key="name" Value="TARGETCODE"/><Settings Key="sortable" Value="false"/></Settings>
+      <Settings Key="item4"><Settings Key="textId" Value="TrialToMassProductionDemo.Result"/><Settings Key="name" Value="RESULT"/><Settings Key="sortable" Value="false"/></Settings>
+    </PageControl>
+
+    <PageControl ControlID="RuleDescription" ParentID="RootLayout" TypeName="TextBox"><Settings Key="type" Value="textarea"/><Settings Key="readOnly" Value="true"/></PageControl>
+
+    <PageControl ControlID="ButtonContainer" ParentID="RootLayout" TypeName="LayoutContainer">
+      <Settings Key="type" Value="horizontal"/>
+      <Settings Key="item1"><Settings Key="size" Value="100%"/></Settings>
+      <Settings Key="item2"><Settings Key="size" Value="110"/><Settings Key="childid" Value="ExportButton"/></Settings>
+      <Settings Key="item3"><Settings Key="size" Value="12"/></Settings>
+      <Settings Key="item4"><Settings Key="size" Value="90"/><Settings Key="childid" Value="CloseButton"/></Settings>
+    </PageControl>
+    <PageControl ControlID="ExportButton" ParentID="ButtonContainer" TypeName="Button"><PageHandlers><PageHandler HandlerName="OnClick" Script="InforCenter_Custom_TrialToMassProductionDemo_Export();"/></PageHandlers><Settings Key="textId" Value="TrialToMassProductionDemo.Export"/></PageControl>
+    <PageControl ControlID="CloseButton" ParentID="ButtonContainer" TypeName="Button"><PageHandlers><PageHandler HandlerName="OnClick" Script="InforCenter_Custom_TrialToMassProductionDemo_Close(ctrlEvent);"/></PageHandlers><Settings Key="textId" Value="Common.Close"/></PageControl>
+  </PageControls>
+</root>

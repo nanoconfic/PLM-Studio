@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<root >
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/OpenPSE.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/ProductBOM.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/CheckInBom.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/OperateInBom.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/BomExpand.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/ImportBom.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/ProcessAddByBom.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/AlternatesParts.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/OpenPSETree.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/OperateInBomTree.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/OpenPSENewTreeList.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/BatchUpdateBom.js" group="InforCenter"/>
+  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/EditListAddExistBom.js" group="InforCenter"/>
+  	<JSFile FileName ="~/InforCenter/PSE/Bom/Js/ProcessAddByBomOptimization.js" group="InforCenter"/>
+	<CssFile FileName ="~/InforCenter/PSE/Bom/Css/Bom.css" group="InforCenter"/>
+</root>

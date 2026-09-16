@@ -1,0 +1,411 @@
+{
+    "schema_version": 3,
+    "workspace_id": "xindazhou-honda-inforcenter-9.6",
+    "profiles":
+        {
+            "DEV":
+                {
+                    "label": "新大洲本田 InforCenter 9.6 DEV",
+                    "project": { "id": "新大洲本田", "name": "新大洲本田" },
+                    "product": { "name": "inforcenter", "version": "9.6" },
+                    "prototype_defaults":
+                        {
+                            "backend": "ask",
+                            "demo_data": "ask",
+                            "demo_data_source": "ask",
+                            "integration": "ask",
+                            "original_system_change": "per-extension",
+                        },
+                    "os":
+                        {
+                            "name": "Windows Server",
+                            "version": "2025",
+                            "username": null,
+                            "password": null,
+                        },
+                    "database":
+                        {
+                            "required": true,
+                            "engine": "关系型/sqlserver",
+                            "version": "2025",
+                            "host": "192.168.40.76",
+                            "name": "SQLHD",
+                            "secret_ref": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "application_server":
+                        {
+                            "kind": "IIS",
+                            "version": "unknown (user does not know IIS version)",
+                            "host": "192.168.40.76",
+                            "username": null,
+                            "password": null,
+                        },
+                    "web":
+                        {
+                            "url": "http://192.168.40.76/",
+                            "login_mode": "manual",
+                            "secret_ref": null,
+                            "username": "system",
+                            "password": "123",
+                            "token": null,
+                        },
+                    "browser":
+                        {
+                            "enabled": true,
+                            "driver": "playwright",
+                            "mode": "launch",
+                            "cdp_endpoint": null,
+                            "storage_state_ref": null,
+                            "executable_path": "tools/browser/chromium/chrome-win64/chrome.exe",
+                        },
+                    "source":
+                        {
+                            "auto_discover": true,
+                            "candidate_paths": ["\\\\192.168.40.76\\1_Server"],
+                            "selected_path": "\\\\192.168.40.76\\1_Server",
+                            "discovery_depth": 2,
+                            "exclude":
+                                [
+                                    "logs",
+                                    "log",
+                                    "cache",
+                                    "tmp",
+                                    "temp",
+                                    "node_modules",
+                                    "target",
+                                    "bin",
+                                    "obj",
+                                    ".git",
+                                ],
+                            "exclude_files":
+                                [".env", ".env.*", "*.pfx", "*.key", "*.pem"],
+                            "review_sensitive_configs": true,
+                            "username": null,
+                            "password": null,
+                            "domain": null,
+                        },
+                    "capabilities":
+                        {
+                            "frontend": true,
+                            "backend": true,
+                            "backend_decision": "pending user confirmation",
+                        },
+                    "commands":
+                        {
+                            "build": "not-applicable",
+                            "run": "not-applicable",
+                            "test": "not-applicable",
+                        },
+                    "secret_refs": {},
+                    "deployment":
+                        {
+                            "vm_workdir": "\\\\192.168.40.76\\1_Server",
+                            "service_name": null,
+                            "username": null,
+                            "password": null,
+                        },
+                },
+            "TEST":
+                {
+                    "label": "TEST（待配置）",
+                    "project": { "id": null, "name": null },
+                    "product": { "name": null, "version": null },
+                    "prototype_defaults":
+                        {
+                            "backend": "ask",
+                            "demo_data": "ask",
+                            "demo_data_source": "ask",
+                            "integration": "ask",
+                            "original_system_change": "per-extension",
+                        },
+                    "os":
+                        {
+                            "name": null,
+                            "version": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "database":
+                        {
+                            "required": null,
+                            "engine": null,
+                            "version": null,
+                            "host": null,
+                            "name": null,
+                            "secret_ref": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "application_server":
+                        {
+                            "kind": null,
+                            "version": null,
+                            "host": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "web":
+                        {
+                            "url": null,
+                            "login_mode": null,
+                            "secret_ref": null,
+                            "username": null,
+                            "password": null,
+                            "token": null,
+                        },
+                    "browser":
+                        {
+                            "enabled": true,
+                            "driver": "playwright",
+                            "mode": "launch",
+                            "cdp_endpoint": null,
+                            "storage_state_ref": null,
+                        },
+                    "source":
+                        {
+                            "auto_discover": true,
+                            "candidate_paths": [],
+                            "selected_path": null,
+                            "discovery_depth": 2,
+                            "exclude":
+                                [
+                                    "logs",
+                                    "log",
+                                    "cache",
+                                    "tmp",
+                                    "temp",
+                                    "node_modules",
+                                    "target",
+                                    "bin",
+                                    "obj",
+                                    ".git",
+                                ],
+                            "exclude_files":
+                                [".env", ".env.*", "*.pfx", "*.key", "*.pem"],
+                            "review_sensitive_configs": true,
+                            "username": null,
+                            "password": null,
+                            "domain": null,
+                        },
+                    "capabilities":
+                        {
+                            "frontend": null,
+                            "backend": null,
+                            "backend_decision": null,
+                        },
+                    "commands": { "build": null, "run": null, "test": null },
+                    "secret_refs": {},
+                    "deployment":
+                        {
+                            "vm_workdir": null,
+                            "service_name": null,
+                            "username": null,
+                            "password": null,
+                        },
+                },
+            "PROD":
+                {
+                    "label": "PROD（待配置）",
+                    "project": { "id": null, "name": null },
+                    "product": { "name": null, "version": null },
+                    "prototype_defaults":
+                        {
+                            "backend": "ask",
+                            "demo_data": "ask",
+                            "demo_data_source": "ask",
+                            "integration": "ask",
+                            "original_system_change": "per-extension",
+                        },
+                    "os":
+                        {
+                            "name": null,
+                            "version": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "database":
+                        {
+                            "required": null,
+                            "engine": null,
+                            "version": null,
+                            "host": null,
+                            "name": null,
+                            "secret_ref": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "application_server":
+                        {
+                            "kind": null,
+                            "version": null,
+                            "host": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "web":
+                        {
+                            "url": null,
+                            "login_mode": null,
+                            "secret_ref": null,
+                            "username": null,
+                            "password": null,
+                            "token": null,
+                        },
+                    "browser":
+                        {
+                            "enabled": true,
+                            "driver": "playwright",
+                            "mode": "launch",
+                            "cdp_endpoint": null,
+                            "storage_state_ref": null,
+                        },
+                    "source":
+                        {
+                            "auto_discover": true,
+                            "candidate_paths": [],
+                            "selected_path": null,
+                            "discovery_depth": 2,
+                            "exclude":
+                                [
+                                    "logs",
+                                    "log",
+                                    "cache",
+                                    "tmp",
+                                    "temp",
+                                    "node_modules",
+                                    "target",
+                                    "bin",
+                                    "obj",
+                                    ".git",
+                                ],
+                            "exclude_files":
+                                [".env", ".env.*", "*.pfx", "*.key", "*.pem"],
+                            "review_sensitive_configs": true,
+                            "username": null,
+                            "password": null,
+                            "domain": null,
+                        },
+                    "capabilities":
+                        {
+                            "frontend": null,
+                            "backend": null,
+                            "backend_decision": null,
+                        },
+                    "commands": { "build": null, "run": null, "test": null },
+                    "secret_refs": {},
+                    "deployment":
+                        {
+                            "vm_workdir": null,
+                            "service_name": null,
+                            "username": null,
+                            "password": null,
+                        },
+                },
+            "T1":
+                {
+                    "label": "新本测试环境 inforcenter 9.6 T1",
+                    "project": { "id": "新本测试", "name": "新本测试" },
+                    "product": { "name": "inforcenter", "version": "9.6" },
+                    "prototype_defaults":
+                        {
+                            "backend": "no",
+                            "demo_data": "user-provided",
+                            "demo_data_source": "user-provided",
+                            "integration": "required",
+                            "original_system_change": "per-extension",
+                        },
+                    "os":
+                        {
+                            "name": "Windows Server",
+                            "version": "2025",
+                            "username": null,
+                            "password": null,
+                        },
+                    "database":
+                        {
+                            "required": true,
+                            "engine": "关系型/sqlserver",
+                            "version": "2025",
+                            "host": "192.168.27.128",
+                            "name": "PLM9.6",
+                            "secret_ref": null,
+                            "username": null,
+                            "password": null,
+                        },
+                    "application_server":
+                        {
+                            "kind": "IIS",
+                            "version": "unknown (user does not know IIS version)",
+                            "host": "192.168.27.128",
+                            "username": null,
+                            "password": null,
+                        },
+                    "web":
+                        {
+                            "url": "http://192.168.27.128/",
+                            "login_mode": "manual",
+                            "secret_ref": null,
+                            "username": "system",
+                            "password": "123",
+                            "token": null,
+                        },
+                    "browser":
+                        {
+                            "enabled": true,
+                            "driver": "playwright",
+                            "mode": "launch",
+                            "cdp_endpoint": null,
+                            "storage_state_ref": null,
+                            "executable_path": "tools/browser/chromium/chrome-win64/chrome.exe",
+                        },
+                    "source":
+                        {
+                            "auto_discover": true,
+                            "candidate_paths": ["\\\\192.168.40.76\\1_Server"],
+                            "selected_path": "\\\\192.168.27.128\\1_Server",
+                            "discovery_depth": 2,
+                            "exclude":
+                                [
+                                    "logs",
+                                    "log",
+                                    "cache",
+                                    "tmp",
+                                    "temp",
+                                    "node_modules",
+                                    "target",
+                                    "bin",
+                                    "obj",
+                                    ".git",
+                                ],
+                            "exclude_files":
+                                [".env", ".env.*", "*.pfx", "*.key", "*.pem"],
+                            "review_sensitive_configs": true,
+                            "username": null,
+                            "password": null,
+                            "domain": null,
+                        },
+                    "capabilities":
+                        {
+                            "frontend": true,
+                            "backend": false,
+                            "backend_decision": "no",
+                        },
+                    "commands":
+                        {
+                            "build": "not-applicable",
+                            "run": "not-applicable",
+                            "test": "not-applicable",
+                        },
+                    "secret_refs": {},
+                    "deployment":
+                        {
+                            "vm_workdir": "\\\\192.168.27.128\\1_Server",
+                            "service_name": null,
+                            "username": null,
+                            "password": null,
+                        },
+                },
+        },
+}

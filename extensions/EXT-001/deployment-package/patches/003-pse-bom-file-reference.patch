@@ -1,0 +1,10 @@
+--- a/InforCenter/PSE/Bom/Config/PSEBomFileRef.fileref
++++ b/InforCenter/PSE/Bom/Config/PSEBomFileRef.fileref
+@@ -4,6 +4,7 @@
+   <JSFile FileName ="~/InforCenter/PSE/Bom/Js/ProductBOM.js" group="InforCenter"/>
+   <JSFile FileName ="~/InforCenter/PSE/Bom/Js/CheckInBom.js" group="InforCenter"/>
+   <JSFile FileName ="~/InforCenter/PSE/Bom/Js/OperateInBom.js" group="InforCenter"/>
++  <JSFile FileName ="~/InforCenter/PSE/Bom/Js/TrialToMassProductionDemo.js" group="InforCenter"/>
+   <JSFile FileName ="~/InforCenter/PSE/Bom/Js/BomExpand.js" group="InforCenter"/>
+   <JSFile FileName ="~/InforCenter/PSE/Bom/Js/ImportBom.js" group="InforCenter"/>
+   <JSFile FileName ="~/InforCenter/PSE/Bom/Js/ProcessAddByBom.js" group="InforCenter"/>
