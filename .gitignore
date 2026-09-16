@@ -1,4 +1,5 @@
 **/runtime/**
+extensions/**
 sources/mirror/**
 tools/browser/media/**
 tools/browser/chromium/**
