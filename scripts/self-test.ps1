@@ -28,7 +28,7 @@ New-Item -ItemType Directory -Path "$sandbox/extensions" | Out-Null
 $config="$sandbox/workspace.yaml"
 . "$sandbox/scripts/Common.ps1"
 $c=Read-Config $config
-$c.workspace_id='fixture'; $c.profiles.DEV.project.id='Fixture'; $c.profiles.DEV.project.name='Fixture'; $c.profiles.DEV.product.name='PLM'; $c.profiles.DEV.product.version='1'
+$c.workspace_id='fixture'; $c.profiles.DEV.product.name='PLM'; $c.profiles.DEV.product.version='1'
 $c.profiles.DEV.label='中文环境 UTF-8 验证'
 Write-Config $config $c
 $roundTrip=Read-Config $config
@@ -70,11 +70,11 @@ Run 'extension-init' @('-Title','Demo','-Profile','DEV','-Mode','static-demo','-
 Check (Test-Path "$sandbox/extensions/EXT-002/brief.md") 'automatic EXT sequence and minimal template'
 $previousErrorAction=$ErrorActionPreference
 $ErrorActionPreference='Continue'
-$unconfirmedOutput=& $shell -NoProfile -File "$sandbox/skills/extension-init/run.ps1" -Title 'Unconfirmed profile' -Profile UAT -CreateProfile -CopyEnvironmentFrom DEV -ProjectId Fixture-UAT -ProjectName 'Fixture UAT' -ProductName PLM -ProductVersion 1 -Mode static -NonInteractive 2>$null
+$unconfirmedOutput=& $shell -NoProfile -File "$sandbox/skills/extension-init/run.ps1" -Title 'Unconfirmed profile' -Profile UAT -CreateProfile -CopyEnvironmentFrom DEV -ProfileLabel 'Fixture UAT' -ProductName PLM -ProductVersion 1 -Mode static -NonInteractive 2>$null
 $unconfirmedExitCode=$LASTEXITCODE
 $ErrorActionPreference=$previousErrorAction
 Check ($unconfirmedExitCode -ne 0 -and !$((Read-Config $config).profiles.PSObject.Properties['UAT']) -and !(Test-Path "$sandbox/extensions/EXT-003")) 'automation cannot create an unconfirmed profile'
-Run 'extension-init' @('-Title','Copied environment','-Profile','UAT','-CreateProfile','-CopyEnvironmentFrom','DEV','-ProjectId','Fixture-UAT','-ProjectName','Fixture UAT','-ProductName','PLM','-ProductVersion','1','-ProfileSetupConfirmed','-Mode','static','-NonInteractive')
+Run 'extension-init' @('-Title','Copied environment','-Profile','UAT','-CreateProfile','-CopyEnvironmentFrom','DEV','-ProfileLabel','Fixture UAT','-ProductName','PLM','-ProductVersion','1','-ProfileSetupConfirmed','-Mode','static','-NonInteractive')
 $workspaceAfterProfile=Read-Config $config
 $createdWithProfile=Read-Config "$sandbox/extensions/EXT-003/extension.yaml"
 Check ($workspaceAfterProfile.profiles.UAT.application_server.kind -eq $workspaceAfterProfile.profiles.DEV.application_server.kind -and $createdWithProfile.profile -eq 'UAT') 'new profile can reuse environment and is bound before extension creation'
@@ -91,7 +91,7 @@ Check ($legacy.workflow.current_iteration -eq 'ITER-001' -and @($legacy.iteratio
 
 $source=Join-Path $sandbox 'fixture-source'; New-Item -ItemType Directory "$source/App","$source/Other" -Force | Out-Null
 Write-Utf8Text "$source/App/app.cs" 'class Example {}'; Write-Utf8Text "$source/Other/ignored.cs" 'class Ignored {}'
-$c=Read-Config $config; $c.profiles.DEV.source.auto_discover=$false; $c.profiles.DEV.source.candidate_paths=@(); $c.profiles.DEV.source.selected_path=$source
+$c=Read-Config $config; $c.profiles.DEV.deployment.mode='local'; $c.profiles.DEV.deployment.host='localhost'; $c.profiles.DEV.deployment.plm_local_path=$source; $c.profiles.DEV.source.auto_discover=$false; $c.profiles.DEV.source.candidate_paths=@(); $c.profiles.DEV.source.access_path=$source
 Write-Config $config $c
 Run 'source-sync' @('-Extension','EXT-001','-Scope','App')
 Check ((Test-Path "$sandbox/sources/mirror/DEV/App/app.cs") -and !(Test-Path "$sandbox/sources/mirror/DEV/Other/ignored.cs") -and (Test-Path "$sandbox/sources/manifests/EXT-001/source-manifest-DEV.yaml")) 'scoped extension source sync'

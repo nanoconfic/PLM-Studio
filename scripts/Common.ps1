@@ -48,7 +48,8 @@ function Get-Profile($W,[string]$Name) {
 
 function Get-ConfiguredProfileNames($W) {
     @($W.Config.profiles.PSObject.Properties | Where-Object {
-        $_.Value.project.id -and $_.Value.product.name -and $_.Value.product.version
+        $_.Value.label -and $_.Value.product.name -and $_.Value.product.version -and
+        $_.Value.deployment.mode -in @('virtual-machine','local','remote-server')
     } | ForEach-Object { $_.Name })
 }
 
@@ -103,13 +104,15 @@ function Get-ExtensionGuideState($W,$Config) {
     $c=Initialize-ExtensionWorkflow $Config
     $profileId=[string]$c.profile
     $profileLabel='Unbound'
-    $project='Unbound'
     $product='Unbound'
+    $deploymentMode='Unconfigured'
+    $deploymentHost=$null
     try {
         $p=Get-Profile $W $profileId
         $profileLabel=$(if ($p.label) {[string]$p.label} else {$profileId})
-        $project=$(if ($p.project.name) {[string]$p.project.name} else {'Unconfigured'})
         $product=$(if ($p.product.name) {[string]$p.product.name+' '+[string]$p.product.version} else {'Unconfigured'})
+        $deploymentMode=$(if ($p.deployment.mode) {[string]$p.deployment.mode} else {'Unconfigured'})
+        $deploymentHost=[string]$p.deployment.host
     } catch { }
     $lifecycle=[string]$c.lifecycle.status
     $phase=[string]$c.workflow.phase
@@ -121,7 +124,8 @@ function Get-ExtensionGuideState($W,$Config) {
     elseif ($validation -eq 'ChangesRequested' -or $phase -eq 'ChangesRequested') { $action='ApplyFeedback' }
     elseif ($phase -in @('Draft','Requirements') -or !$c.requirements.change_goal -or @($c.requirements.acceptance_criteria).Count -eq 0) { $action='CollectRequirements' }
     [pscustomobject]@{
-        id=[string]$c.id;title=[string]$c.title;profile=$profileId;profile_label=$profileLabel;project=$project;product=$product
+        id=[string]$c.id;title=[string]$c.title;profile=$profileId;profile_label=$profileLabel;product=$product
+        deployment_mode=$deploymentMode;deployment_host=$deploymentHost
         lifecycle=$lifecycle;iteration=[string]$c.workflow.current_iteration;phase=$phase;validation=$validation;next_action=$action
     }
 }
@@ -129,31 +133,32 @@ function Get-ExtensionGuideState($W,$Config) {
 function Get-Issues($W,$ExtensionConfig=$null) {
     $c=$W.Config
     if ([string]::IsNullOrWhiteSpace([string]$c.workspace_id)) { 'Missing: workspace_id' }
-    if (@(Get-ConfiguredProfileNames $W).Count -eq 0) { 'No configured profiles. Add project, product and version under workspace.yaml.profiles.<id>.' }
+    if (@(Get-ConfiguredProfileNames $W).Count -eq 0) { 'No configured profiles. Add label, product, version and deployment mode under workspace.yaml.profiles.<id>.' }
     if (!$ExtensionConfig) { return }
 
     $e=$ExtensionConfig
     if ([string]::IsNullOrWhiteSpace([string]$e.profile)) { 'Extension is not bound to a profile.'; return }
     try { $p=Get-Profile $W $e.profile } catch { $_.Exception.Message; return }
-    foreach($key in @('project.id','project.name','product.name','product.version')) {
-        $parts=$key.Split('.'); $value=$p.($parts[0]).($parts[1]); if ([string]::IsNullOrWhiteSpace([string]$value)) { "Missing in profile $($e.profile): $key" }
+    foreach($key in @('label','product.name','product.version','deployment.mode')) {
+        $parts=$key.Split('.'); $value=$(if ($parts.Count -eq 1) {$p.($parts[0])} else {$p.($parts[0]).($parts[1])}); if ([string]::IsNullOrWhiteSpace([string]$value)) { "Missing in profile $($e.profile): $key" }
     }
-    if (!$p.prototype_defaults) { "Missing in profile $($e.profile): prototype_defaults" }
+    if ($p.deployment.mode -in @('virtual-machine','remote-server') -and [string]::IsNullOrWhiteSpace([string]$p.deployment.host)) {
+        "Missing in profile $($e.profile): deployment.host"
+    }
     $mode=[string]$e.delivery.mode
     if ($mode -notin @('static','static-demo','embedded-static','backend')) { 'Missing/invalid: delivery.mode (static/static-demo/embedded-static/backend)'; return }
     if ($e.workspace_id -ne $c.workspace_id) { 'extension.workspace_id does not match workspace.yaml.' }
     if ($mode -eq 'static-demo' -and $e.delivery.demo_data -notin @('user-provided','generated')) { 'static-demo requires delivery.demo_data user-provided or generated.' }
     if ($mode -in @('embedded-static','backend')) {
         if (!$e.target.module -and !$e.target.menu -and !$e.target.page) { 'Embedded/backend delivery requires a target module, menu or page.' }
-        foreach($key in @('os.name','os.version','application_server.kind','application_server.host','web.url','web.login_mode','source.selected_path')) {
+        foreach($key in @('os.name','os.version','application_server.kind','application_server.host','web.url','web.login_mode','deployment.plm_local_path')) {
             $parts=$key.Split('.'); $value=$p.($parts[0]).($parts[1]); if ([string]::IsNullOrWhiteSpace([string]$value)) { "Missing for ${mode}: $key" }
         }
-        if ($p.source.selected_path -and !(Test-Path -LiteralPath $p.source.selected_path)) { 'source.selected_path is unavailable.' }
     }
     if ($mode -eq 'backend') {
         if ($e.delivery.backend -ne 'approved') { 'backend delivery requires delivery.backend=approved.' }
         if ($p.database.required -ne $true) { 'backend delivery requires database.required=true.' }
-        foreach($key in @('engine','version','host','name')) { if (!$p.database.$key) { "Missing for backend: database.$key" } }
+        foreach($key in @('version','host','name')) { if (!$p.database.$key) { "Missing for backend: database.$key" } }
     }
 }
 

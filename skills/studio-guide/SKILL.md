@@ -1,6 +1,6 @@
 ---
 name: studio-guide
-description: PLM-Studio 的统一只读入口，按项目、系统环境和 profile 展示全部扩展及下一步引导。
+description: PLM-Studio 的统一只读入口，展示 Active 扩展的 ID 和名称并提供新增或修改入口。
 ---
 # studio-guide
 

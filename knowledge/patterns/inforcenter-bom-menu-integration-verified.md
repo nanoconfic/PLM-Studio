@@ -4,7 +4,6 @@ status: Verified
 category: menu-mechanism
 applicability:
   workspace_id: "xindazhou-honda-inforcenter-9.6"
-  project: "新大洲本田"
   product: "inforcenter"
   version: "9.6"
   profiles: ["DEV"]

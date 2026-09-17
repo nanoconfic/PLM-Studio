@@ -82,13 +82,11 @@ if (Test-Path -LiteralPath $patternRoot) {
         $category=$categoryValue.ToLowerInvariant()
         if ($selected -notcontains 'All' -and $category -notin $wanted) { continue }
         $recordWorkspace=Get-MetaValue $meta 'workspace_id'
-        $recordProject=Get-MetaValue $meta 'project'
         $recordProduct=Get-MetaValue $meta 'product'
         $recordVersion=Get-MetaValue $meta 'version'
         $recordProfiles=@(Get-MetaProfiles $meta)
         $recordFingerprint=Get-MetaValue $meta 'source_fingerprint'
-        $projectMatches=[string]::IsNullOrWhiteSpace([string]$recordProject) -or (Same-Value $recordProject $profile.project.id) -or (Same-Value $recordProject $profile.project.name)
-        $scopeMatches=(Same-Value $recordWorkspace $w.Id) -and $projectMatches -and (Same-Value $recordProduct $profile.product.name) -and (Same-Value $recordVersion $profile.product.version) -and (!$recordProfiles.Count -or $profileId -in $recordProfiles)
+        $scopeMatches=(Same-Value $recordWorkspace $w.Id) -and (Same-Value $recordProduct $profile.product.name) -and (Same-Value $recordVersion $profile.product.version) -and (!$recordProfiles.Count -or $profileId -in $recordProfiles)
         $record=[pscustomobject]@{id=$id;status=$status;category=$category;path=$file.FullName.Substring($w.Path.Length).TrimStart('\').Replace('\','/');content=$content;fingerprint=$recordFingerprint}
         if (!$scopeMatches) { $skipped+=$record; continue }
         if ($status -eq 'Deprecated') { $deprecated+=$record; continue }
@@ -117,10 +115,11 @@ $lines+='- Deprecated or scope-mismatched records must not be applied.'
 $lines+='- If the user explicitly requires a deviation, identify it and preserve new evidence instead of silently overriding knowledge.'
 $lines+=''
 $lines+='## Environment scope (secrets omitted)'
-$lines+="- Project: $($profile.project.id) / $($profile.project.name)"
+$lines+="- Deployment: $($profile.deployment.mode) / $($profile.deployment.host)"
+$lines+="- PLM local path: $($profile.deployment.plm_local_path)"
 $lines+="- Application: $($profile.application_server.kind) $($profile.application_server.version) / $($profile.application_server.host)"
 $lines+="- Web: $($profile.web.url) / login=$($profile.web.login_mode)"
-$lines+="- Source: $($profile.source.selected_path)"
+$lines+="- Accessible source path: $($profile.source.access_path)"
 $lines+=''
 $lines+='## Knowledge index (discovery only; applicability is decided below)'
 $indexPath=Join-Path $w.Path 'knowledge/_index.md'

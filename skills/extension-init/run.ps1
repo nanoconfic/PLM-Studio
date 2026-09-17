@@ -5,10 +5,21 @@
     [string]$CopyEnvironmentFrom,
     [string]$ProfileConfigPath,
     [string]$ProfileLabel,
-    [string]$ProjectId,
-    [string]$ProjectName,
     [string]$ProductName,
     [string]$ProductVersion,
+    [ValidateSet('virtual-machine','local','remote-server')][string]$DeploymentMode,
+    [string]$DeploymentHost,
+    [string]$PlmLocalPath,
+    [string]$SourceAccessPath,
+    [string]$WebUrl,
+    [string]$ApplicationServerKind,
+    [string]$ApplicationServerVersion,
+    [ValidateSet('yes','no')][string]$DatabaseRequired,
+    [string]$DatabaseVersion,
+    [string]$DatabaseHost,
+    [string]$DatabaseName,
+    [string]$OsName,
+    [string]$OsVersion,
     [switch]$ProfileSetupConfirmed,
     [switch]$NonInteractive,
     [ValidateSet('static','static-demo','embedded-static','backend')][string]$Mode,
@@ -32,45 +43,60 @@ function Read-OptionalValue([string]$Prompt,[string]$Default=$null) {
 }
 
 function New-FreshProfileConfig {
-    if ($NonInteractive) {
-        throw 'Creating a new environment non-interactively requires -CopyEnvironmentFrom <profile> or -ProfileConfigPath <file>.'
+    if (!$NonInteractive) {
+        Write-Host '请一次性准备环境信息：部署模式、主机地址、PLM 软件本地文件路径、Web 地址、应用服务器和数据库信息。未知的可选项可留空。'
     }
-    Write-Host '请输入新 profile 的核心环境信息；未知项可输入 unknown，不适用项可输入 not-applicable。'
-    $osName=Read-OptionalValue '操作系统名称' 'Windows Server'
-    $osVersion=Read-OptionalValue '操作系统版本' 'unknown'
-    $appKind=Read-OptionalValue '应用服务器类型' 'IIS'
-    $appVersion=Read-OptionalValue '应用服务器版本' 'unknown'
-    $appHost=Read-OptionalValue '应用服务器地址' 'unknown'
-    $webUrl=Read-OptionalValue 'Web 访问地址' $null
-    $loginMode=Read-OptionalValue '登录方式' 'manual'
-    $sourcePath=Read-OptionalValue '原系统源文件路径' $null
-    $databaseAnswer=(Read-OptionalValue '是否需要数据库（y/N）' 'N')
-    $databaseRequired=$databaseAnswer -match '^(?i:y|yes)$'
-    $database=[ordered]@{required=$databaseRequired;engine=$null;version=$null;host=$null;name=$null;secret_ref=$null;username=$null;password=$null}
-    if ($databaseRequired) {
-        $database.engine=Read-OptionalValue '数据库类型' 'sqlserver'
-        $database.version=Read-OptionalValue '数据库版本' 'unknown'
-        $database.host=Read-RequiredValue '数据库地址' $null
-        $database.name=Read-RequiredValue '数据库名称' $null
+    $resolvedMode=Read-RequiredValue '部署模式（virtual-machine/local/remote-server）' $DeploymentMode
+    if ($resolvedMode -notin @('virtual-machine','local','remote-server')) { throw "Invalid deployment mode: $resolvedMode" }
+    $resolvedHost=$(if ($resolvedMode -eq 'local') {'localhost'} else {Read-RequiredValue '主机地址' $DeploymentHost})
+    $resolvedPlmLocalPath=$(if (![string]::IsNullOrWhiteSpace($PlmLocalPath)) {$PlmLocalPath} elseif ($NonInteractive) {$null} else {Read-OptionalValue 'PLM 软件本地文件路径' $null})
+    $resolvedWebUrl=$(if (![string]::IsNullOrWhiteSpace($WebUrl)) {$WebUrl} elseif ($NonInteractive) {$null} else {Read-OptionalValue 'Web 访问地址' $null})
+    $resolvedAppKind=$(if (![string]::IsNullOrWhiteSpace($ApplicationServerKind)) {$ApplicationServerKind} else {'IIS'})
+    $resolvedAppVersion=$(if (![string]::IsNullOrWhiteSpace($ApplicationServerVersion)) {$ApplicationServerVersion} else {'unknown'})
+    $resolvedOsName=$(if (![string]::IsNullOrWhiteSpace($OsName)) {$OsName} else {'Windows Server'})
+    $resolvedOsVersion=$(if (![string]::IsNullOrWhiteSpace($OsVersion)) {$OsVersion} else {'unknown'})
+    $databaseChoice=$(if (![string]::IsNullOrWhiteSpace($DatabaseRequired)) {$DatabaseRequired} elseif ($NonInteractive) {'no'} else {Read-OptionalValue '是否需要数据库（yes/no）' 'no'})
+    $usesDatabase=$databaseChoice -match '^(?i:y|yes)$'
+    $database=[ordered]@{required=$usesDatabase;version=$null;host=$null;name=$null;secret_ref=$null;username=$null;password=$null}
+    if ($usesDatabase) {
+        $database.version=Read-RequiredValue '数据库版本/产品（例如 SQL Server 2019、Oracle 11g）' $DatabaseVersion
+        $database.host=Read-RequiredValue '数据库地址' $DatabaseHost
+        $database.name=Read-RequiredValue '数据库名称' $DatabaseName
     }
+    $accessPath=$(if (![string]::IsNullOrWhiteSpace($SourceAccessPath)) {$SourceAccessPath} elseif ($resolvedMode -eq 'local') {$resolvedPlmLocalPath} else {$null})
     $candidatePaths=@()
-    if (![string]::IsNullOrWhiteSpace($sourcePath)) { $candidatePaths=@($sourcePath) }
+    if (![string]::IsNullOrWhiteSpace($accessPath)) { $candidatePaths=@($accessPath) }
     [ordered]@{
         label=$null
-        project=[ordered]@{id=$null;name=$null}
         product=[ordered]@{name=$null;version=$null}
-        prototype_defaults=[ordered]@{backend='ask';demo_data='ask';demo_data_source='ask';integration='ask';original_system_change='per-extension'}
-        os=[ordered]@{name=$osName;version=$osVersion;username=$null;password=$null}
+        deployment=[ordered]@{mode=$resolvedMode;host=$resolvedHost;plm_local_path=$resolvedPlmLocalPath;service_name=$null;secret_ref=$null}
+        os=[ordered]@{name=$resolvedOsName;version=$resolvedOsVersion;username=$null;password=$null}
         database=$database
-        application_server=[ordered]@{kind=$appKind;version=$appVersion;host=$appHost;username=$null;password=$null}
-        web=[ordered]@{url=$webUrl;login_mode=$loginMode;secret_ref=$null;username=$null;password=$null;token=$null}
+        application_server=[ordered]@{kind=$resolvedAppKind;version=$resolvedAppVersion;host=$resolvedHost;username=$null;password=$null}
+        web=[ordered]@{url=$resolvedWebUrl;login_mode='manual';secret_ref=$null;username=$null;password=$null;token=$null}
         browser=[ordered]@{enabled=$true;driver='playwright';mode='launch';cdp_endpoint=$null;storage_state_ref=$null;executable_path='tools/browser/chromium/chrome-win64/chrome.exe'}
-        source=[ordered]@{auto_discover=$true;candidate_paths=$candidatePaths;selected_path=$sourcePath;discovery_depth=2;exclude=@('logs','log','cache','tmp','temp','node_modules','target','bin','obj','.git');exclude_files=@('.env','.env.*','*.pfx','*.key','*.pem');review_sensitive_configs=$true;username=$null;password=$null;domain=$null}
-        capabilities=[ordered]@{frontend=$true;backend=$databaseRequired;backend_decision='pending user confirmation'}
+        source=[ordered]@{auto_discover=$true;candidate_paths=$candidatePaths;access_path=$accessPath;discovery_depth=2;exclude=@('logs','log','cache','tmp','temp','node_modules','target','bin','obj','.git');exclude_files=@('.env','.env.*','*.pfx','*.key','*.pem');review_sensitive_configs=$true;secret_ref=$null;username=$null;password=$null;domain=$null}
+        capabilities=[ordered]@{frontend=$true;backend=$usesDatabase;backend_decision='pending user confirmation'}
         commands=[ordered]@{build='not-applicable';run='not-applicable';test='not-applicable'}
         secret_refs=[ordered]@{}
-        deployment=[ordered]@{vm_workdir=$sourcePath;service_name=$null;username=$null;password=$null}
     }
+}
+
+function Get-ExtensionEnvironmentSources($W) {
+    $items=@()
+    $extensionRoot=Join-Path $W.Path 'extensions'
+    if (!(Test-Path -LiteralPath $extensionRoot)) { return @() }
+    foreach($dir in Get-ChildItem -LiteralPath $extensionRoot -Directory | Sort-Object Name) {
+        $configPath=Join-Path $dir.FullName 'extension.yaml'
+        if (!(Test-Path -LiteralPath $configPath)) { continue }
+        try {
+            $state=Get-ExtensionGuideState $W (Read-Config $configPath)
+            if ($state.lifecycle -eq 'Active' -and $state.profile -in @(Get-ConfiguredProfileNames $W)) {
+                $items+=@($state)
+            }
+        } catch { }
+    }
+    @($items)
 }
 
 function Add-WorkspaceProfile($W,[string]$ProfileId) {
@@ -78,18 +104,37 @@ function Add-WorkspaceProfile($W,[string]$ProfileId) {
     if ($W.Config.profiles.PSObject.Properties[$ProfileId]) { throw "Profile already exists: $ProfileId" }
     if ($CopyEnvironmentFrom -and $ProfileConfigPath) { throw 'Use either -CopyEnvironmentFrom or -ProfileConfigPath, not both.' }
 
-    $resolvedProjectId=Read-RequiredValue '项目 ID' $ProjectId
-    $resolvedProjectName=Read-RequiredValue '项目名称' $ProjectName
+    $resolvedLabel=$ProfileLabel
+    if ([string]::IsNullOrWhiteSpace($resolvedLabel) -and !$NonInteractive) {
+        $resolvedLabel=Read-RequiredValue '环境名称' $null
+    }
     $resolvedProductName=Read-RequiredValue '产品名称' $ProductName
     $resolvedProductVersion=Read-RequiredValue '产品版本' $ProductVersion
-    $resolvedLabel=$(if (![string]::IsNullOrWhiteSpace($ProfileLabel)) {$ProfileLabel} else {"$resolvedProjectName $resolvedProductName $resolvedProductVersion $ProfileId"})
+    if ([string]::IsNullOrWhiteSpace($resolvedLabel)) { $resolvedLabel="$resolvedProductName $resolvedProductVersion $ProfileId" }
 
     if (!$CopyEnvironmentFrom -and !$ProfileConfigPath -and !$NonInteractive) {
-        $available=@(Get-ConfiguredProfileNames $W)
-        if ($available.Count) {
-            Write-Host ('选择环境信息来源：输入现有 profile ID 复用环境，或输入 NEW 逐项录入。现有： '+($available -join ', '))
-            $environmentChoice=Read-Host '环境信息来源'
-            if ($environmentChoice -notmatch '^(?i:new|n)$') { $script:CopyEnvironmentFrom=$environmentChoice }
+        $availableExtensions=@(Get-ExtensionEnvironmentSources $W)
+        if ($availableExtensions.Count) {
+            Write-Host '选择环境信息来源：'
+            for($i=0;$i -lt $availableExtensions.Count;$i++) {
+                $item=$availableExtensions[$i]
+                Write-Host ("{0}) {1}: {2} | 环境 {3}（{4}） | {5} | {6}" -f ($i+1),$item.id,$item.title,$item.profile,$item.profile_label,$item.product,$item.deployment_mode)
+            }
+            Write-Host 'N) 逐项录入新环境'
+            $environmentChoice=Read-Host '输入序号、扩展 ID 或 N'
+            if ($environmentChoice -notmatch '^(?i:n|new)$') {
+                $selected=$null
+                if ($environmentChoice -match '^\d+$') {
+                    $index=[int]$environmentChoice-1
+                    if ($index -lt 0 -or $index -ge $availableExtensions.Count) { throw "Invalid extension selection: $environmentChoice" }
+                    $selected=$availableExtensions[$index]
+                } else {
+                    $selected=@($availableExtensions | Where-Object { $_.id -eq $environmentChoice })[0]
+                    if (!$selected) { throw "Active extension not found: $environmentChoice" }
+                }
+                $script:CopyEnvironmentFrom=$selected.profile
+                $script:EnvironmentSourceExtension=$selected.id
+            }
         }
     }
 
@@ -103,25 +148,50 @@ function Add-WorkspaceProfile($W,[string]$ProfileId) {
         $profileConfig=New-FreshProfileConfig
     }
 
+    foreach($obsolete in @('project','prototype_defaults')) {
+        if ($profileConfig.PSObject.Properties[$obsolete]) { $profileConfig.PSObject.Properties.Remove($obsolete) }
+    }
+    if ($profileConfig.database -and $profileConfig.database.PSObject.Properties['engine']) {
+        $legacyEngine=[string]$profileConfig.database.engine
+        if (![string]::IsNullOrWhiteSpace($legacyEngine) -and ([string]$profileConfig.database.version) -notlike "*$legacyEngine*") {
+            $databaseParts=@($legacyEngine,[string]$profileConfig.database.version) | Where-Object {![string]::IsNullOrWhiteSpace([string]$_)}
+            $profileConfig.database.version=($databaseParts -join ' ').Trim()
+        }
+        $profileConfig.database.PSObject.Properties.Remove('engine')
+    }
+    if ($profileConfig.source -and $profileConfig.source.PSObject.Properties['selected_path']) {
+        if (!$profileConfig.source.PSObject.Properties['access_path']) { $profileConfig.source | Add-Member -NotePropertyName access_path -NotePropertyValue $profileConfig.source.selected_path }
+        $profileConfig.source.PSObject.Properties.Remove('selected_path')
+    }
+    if (!$profileConfig.deployment) { $profileConfig | Add-Member -NotePropertyName deployment -NotePropertyValue ([ordered]@{}) }
+    if (!$profileConfig.deployment.PSObject.Properties['mode']) { $profileConfig.deployment | Add-Member -NotePropertyName mode -NotePropertyValue (Read-RequiredValue '部署模式（virtual-machine/local/remote-server）' $DeploymentMode) }
+    if (!$profileConfig.deployment.PSObject.Properties['host']) { $profileConfig.deployment | Add-Member -NotePropertyName host -NotePropertyValue $(if ($profileConfig.deployment.mode -eq 'local') {'localhost'} else {$profileConfig.application_server.host}) }
+    if (!$profileConfig.deployment.PSObject.Properties['plm_local_path']) { $profileConfig.deployment | Add-Member -NotePropertyName plm_local_path -NotePropertyValue $PlmLocalPath }
+    if (![string]::IsNullOrWhiteSpace($SourceAccessPath)) {
+        if (!$profileConfig.source.PSObject.Properties['access_path']) { $profileConfig.source | Add-Member -NotePropertyName access_path -NotePropertyValue $SourceAccessPath }
+        else { $profileConfig.source.access_path=$SourceAccessPath }
+        $profileConfig.source.candidate_paths=@($SourceAccessPath)
+    }
+    if ($profileConfig.deployment.PSObject.Properties['vm_workdir']) { $profileConfig.deployment.PSObject.Properties.Remove('vm_workdir') }
+
     $profileConfig.label=$resolvedLabel
-    $profileConfig.project.id=$resolvedProjectId
-    $profileConfig.project.name=$resolvedProjectName
     $profileConfig.product.name=$resolvedProductName
     $profileConfig.product.version=$resolvedProductVersion
 
-    $environmentSource=$(if ($CopyEnvironmentFrom) {"复用 $CopyEnvironmentFrom"} elseif ($ProfileConfigPath) {"导入 $ProfileConfigPath"} else {'新环境'})
+    $environmentSource=$(if ($CopyEnvironmentFrom -and $EnvironmentSourceExtension) {"复用扩展 $EnvironmentSourceExtension 绑定的环境 $CopyEnvironmentFrom"} elseif ($CopyEnvironmentFrom) {"复用环境 $CopyEnvironmentFrom"} elseif ($ProfileConfigPath) {"导入 $ProfileConfigPath"} else {'新环境'})
     if ($NonInteractive) {
         if (!$ProfileSetupConfirmed) { throw 'New profile data must be confirmed through the interactive user flow before automation. Pass -ProfileSetupConfirmed only after confirmation.' }
     } else {
         Write-Host ''
         Write-Host '请确认新 profile：'
         Write-Host "- ID/名称：$ProfileId / $resolvedLabel"
-        Write-Host "- 项目：$resolvedProjectId / $resolvedProjectName"
         Write-Host "- 产品：$resolvedProductName $resolvedProductVersion"
         Write-Host "- 环境来源：$environmentSource"
+        Write-Host "- 部署：$($profileConfig.deployment.mode) / $($profileConfig.deployment.host)"
+        Write-Host "- PLM 软件本地文件路径：$($profileConfig.deployment.plm_local_path)"
         Write-Host "- 应用服务器：$($profileConfig.application_server.kind) / $($profileConfig.application_server.host)"
         Write-Host "- Web：$($profileConfig.web.url)"
-        Write-Host "- 源文件：$($profileConfig.source.selected_path)"
+        Write-Host "- 数据库：$(if($profileConfig.database.required){$profileConfig.database.version+' / '+$profileConfig.database.host+' / '+$profileConfig.database.name}else{'不使用'})"
         $confirmation=Read-Host '确认写入 workspace.yaml 并创建扩展？（y/N）'
         if ($confirmation -notmatch '^(?i:y|yes)$') { throw 'Profile creation cancelled. No profile or extension was created.' }
     }
@@ -132,26 +202,27 @@ function Add-WorkspaceProfile($W,[string]$ProfileId) {
 }
 
 function Select-Profile($W) {
-    $available=@(Get-ConfiguredProfileNames $W)
-    Write-Host '请选择扩展使用的 profile：'
-    for($i=0;$i -lt $available.Count;$i++) {
-        $item=Get-Profile $W $available[$i]
-        Write-Host ("{0}) {1} - {2} / {3} {4}" -f ($i+1),$available[$i],$item.project.name,$item.product.name,$item.product.version)
+    $availableExtensions=@(Get-ExtensionEnvironmentSources $W)
+    Write-Host '请选择扩展使用的环境来源：'
+    for($i=0;$i -lt $availableExtensions.Count;$i++) {
+        $item=$availableExtensions[$i]
+        Write-Host ("{0}) {1}: {2} | 环境 {3}（{4}） | {5} | {6}" -f ($i+1),$item.id,$item.title,$item.profile,$item.profile_label,$item.product,$item.deployment_mode)
     }
-    Write-Host 'N) 新增 profile'
-    $choice=Read-Host '输入序号、profile ID 或 N'
+    Write-Host 'N) 新增环境'
+    $choice=Read-Host '输入序号、扩展 ID 或 N'
     if ($choice -match '^(?i:n|new)$') {
         $script:CreateProfile=$true
-        $newId=Read-RequiredValue '新 profile ID（字母、数字、点、下划线或短横线）' $null
+        $newId=Read-RequiredValue '新环境 ID（字母、数字、点、下划线或短横线）' $null
         return $newId
     }
     if ($choice -match '^\d+$') {
         $index=[int]$choice-1
-        if ($index -lt 0 -or $index -ge $available.Count) { throw "Invalid profile selection: $choice" }
-        return $available[$index]
+        if ($index -lt 0 -or $index -ge $availableExtensions.Count) { throw "Invalid extension selection: $choice" }
+        return $availableExtensions[$index].profile
     }
-    if ($choice -in $available) { return $choice }
-    throw "Profile is not configured or does not exist: $choice"
+    $selected=@($availableExtensions | Where-Object { $_.id -eq $choice })[0]
+    if ($selected) { return $selected.profile }
+    throw "Active extension not found: $choice"
 }
 
 $w=Get-Workspace
@@ -187,12 +258,6 @@ try {
         $c=Read-Config (Join-Path $dest 'extension.yaml')
         $c.id=$id; $c.title=$Title; $c.workspace_id=$w.Id; $c.profile=$Profile; $c.created_at=(Get-Date).ToUniversalTime().ToString('o')
         $c.target.module=$Module; $c.target.menu=$Menu; $c.target.page=$Page
-        if (!$Mode) {
-            $d=$profileConfig.prototype_defaults
-            if ($d.backend -eq 'required') { $Mode='backend' }
-            elseif ($d.integration -eq 'required') { $Mode='embedded-static' }
-            elseif ($d.demo_data -eq 'required') { $Mode='static-demo' }
-        }
         if ($Mode) { $c.delivery.mode=$Mode }
         if ($DemoData) { $c.delivery.demo_data=$DemoData }
         elseif ($Mode -eq 'static') { $c.delivery.demo_data='none' }

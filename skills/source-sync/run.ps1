@@ -16,13 +16,15 @@ function Inspect-Root($Path,$Depth) {
 
 $manifestDir=Join-Path $w.Path "sources/manifests/$Extension"
 New-Item -ItemType Directory -Force -Path $manifestDir | Out-Null
+$accessPath=[string]$p.source.access_path
+if ([string]::IsNullOrWhiteSpace($accessPath) -and $p.deployment.mode -eq 'local') { $accessPath=[string]$p.deployment.plm_local_path }
 $roots=@($p.source.candidate_paths)
 if ($p.source.auto_discover) {
     $roots+='\\vmware-host\Shared Folders'
     $roots+=@(Get-PSDrive -PSProvider FileSystem | Where-Object { $_.DisplayRoot -like '\\*' -or $_.Root -like '\\*' } | ForEach-Object { if ($_.DisplayRoot) {$_.DisplayRoot} else {$_.Root} })
     if (Get-Command Get-SmbMapping -ErrorAction SilentlyContinue) { $roots+=@(Get-SmbMapping -ErrorAction SilentlyContinue | Select-Object -ExpandProperty RemotePath) }
 }
-if ($p.source.selected_path) { $roots+=$p.source.selected_path }
+if ($accessPath) { $roots+=$accessPath }
 $candidates=@(); $unavailable=@()
 foreach($root in @($roots | Where-Object { $_ } | Select-Object -Unique)) {
     $available=$false
@@ -30,25 +32,25 @@ foreach($root in @($roots | Where-Object { $_ } | Select-Object -Unique)) {
     if ($available) { $candidates+=@(Inspect-Root $root ([Math]::Min(5,[Math]::Max(0,[int]$p.source.discovery_depth)))) }
     else { $unavailable+=$root }
 }
-$discovery=[ordered]@{schema_version=3;workspace_id=$w.Id;extension_id=$Extension;profile=$e.profile;generated_at=(Get-Date -Format o);candidates=$candidates;unavailable_roots=$unavailable;selected_path=$p.source.selected_path}
+$discovery=[ordered]@{schema_version=4;workspace_id=$w.Id;extension_id=$Extension;profile=$e.profile;generated_at=(Get-Date -Format o);deployment_mode=$p.deployment.mode;plm_local_path=$p.deployment.plm_local_path;access_path=$accessPath;candidates=$candidates;unavailable_roots=$unavailable}
 Write-Config (Join-Path $manifestDir 'discovery.yaml') $discovery
-if ($DiscoverOnly -or !$p.source.selected_path) { $candidates | Format-Table -AutoSize; Write-Output 'Discovery saved. Maintain source.selected_path before syncing.'; return }
+if ($DiscoverOnly -or !$accessPath) { $candidates | Format-Table -AutoSize; Write-Output 'Discovery saved. Maintain source.access_path before syncing a VM or remote-server environment.'; return }
 
-$src=(Get-Item -LiteralPath $p.source.selected_path).FullName.TrimEnd('\','/')
+$src=(Get-Item -LiteralPath $accessPath).FullName.TrimEnd('\','/')
 $dest=[IO.Path]::GetFullPath((Join-Path $w.Path "sources/mirror/$($e.profile)"))
 if ($dest.StartsWith($src+'\',[StringComparison]::OrdinalIgnoreCase) -or $src.StartsWith($dest,[StringComparison]::OrdinalIgnoreCase) -or $src -eq $dest) { throw 'Source and mirror must not overlap.' }
 if (!$Scope -and $p.source.PSObject.Properties['sync_scopes']) { $Scope=@($p.source.sync_scopes) }
 $normalized=@()
 foreach($item in @($Scope | Where-Object { $_ })) {
     $clean=$item.Replace('/','\').Trim('\')
-    if ([IO.Path]::IsPathRooted($item) -or $clean.Split('\') -contains '..') { throw "Scope must be relative to source.selected_path: $item" }
+    if ([IO.Path]::IsPathRooted($item) -or $clean.Split('\') -contains '..') { throw "Scope must be relative to source.access_path: $item" }
     $target=Join-Path $src $clean; Assert-Child $src $target
     if (!(Test-Path -LiteralPath $target)) { throw "Scope not found: $item" }
     $normalized+=$clean
 }
 if (!$normalized.Count) { $normalized=@('') }
 
-$manifest=[ordered]@{schema_version=3;workspace_id=$w.Id;extension_id=$Extension;profile=$e.profile;generated_at=(Get-Date -Format o);selected_path=$p.source.selected_path;scope=@($normalized);mode='read-only/scoped-incremental/no-delete';exclude=$p.source.exclude;exclude_files=$p.source.exclude_files;files=@();copied=0;unchanged=0;source_fingerprint=$null}
+$manifest=[ordered]@{schema_version=4;workspace_id=$w.Id;extension_id=$Extension;profile=$e.profile;generated_at=(Get-Date -Format o);deployment_mode=$p.deployment.mode;plm_local_path=$p.deployment.plm_local_path;access_path=$accessPath;scope=@($normalized);mode='read-only/scoped-incremental/no-delete';exclude=$p.source.exclude;exclude_files=$p.source.exclude_files;files=@();copied=0;unchanged=0;source_fingerprint=$null}
 New-Item -ItemType Directory -Force -Path $dest | Out-Null
 $queue=New-Object System.Collections.Queue
 foreach($item in $normalized) { $queue.Enqueue($(if ($item) { Join-Path $src $item } else { $src })) }

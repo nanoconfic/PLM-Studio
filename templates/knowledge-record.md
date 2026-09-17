@@ -4,7 +4,6 @@ status: Candidate
 category: "page-style | mount-point | menu-mechanism | business-flow | write-operation"
 applicability:
   workspace_id: ""
-  project: ""
   product: ""
   version: ""
   profiles: []

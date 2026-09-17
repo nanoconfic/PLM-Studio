@@ -2,7 +2,7 @@
 
 ## 基本概念
 
-- `PLM-Studio` 根目录是一个工作区。`workspace.yaml` 是 profile 注册表；每个 profile 描述项目、产品版本和具体环境信息。工作区不存在全局活动 profile。
+- `PLM-Studio` 根目录是一个工作区。`workspace.yaml` 是 profile 注册表；每个 profile 描述产品版本和具体部署环境，不保存项目字段或原型默认值。工作区不存在全局活动 profile。
 - 每个新原型设计都是一个扩展，位于 `extensions/EXT-nnn`。使用 `extension-init` 新建扩展，不再创建嵌套工作区。
 - 用户输入 `/start`、表示开始使用 PLM-Studio，或没有明确指定新建扩展/修改哪个扩展时，必须先运行 `skills/studio-guide/run.ps1`，不能直接开始分析。
 - 所有 `lifecycle.status=Active` 的扩展始终可选。状态仅表示当前迭代所处流程，不能因为 Completed 或 Accepted 拒绝继续修改扩展。
@@ -13,9 +13,9 @@
 
 每次会话开始先确定分支。用户尚未选择扩展时，不能直接分析或实现。
 
-1. 询问用户是新增扩展，还是修改现有扩展。用户已经明确时不重复询问。
+1. `/start` 首屏只列出所有 Active 扩展的 ID 和名称，不展示 profile/环境列表；随后提示用户选择“新增扩展”或“修改现有扩展”，也允许直接输入扩展 ID。用户已经明确分支或扩展时不重复询问。只有进入新增扩展分支后，才提示选择“使用现有 profile/环境”或“新增 profile/环境”。
 2. **修改现有扩展**：列出所有 Active 扩展供选择。调用 `skills/extension-iterate/run.ps1 -Extension EXT-nnn -Action Auto`。当前迭代为 Accepted/Completed 时，归档并开始下一迭代；处于 Draft、Requirements、Implementation、ChangesRequested 或 PendingUserReview 时，继续当前迭代。读取扩展绑定的 profile，不重复询问已有环境信息。
-3. **新增扩展**：先让用户明确选择“使用现有 profile”或“新增 profile”。新增 profile 必须沿用引导式交互：依次收集 profile ID/名称、项目、产品和版本，再让用户选择复用哪个现有 profile 的环境信息或逐项补充新环境；最后展示完整摘要并取得确认。在 profile 决策和必要信息完整前，不得创建扩展目录。随后调用 `skills/extension-init/run.ps1`。自动化工具必须显式传入 `-Profile`，或使用 `-CreateProfile` 参数写入已经由用户交互确认的数据；不得绕过初始化器直接建立 `EXT-nnn`。
+3. **新增扩展**：先让用户明确选择“使用现有 profile”或“新增 profile”。新增 profile 不收集项目，也不收集原型默认值。选择环境信息来源时，不直接展示 profile 列表；应展示所有 Active 扩展的 ID、名称、绑定环境、产品和部署模式，让用户选择复用某个历史扩展所绑定的环境，或选择逐项补充新环境。选中扩展后由系统解析其 `extension.yaml.profile`，不得让用户再次选择 profile。逐项补充新环境时采用分组式多轮引导，不要求用户填写整张表，也不得每次只问一个字段：每轮合并 2–5 个相近条目，优先让用户用一行自然语言回答；提供简短示例、候选项和推荐默认值，允许用户只回答与默认值不同的部分。建议顺序为“环境标识与产品”“部署与访问”“应用服务器与数据库”；数据库选择使用时，再补问数据库版本/产品、地址和名称。Agent 必须解析用户已经给出的信息、自动跳过不适用字段，且不得重复询问已确认内容；只有存在歧义或缺少条件必填项时才针对该组补问。字段范围包括 profile ID/环境名称、产品/版本、部署模式（`virtual-machine`、`local`、`remote-server`）、条件必填的主机地址、PLM 软件本地文件路径、可选的 Agent 可访问路径、Web 地址、应用服务器类型/版本，以及数据库是否使用、数据库版本/产品、地址和名称。数据库不单设类型字段，`database.version` 直接保存 `SQL Server 2019`、`Oracle 11g` 一类值。全部收集后展示完整摘要并取得一次确认。在 profile 决策和必要信息完整前，不得创建扩展目录。随后调用 `skills/extension-init/run.ps1`。自动化工具必须显式传入 `-Profile`，或使用 `-CreateProfile` 参数写入已经由用户交互确认的数据；不得绕过初始化器直接建立 `EXT-nnn`。
 4. profile 选择完成后才创建扩展，并把 profile ID 写入扩展的 `extension.yaml.profile`。禁止通过全局状态切换 profile。
 5. 两个分支都必须在开始实现前补齐本轮原型需求：目标、用户场景、输入和数据来源、目标模块/菜单/页面、交付模式、页面与交互要求、验收标准、约束和不在范围。需要嵌入原系统时，还要取得本扩展的原系统文件修改授权。
 6. 需求范围明确后、制定设计或编写代码前，运行 `skills/knowledge-context/run.ps1`，按本轮场景把适用知识的完整内容注入当前上下文。只读取 `knowledge/_index.md` 不算完成知识注入。页面和交互至少读取 `Style`；嵌入原系统读取 `Integration`；业务规则读取 `Business`；数据、接口或写入读取 `Data,Business`；环境、源码或部署分析读取 `Environment`。多个场景同时发生时合并 facet。
@@ -32,7 +32,7 @@
 - CLI、Harness 和其他非交互工具应传入 `-NonInteractive -Profile <id>`。缺少 profile 时，初始化必须失败且不能留下半成品目录。
 - 新 profile 必须通过对话交互完成信息收集与最终确认。可以用 `-CopyEnvironmentFrom <id>` 复用环境，或用 `-ProfileConfigPath <file>` 导入完整环境配置；无复用来源时必须收集核心环境信息。自动化执行只能写入已经确认的数据，并显式传入 `-ProfileSetupConfirmed`，该参数不能代替实际确认。
 - 读取或写入 `workspace.yaml`、`extension.yaml` 以及其他配置文件时，必须调用 `scripts/Common.ps1` 中的 `Read-Config` 和 `Write-Config`，严格使用 UTF-8。禁止依赖 PowerShell 默认编码，也禁止用未指定编码的 `Get-Content`、`Set-Content` 或 `Out-File` 修改配置。
-- `Read-Config` 必须拒绝无效 UTF-8；`Write-Config` 统一输出无 BOM 的 UTF-8。写入后应重新读取并确认 profile ID、项目、产品版本和关键环境字段没有乱码或丢失。
+- `Read-Config` 必须拒绝无效 UTF-8；`Write-Config` 统一输出无 BOM 的 UTF-8。写入后应重新读取并确认 profile ID、环境名称、产品版本、部署模式和关键环境字段没有乱码或丢失。
 
 ## PowerShell 与文本编码
 
@@ -44,7 +44,7 @@
 
 ## 原型和演示数据
 
-- profile 默认偏好记录在 `workspace.yaml.profiles.<id>.prototype_defaults`；扩展的实际决定记录在 `extension.yaml.delivery`。不要根据目录是否存在推断。
+- 交付模式、演示数据来源、集成要求和原系统修改授权都在扩展需求阶段确认，并分别记录在 `extension.yaml.delivery` 与 `extension.yaml.original_system_change`；不得写入 profile。
 - 自动生成的演示数据标记为 `generated`，默认仅进入原型 HTML、JSON 或 JS，不写入 PLM 数据库。用户提供的数据标记为 `user-provided` 并记录来源。
 - 新扩展初始只创建 `extension.yaml` 和 `brief.md`。`prototype`、`integration`、`backend`、`evidence` 按实际需要创建。
 

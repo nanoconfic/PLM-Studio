@@ -5,13 +5,14 @@ $profiles=@()
 foreach($property in $w.Config.profiles.PSObject.Properties) {
     $id=$property.Name; $p=$property.Value
     $missing=@()
-    foreach($key in @('project.id','project.name','product.name','product.version')) {
-        $parts=$key.Split('.'); if ([string]::IsNullOrWhiteSpace([string]$p.($parts[0]).($parts[1]))) { $missing+=$key }
+    foreach($key in @('label','product.name','product.version','deployment.mode')) {
+        $parts=$key.Split('.'); $value=$(if ($parts.Count -eq 1) {$p.($parts[0])} else {$p.($parts[0]).($parts[1])}); if ([string]::IsNullOrWhiteSpace([string]$value)) { $missing+=$key }
     }
     $profiles+=@([pscustomobject]@{
         id=$id;label=$(if ($p.label) {[string]$p.label} else {$id})
-        project=$(if ($p.project.name) {[string]$p.project.name} else {'Unconfigured'})
         product=$(if ($p.product.name) {[string]$p.product.name+' '+[string]$p.product.version} else {'Unconfigured'})
+        deployment_mode=$(if ($p.deployment.mode) {[string]$p.deployment.mode} else {'Unconfigured'})
+        deployment_host=[string]$p.deployment.host
         configuration=$(if ($missing.Count) {'Incomplete'} else {'Configured'});missing=$missing
     })
 }
@@ -28,24 +29,17 @@ if (Test-Path -LiteralPath $extensionRoot) {
         } catch { $warnings+="$($dir.Name): $($_.Exception.Message)" }
     }
 }
-$extensions=@($extensions | Sort-Object project,product,profile,id)
-$result=[ordered]@{workspace_id=$w.Id;profiles=$profiles;extensions=$extensions;warnings=$warnings;actions=@('NewExtension','ModifyExtension','ContinueExtension','WorkspaceStatus')}
+$extensions=@($extensions | Sort-Object product,profile,id)
+$result=[ordered]@{workspace_id=$w.Id;profiles=$profiles;extensions=$extensions;warnings=$warnings;actions=@('NewExtension','ModifyExtension')}
 if ($Json) { $result | ConvertTo-Json -Depth 20; return }
 
 Write-Output "PLM-Studio: $($w.Id)"
 Write-Output ''
-Write-Output 'Profiles:'
-foreach($p in $profiles) { Write-Output "- $($p.id): $($p.project) / $($p.product) / $($p.label) [$($p.configuration)]" }
-Write-Output ''
-Write-Output 'Selectable extensions:'
-if (!$extensions.Count) { Write-Output '- (none)' }
-$lastGroup=$null
+Write-Output '当前扩展：'
+if (!$extensions.Count) { Write-Output '- 暂无' }
 foreach($e in $extensions) {
-    $group="$($e.project) / $($e.product) / $($e.profile_label)"
-    if ($group -ne $lastGroup) { Write-Output "`n$group"; $lastGroup=$group }
-    Write-Output "- $($e.id) $($e.title) | $($e.iteration) | $($e.phase) | next=$($e.next_action)"
+    Write-Output "- $($e.id): $($e.title)"
 }
 if ($warnings.Count) { Write-Output ''; Write-Output 'Warnings:'; $warnings | ForEach-Object { Write-Output "- $_" } }
 Write-Output ''
-Write-Output 'Choose: 1) new extension  2) modify any extension  3) continue unfinished extension  4) workspace status'
-Write-Output 'State selects the guidance branch; it never removes an Active extension from selection.'
+Write-Output '请选择：1) 新增扩展  2) 修改现有扩展（或直接输入扩展 ID）'
