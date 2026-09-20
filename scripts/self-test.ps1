@@ -6,10 +6,20 @@ $ErrorActionPreference='Stop'
 $root=Split-Path $PSScriptRoot -Parent
 if (!$SandboxRoot) { $SandboxRoot=[IO.Path]::GetTempPath() }
 $sandbox=Join-Path $SandboxRoot ('plm-studio-test-'+[guid]::NewGuid().ToString('N'))
-Copy-Item -LiteralPath $root -Destination $sandbox -Recurse
+New-Item -ItemType Directory -Path $sandbox | Out-Null
+$excludedWorkspaceRoots=@('.git','archive','extensions','runtime','sources','tools')
+Get-ChildItem -LiteralPath $root -Force | Where-Object {$_.Name -notin $excludedWorkspaceRoots} | ForEach-Object {
+    Copy-Item -LiteralPath $_.FullName -Destination $sandbox -Recurse
+}
 function Check($Value,$Message) { if (!$Value) { throw "FAIL: $Message" }; Write-Output "PASS: $Message" }
 $shell=$(if ($Engine -ne 'auto') {$Engine} elseif (Get-Command pwsh -ErrorAction SilentlyContinue) {'pwsh'} else {'powershell'})
 function Run($Skill,$Arguments) { & $shell -NoProfile -File "$sandbox/skills/$Skill/run.ps1" @Arguments; if ($LASTEXITCODE -ne 0) { throw "$Skill failed: $LASTEXITCODE" } }
+function Run-Failure($Skill,$Arguments) {
+    $prior=$ErrorActionPreference; $ErrorActionPreference='Continue'
+    $output=& $shell -NoProfile -File "$sandbox/skills/$Skill/run.ps1" @Arguments 2>&1 | Out-String
+    $exitCode=$LASTEXITCODE; $ErrorActionPreference=$prior
+    [pscustomobject]@{ExitCode=$exitCode;Output=$output}
+}
 
 $strictUtf8=[System.Text.UTF8Encoding]::new($false,$true)
 $activeScripts=@(Get-ChildItem -LiteralPath $sandbox -Recurse -File -Filter '*.ps1' | Where-Object {
@@ -49,6 +59,7 @@ applicability:
   product: "PLM"
   version: "1"
   profiles: ["DEV"]
+navigation_path: "系统导航 > 产品数据管理 > Fixture"
 ---
 # Fixture style constraint
 
@@ -63,6 +74,12 @@ $missingProfileExitCode=$LASTEXITCODE
 $ErrorActionPreference=$previousErrorAction
 Check ($missingProfileExitCode -ne 0 -and @(Get-ChildItem "$sandbox/extensions" -Directory).Count -eq 0) 'missing profile stops before extension directory creation'
 Run 'extension-init' @('-Title','Static','-Profile','DEV','-Mode','static')
+$initialized=Read-Config "$sandbox/extensions/EXT-001/extension.yaml"
+Check ($initialized.workflow.phase -eq 'Requirements' -and $initialized.workflow.delivery_confirmed -eq $true -and $initialized.workflow.requirements_confirmed -eq $false) 'delivery confirmation stops at prototype requirements before implementation'
+$notReady=Run-Failure 'prototype-preflight' @('-Extension','EXT-001')
+Check ($notReady.ExitCode -ne 0 -and $notReady.Output.Contains('Prototype requirements have not been confirmed')) 'prototype preflight blocks implementation before requirements confirmation'
+$initialized.target.navigation_path=@('系统导航','产品数据管理','Fixture')
+Write-Config "$sandbox/extensions/EXT-001/extension.yaml" $initialized
 Run 'workspace-doctor' @('-Extension','EXT-001')
 $knowledgeOutput=(& $shell -NoProfile -File "$sandbox/skills/knowledge-context/run.ps1" -Extension EXT-001 -Facet Style | Out-String)
 Check ($LASTEXITCODE -eq 0 -and $knowledgeOutput.Contains('MUST_USE_FIXTURE_STYLE') -and $knowledgeOutput.Contains('Applicable Verified constraints')) 'applicable Verified knowledge is injected into extension context'
@@ -78,6 +95,26 @@ Run 'extension-init' @('-Title','Copied environment','-Profile','UAT','-CreatePr
 $workspaceAfterProfile=Read-Config $config
 $createdWithProfile=Read-Config "$sandbox/extensions/EXT-003/extension.yaml"
 Check ($workspaceAfterProfile.profiles.UAT.application_server.kind -eq $workspaceAfterProfile.profiles.DEV.application_server.kind -and $createdWithProfile.profile -eq 'UAT') 'new profile can reuse environment and is bound before extension creation'
+$newPath=Initialize-ExtensionWorkflow $createdWithProfile
+$newPath.target.navigation_path=@('系统导航','产品数据管理','新解析页')
+$newPath.requirements.change_goal='Parse a user-selected Excel workbook'
+$newPath.requirements.user_scenario='User explicitly parses and validates worksheet rows'
+$newPath.requirements.inputs=@('user-provided XLSX')
+$newPath.requirements.ui_and_interaction=@('Parse Excel and show rows')
+$newPath.requirements.acceptance_criteria=@('Parsed rows are visible')
+$newPath.requirements.constraints=@('No persistence')
+$newPath.requirements.out_of_scope=@('Backend import')
+$newPath.workflow.requirements_confirmed=$true
+Write-Config "$sandbox/extensions/EXT-003/extension.yaml" $newPath
+$newPathBlocked=Run-Failure 'prototype-preflight' @('-Extension','EXT-003')
+Check ($newPathBlocked.ExitCode -ne 0 -and $newPathBlocked.Output.Contains('No exact-path Verified style knowledge') -and $newPathBlocked.Output.Contains('data_preview.required=true')) 'new paths require confirmed source style and Excel table metadata'
+$newPath=Read-Config "$sandbox/extensions/EXT-003/extension.yaml"
+$newPath.style_context.status='source-confirmed'; $newPath.style_context.source='original-product'; $newPath.style_context.user_confirmed=$true; $newPath.style_context.evidence=@('evidence/original-page-style.json')
+$newPath.requirements.data_preview.required=$true; $newPath.requirements.data_preview.mode='table'; $newPath.requirements.data_preview.columns=@('Row','Code','Status'); $newPath.requirements.data_preview.interaction=@('Explicit parse action','Sticky header and isolated scrolling','Per-row validation state')
+Write-Config "$sandbox/extensions/EXT-003/extension.yaml" $newPath
+Run 'prototype-preflight' @('-Extension','EXT-003')
+$newPath=Read-Config "$sandbox/extensions/EXT-003/extension.yaml"
+Check ($newPath.workflow.phase -eq 'Implementation') 'confirmed new-path style plus table preview passes prototype preflight'
 $legacy=Read-Config "$sandbox/extensions/EXT-002/extension.yaml"
 $legacy.PSObject.Properties.Remove('workflow'); $legacy.PSObject.Properties.Remove('validation'); $legacy.PSObject.Properties.Remove('requirements'); $legacy.status='Draft'
 Write-Config "$sandbox/extensions/EXT-002/extension.yaml" $legacy
@@ -98,8 +135,9 @@ Check ((Test-Path "$sandbox/sources/mirror/DEV/App/app.cs") -and !(Test-Path "$s
 Run 'analyze-target' @('-Extension','EXT-001')
 Check (@(Get-ChildItem "$sandbox/knowledge/environment-snapshots" -Filter '*.yaml').Count -ge 1) 'analysis environment snapshot'
 $e=Read-Config "$sandbox/extensions/EXT-001/extension.yaml"
-$e.requirements.change_goal='Fixture goal'; $e.requirements.user_scenario='Fixture user'; $e.requirements.acceptance_criteria=@('Fixture result works'); $e.workflow.requirements_confirmed=$true; $e.workflow.phase='Implementation'
+$e.requirements.change_goal='Fixture goal'; $e.requirements.user_scenario='Fixture user'; $e.requirements.inputs=@('generated fixture input'); $e.requirements.ui_and_interaction=@('Fixture page interaction'); $e.requirements.acceptance_criteria=@('Fixture result works'); $e.requirements.constraints=@('No production writes'); $e.requirements.out_of_scope=@('Backend integration'); $e.workflow.requirements_confirmed=$true
 Write-Config "$sandbox/extensions/EXT-001/extension.yaml" $e
+Run 'prototype-preflight' @('-Extension','EXT-001')
 Run 'extension-deliver' @('-Extension','EXT-001','-Summary','fixture delivered','-Artifact','prototype/index.html')
 Run 'extension-review' @('-Extension','EXT-001','-Result','Accepted','-Feedback','fixture accepted')
 Run 'extension-iterate' @('-Extension','EXT-001','-Action','Auto')

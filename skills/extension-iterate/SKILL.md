@@ -16,6 +16,10 @@ description: 继续现有扩展或开始下一轮迭代，并在修改前注入�
 
 完整读取输出，并把适用 Verified 知识作为默认约束。Candidate 只用于提问或验证；范围不匹配和 Deprecated 记录不得采用。
 
+不论继续当前迭代还是开始新迭代，只要用户提出新的页面或交互范围，就先更新并确认本轮原型需求。已有交付模式不等于可以立即实现。需求确认后运行 `skills/prototype-preflight/run.ps1 -Extension EXT-nnn`；门禁会核对点击路径、技术嵌入顺序、样式来源和批量数据展示方式。
+
+相同 `target.navigation_path` 的 Verified 样式可直接复用。新路径不得套用其他页面风格；先询问用户是否从原产品拉取样式，取得用户对样式的确认并形成 evidence/knowledge 后再设计。
+
 ```powershell
 powershell -NoProfile -File skills/extension-iterate/run.ps1 -Extension EXT-001 -Action Auto
 ```

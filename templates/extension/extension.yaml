@@ -7,7 +7,9 @@
   "target": {
     "module": null,
     "menu": null,
-    "page": null
+    "page": null,
+    "navigation_path": [],
+    "mount_sequence": []
   },
   "lifecycle": {
     "status": "Active",
@@ -21,7 +23,13 @@
     "ui_and_interaction": [],
     "acceptance_criteria": [],
     "constraints": [],
-    "out_of_scope": []
+    "out_of_scope": [],
+    "data_preview": {
+      "required": false,
+      "mode": "none",
+      "columns": [],
+      "interaction": []
+    }
   },
   "delivery": {
     "mode": "pending",
@@ -42,8 +50,18 @@
   "workflow": {
     "current_iteration": "ITER-001",
     "phase": "Requirements",
+    "delivery_confirmed": false,
     "requirements_confirmed": false,
-    "next_action": "Collect requirements and bind a profile"
+    "next_action": "Confirm delivery mode, then collect prototype design requirements"
+  },
+  "style_context": {
+    "status": "pending",
+    "source": "pending",
+    "matched_knowledge_ids": [],
+    "user_confirmed": false,
+    "evidence": [],
+    "confirmed_at": null,
+    "basis": null
   },
   "validation": {
     "status": "NotReady",

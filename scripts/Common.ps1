@@ -66,7 +66,10 @@ function Add-MissingProperty($Object,[string]$Name,$Value) {
 }
 
 function New-RequirementState {
-    [ordered]@{change_goal=$null;user_scenario=$null;inputs=@();ui_and_interaction=@();acceptance_criteria=@();constraints=@();out_of_scope=@()}
+    [ordered]@{
+        change_goal=$null;user_scenario=$null;inputs=@();ui_and_interaction=@();acceptance_criteria=@();constraints=@();out_of_scope=@()
+        data_preview=[ordered]@{required=$false;mode='none';columns=@();interaction=@()}
+    }
 }
 
 function New-ValidationState {
@@ -77,23 +80,149 @@ function New-KnowledgeCaptureState {
     [ordered]@{candidates=@();promoted=@()}
 }
 
+function New-StyleContextState {
+    [ordered]@{
+        status='pending';source='pending';matched_knowledge_ids=@();user_confirmed=$false
+        evidence=@();confirmed_at=$null;basis=$null
+    }
+}
+
+function ConvertTo-NavigationPathParts($Value) {
+    if ($null -eq $Value) { return @() }
+    if ($Value -is [string]) {
+        return @($Value -split '\s*(?:→|>)\s*' | ForEach-Object {$_.Trim()} | Where-Object {$_})
+    }
+    @($Value | ForEach-Object {[string]$_} | ForEach-Object {$_.Trim()} | Where-Object {$_})
+}
+
+function Get-NormalizedNavigationPath($Value) {
+    (@(ConvertTo-NavigationPathParts $Value) -join ' > ').Trim()
+}
+
+function Get-KnowledgeFrontMatter([string]$Text) {
+    $match=[regex]::Match($Text,'(?s)\A---\s*\r?\n(.*?)\r?\n---')
+    if ($match.Success) { return $match.Groups[1].Value }
+    $null
+}
+
+function Get-KnowledgeMetaValue([string]$Meta,[string]$Name) {
+    $pattern='(?m)^\s*'+[regex]::Escape($Name)+':\s*"?([^"\r\n]+)'
+    $match=[regex]::Match($Meta,$pattern)
+    if ($match.Success) { return $match.Groups[1].Value.Trim().Trim("'") }
+    $null
+}
+
+function Get-KnowledgeMetaProfiles([string]$Meta) {
+    $match=[regex]::Match($Meta,'(?m)^\s*profiles:\s*\[(.*?)\]')
+    if (!$match.Success) { return @() }
+    @($match.Groups[1].Value.Split(',') | ForEach-Object {$_.Trim().Trim('"').Trim("'")} | Where-Object {$_})
+}
+
+function Test-SameKnowledgeValue($Expected,$Actual) {
+    [string]::IsNullOrWhiteSpace([string]$Expected) -or ([string]$Expected).Equals([string]$Actual,[StringComparison]::OrdinalIgnoreCase)
+}
+
+function Get-ExactStyleKnowledgeMatches($W,$ExtensionConfig) {
+    $navigationPath=Get-NormalizedNavigationPath $ExtensionConfig.target.navigation_path
+    if ([string]::IsNullOrWhiteSpace($navigationPath)) { return @() }
+    $profile=Get-Profile $W ([string]$ExtensionConfig.profile)
+    $styleCategories=@('page-style')
+    $matches=@()
+    $patternRoot=Join-Path $W.Path 'knowledge/patterns'
+    if (!(Test-Path -LiteralPath $patternRoot)) { return @() }
+    foreach($file in Get-ChildItem -LiteralPath $patternRoot -File -Filter '*.md' | Sort-Object Name) {
+        $content=Read-Utf8Text $file.FullName
+        $meta=Get-KnowledgeFrontMatter $content
+        if (!$meta) { continue }
+        $status=Get-KnowledgeMetaValue $meta 'status'
+        $category=([string](Get-KnowledgeMetaValue $meta 'category')).ToLowerInvariant()
+        if ($status -ne 'Verified' -or $category -notin $styleCategories) { continue }
+        $recordPath=Get-NormalizedNavigationPath (Get-KnowledgeMetaValue $meta 'navigation_path')
+        if (!$recordPath.Equals($navigationPath,[StringComparison]::OrdinalIgnoreCase)) { continue }
+        $profiles=@(Get-KnowledgeMetaProfiles $meta)
+        $recordWorkspace=[string](Get-KnowledgeMetaValue $meta 'workspace_id')
+        $recordProduct=[string](Get-KnowledgeMetaValue $meta 'product')
+        $recordVersion=[string](Get-KnowledgeMetaValue $meta 'version')
+        if ([string]::IsNullOrWhiteSpace($recordWorkspace) -or !$recordWorkspace.Equals([string]$W.Id,[StringComparison]::OrdinalIgnoreCase)) { continue }
+        if ([string]::IsNullOrWhiteSpace($recordProduct) -or !$recordProduct.Equals([string]$profile.product.name,[StringComparison]::OrdinalIgnoreCase)) { continue }
+        if ([string]::IsNullOrWhiteSpace($recordVersion) -or !$recordVersion.Equals([string]$profile.product.version,[StringComparison]::OrdinalIgnoreCase)) { continue }
+        if (!$profiles.Count -or [string]$ExtensionConfig.profile -notin $profiles) { continue }
+        $matches+=@([pscustomobject]@{
+            id=Get-KnowledgeMetaValue $meta 'id';category=$category;navigation_path=$recordPath
+            path=$file.FullName.Substring($W.Path.Length).TrimStart('\').Replace('\','/');content=$content
+        })
+    }
+    @($matches)
+}
+
+function Get-PrototypeReadinessIssues($W,$ExtensionConfig) {
+    $c=Initialize-ExtensionWorkflow $ExtensionConfig
+    $issues=@()
+    if ([string]$c.delivery.mode -notin @('static','static-demo','embedded-static','backend')) { $issues+='Confirm delivery.mode before collecting prototype requirements.' }
+    if (!$c.workflow.delivery_confirmed) { $issues+='Confirm the delivery mode with the user before prototype design.' }
+    if (!$c.workflow.requirements_confirmed) { $issues+='Prototype requirements have not been confirmed by the user.' }
+    if ([string]::IsNullOrWhiteSpace([string]$c.requirements.change_goal)) { $issues+='Missing prototype requirement: change_goal.' }
+    if ([string]::IsNullOrWhiteSpace([string]$c.requirements.user_scenario)) { $issues+='Missing prototype requirement: user_scenario.' }
+    if (@($c.requirements.inputs).Count -eq 0) { $issues+='Missing prototype requirement: inputs/data sources (use an explicit none/not-applicable entry when appropriate).' }
+    if (@($c.requirements.ui_and_interaction).Count -eq 0) { $issues+='Missing prototype requirement: UI and interaction.' }
+    if (@($c.requirements.acceptance_criteria).Count -eq 0) { $issues+='Missing prototype requirement: acceptance criteria.' }
+    if (@($c.requirements.constraints).Count -eq 0) { $issues+='Missing prototype requirement: constraints.' }
+    if (@($c.requirements.out_of_scope).Count -eq 0) { $issues+='Missing prototype requirement: out of scope.' }
+    $navigationPath=Get-NormalizedNavigationPath $c.target.navigation_path
+    if ([string]::IsNullOrWhiteSpace($navigationPath)) { $issues+='Missing target.navigation_path: record the PLM user click sequence before design.' }
+    if ([string]$c.delivery.mode -in @('embedded-static','backend') -and @($c.target.mount_sequence).Count -eq 0) { $issues+='Missing target.mount_sequence: record the technical page/menu-to-embedded-page resolution sequence.' }
+
+    $styleMatches=@(Get-ExactStyleKnowledgeMatches $W $c)
+    if (!$styleMatches.Count) {
+        if ($c.style_context.status -ne 'source-confirmed' -or $c.style_context.user_confirmed -ne $true -or @($c.style_context.evidence).Count -eq 0) {
+            $issues+="No exact-path Verified style knowledge for '$navigationPath'. Ask whether to inspect the original PLM page; after inspection, obtain user style confirmation and record style_context as source-confirmed with evidence."
+        }
+    }
+
+    $requirementText=(@($c.requirements.change_goal)+@($c.requirements.user_scenario)+@($c.requirements.inputs)+@($c.requirements.ui_and_interaction)+@($c.requirements.acceptance_criteria)+@($c.requirements.constraints) -join ' ')
+    if ($requirementText -match '(?i)excel|xlsx|xls') {
+        if ($c.requirements.data_preview.required -ne $true) { $issues+='Excel parsing requires requirements.data_preview.required=true.' }
+        if ([string]$c.requirements.data_preview.mode -notin @('table','native-grid')) { $issues+='Excel parsing results must use data_preview.mode=table or native-grid.' }
+        if (@($c.requirements.data_preview.columns).Count -eq 0) { $issues+='Excel parsing results require an explicit data_preview.columns list.' }
+        if (@($c.requirements.data_preview.interaction).Count -eq 0) { $issues+='Excel parsing results require data_preview.interaction rules for parsing, row state, scrolling, and validation feedback.' }
+    }
+    @($issues)
+}
+
 function Initialize-ExtensionWorkflow($Config) {
     Add-MissingProperty $Config 'lifecycle' ([ordered]@{status='Active';archived_at=$null;reason=$null})
     Add-MissingProperty $Config 'requirements' (New-RequirementState)
+    $requirementDefaults=New-RequirementState
+    foreach($property in $requirementDefaults.Keys) { Add-MissingProperty $Config.requirements $property $requirementDefaults[$property] }
+    Add-MissingProperty $Config.requirements 'data_preview' ([ordered]@{required=$false;mode='none';columns=@();interaction=@()})
+    foreach($property in @('required','mode','columns','interaction')) {
+        $default=$requirementDefaults.data_preview[$property]
+        Add-MissingProperty $Config.requirements.data_preview $property $default
+    }
     Add-MissingProperty $Config 'validation' (New-ValidationState)
     Add-MissingProperty $Config 'knowledge_capture' (New-KnowledgeCaptureState)
+    Add-MissingProperty $Config 'style_context' (New-StyleContextState)
+    $styleContextDefaults=New-StyleContextState
+    foreach($property in $styleContextDefaults.Keys) { Add-MissingProperty $Config.style_context $property $styleContextDefaults[$property] }
     Add-MissingProperty $Config 'iteration_history' @()
     Add-MissingProperty $Config 'result' ([ordered]@{summary=$null;artifacts=@();completed_at=$null})
+    Add-MissingProperty $Config 'target' ([ordered]@{module=$null;menu=$null;page=$null;navigation_path=@();mount_sequence=@()})
+    Add-MissingProperty $Config.target 'navigation_path' @()
+    Add-MissingProperty $Config.target 'mount_sequence' @()
+    if (@($Config.target.navigation_path).Count -eq 0 -and ![string]::IsNullOrWhiteSpace([string]$Config.target.menu)) {
+        $Config.target.navigation_path=@(ConvertTo-NavigationPathParts $Config.target.menu)
+    }
     if (!$Config.PSObject.Properties['workflow']) {
         $legacy=[string]$Config.status
         $accepted=$legacy -match '(?i)(DeployedUserVerified|Completed|Accepted)'
         $phase=$(if ($accepted) {'Completed'} elseif ($legacy -match '(?i)PendingUserReview') {'PendingUserReview'} elseif ($legacy -match '(?i)ChangesRequested') {'ChangesRequested'} elseif ($legacy -match '(?i)(Analyzing|Implementation)') {'Implementation'} else {'Requirements'})
         $validation=$(if ($accepted) {'Accepted'} elseif ($phase -eq 'PendingUserReview') {'PendingUserReview'} elseif ($phase -eq 'ChangesRequested') {'ChangesRequested'} else {'NotReady'})
         $Config.validation.status=$validation
-        $Config | Add-Member -NotePropertyName workflow -NotePropertyValue ([ordered]@{current_iteration='ITER-001';phase=$phase;requirements_confirmed=$false;next_action=$null})
+        $Config | Add-Member -NotePropertyName workflow -NotePropertyValue ([ordered]@{current_iteration='ITER-001';phase=$phase;delivery_confirmed=$false;requirements_confirmed=$false;next_action=$null})
     } else {
         Add-MissingProperty $Config.workflow 'current_iteration' 'ITER-001'
         Add-MissingProperty $Config.workflow 'phase' 'Requirements'
+        Add-MissingProperty $Config.workflow 'delivery_confirmed' $false
         Add-MissingProperty $Config.workflow 'requirements_confirmed' $false
         Add-MissingProperty $Config.workflow 'next_action' $null
     }
@@ -151,6 +280,8 @@ function Get-Issues($W,$ExtensionConfig=$null) {
     if ($mode -eq 'static-demo' -and $e.delivery.demo_data -notin @('user-provided','generated')) { 'static-demo requires delivery.demo_data user-provided or generated.' }
     if ($mode -in @('embedded-static','backend')) {
         if (!$e.target.module -and !$e.target.menu -and !$e.target.page) { 'Embedded/backend delivery requires a target module, menu or page.' }
+        if ([string]::IsNullOrWhiteSpace((Get-NormalizedNavigationPath $e.target.navigation_path))) { 'Embedded/backend delivery requires target.navigation_path (PLM click sequence).' }
+        if (@($e.target.mount_sequence).Count -eq 0) { 'Embedded/backend delivery requires target.mount_sequence (technical embedding sequence).' }
         foreach($key in @('os.name','os.version','application_server.kind','application_server.host','web.url','web.login_mode','deployment.plm_local_path')) {
             $parts=$key.Split('.'); $value=$p.($parts[0]).($parts[1]); if ([string]::IsNullOrWhiteSpace([string]$value)) { "Missing for ${mode}: $key" }
         }

@@ -7,7 +7,9 @@
 . "$PSScriptRoot/../../scripts/Common.ps1"
 $w=Get-Workspace; $ext=Get-Extension $w $Extension; $c=Initialize-ExtensionWorkflow $ext.Config
 if ($c.lifecycle.status -eq 'Archived') { throw 'Archived extensions cannot be delivered.' }
-if (!$c.workflow.requirements_confirmed -or @($c.requirements.acceptance_criteria).Count -eq 0) { throw 'Confirm requirements and acceptance criteria before delivery.' }
+$readinessIssues=@(Get-PrototypeReadinessIssues $w $c)
+if ($readinessIssues.Count) { throw "Prototype readiness gate is not satisfied:`n- $($readinessIssues -join "`n- ")" }
+if ($c.workflow.phase -notin @('Implementation','ChangesRequested','PendingUserReview')) { throw 'Prototype preflight must pass before delivery.' }
 Write-Output 'Loading applicable knowledge for the delivery check before changing iteration state.'
 & "$script:StudioRoot/skills/knowledge-context/run.ps1" -Extension $Extension -Facet $KnowledgeFacet
 $now=(Get-Date).ToUniversalTime().ToString('o')

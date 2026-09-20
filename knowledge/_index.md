@@ -16,9 +16,18 @@
 
 ## Candidate / 需重新验证
 
-- `KNOW-EXT002-IC96-PDM-COLOR-NAV-EMBEDDED` — DEV 中在已加载的 `PDM/Change` 模块内向 `ProductDataManagement` 追加“颜色件管理”同级导航项，并以 Iframe 加载本地静态页面；Excel 仅在浏览器内解析、校验并回写当前页面内存。已完成源码/哈希/HTTP/无登录态浏览器验证，尚待已登录运行时菜单验收。  
-  记录：`knowledge/patterns/inforcenter-pdm-color-navigation-embedded-candidate.md`  
-  证据：EXT-002 当前源码清单、部署哈希和 HTTP 200。  
+- `KNOW-EXT002-IC96-PDM-COLOR-MOUNT` — 路径 `系统导航 → 产品数据管理 → 颜色件管理` 的导航、页面注册、JS、Iframe 与静态页嵌入顺序；源码和 HTTP 已验证，待已登录菜单验收。
+  记录：`knowledge/patterns/inforcenter-pdm-color-mount-candidate.md`
+
+- `KNOW-EXT002-IC96-PDM-COLOR-STYLE` — 同一点击路径下的经典 PLM 桌面样式：12px 字体、`#157EC6` 紧凑主按钮、浅灰网格、固定表头和局部滚动；待用户最终样式验收。
+  记录：`knowledge/patterns/inforcenter-pdm-color-style-candidate.md`
+
+- `KNOW-EXT002-IC96-COLOR-EXCEL-TABLE` — 同一路径下 Excel 显式解析与 table 结果展示模式；已完成浏览器验证，待用户最终验收。
+  记录：`knowledge/patterns/inforcenter-color-excel-table-candidate.md`
 
 - `BOMCommon` 的运行时标签“其他操作”与镜像标准字典标签“通用操作”存在来源差异；技术父级关系已验证，但标签覆盖来源未查明。  
   冲突记录：`knowledge/contradictions/20260915-bomcommon-label-runtime-vs-source.md`
+
+## Deprecated
+
+- `KNOW-EXT002-IC96-PDM-COLOR-NAV-EMBEDDED` — 原记录混合了集成、样式和 Excel 展示，已由上述三个 path-scoped 记录替代；仅保留追溯。

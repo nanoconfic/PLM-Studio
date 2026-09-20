@@ -3,11 +3,13 @@ id: "KNOW-EXT001-IC96-BOM-MENU-INTEGRATION"
 status: Verified
 category: menu-mechanism
 applicability:
-  workspace_id: "xindazhou-honda-inforcenter-9.6"
-  product: "inforcenter"
+  workspace_id: "plm-studio"
+  product: "InforCenter"
   version: "9.6"
   profiles: ["DEV"]
   source_fingerprint: "9285FAED8B19556A5BEC48887BDF48FC046240C7964074C49D56997AB422D78D"
+  navigation_path: "系统导航 > 产品数据管理 > BOM管理 > Design"
+  mount_sequence: "ProductBOM.page > PSEBom.menurelation > PseBomMenu > BOMCommon > WebAction > registered JS"
   constraints:
     - "Verified for ProductBOM / PseBomMenu in the current DEV source and deployed runtime."
     - "The runtime label is 其他操作; the technical parent ID is BOMCommon."

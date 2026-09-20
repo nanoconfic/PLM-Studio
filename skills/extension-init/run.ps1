@@ -24,9 +24,11 @@
     [switch]$NonInteractive,
     [ValidateSet('static','static-demo','embedded-static','backend')][string]$Mode,
     [ValidateSet('none','user-provided','generated','pending')][string]$DemoData,
-    [string]$Module,[string]$Menu,[string]$Page
+    [string]$Module,[string]$Menu,[string]$Page,
+    [string[]]$NavigationPath,[string[]]$MountSequence
 )
 . "$PSScriptRoot/../../scripts/Common.ps1"
+$script:EnvironmentSourceExtension=$null
 
 function Read-RequiredValue([string]$Prompt,[string]$Current) {
     if (![string]::IsNullOrWhiteSpace($Current)) { return $Current }
@@ -258,17 +260,26 @@ try {
         $c=Read-Config (Join-Path $dest 'extension.yaml')
         $c.id=$id; $c.title=$Title; $c.workspace_id=$w.Id; $c.profile=$Profile; $c.created_at=(Get-Date).ToUniversalTime().ToString('o')
         $c.target.module=$Module; $c.target.menu=$Menu; $c.target.page=$Page
+        if ($NavigationPath) { $c.target.navigation_path=@($NavigationPath) }
+        elseif ($Menu) { $c.target.navigation_path=@(ConvertTo-NavigationPathParts $Menu) }
+        if ($MountSequence) { $c.target.mount_sequence=@($MountSequence) }
         if ($Mode) { $c.delivery.mode=$Mode }
         if ($DemoData) { $c.delivery.demo_data=$DemoData }
         elseif ($Mode -eq 'static') { $c.delivery.demo_data='none' }
         if ($Mode -eq 'backend') { $c.delivery.backend='pending' } else { $c.delivery.backend='no' }
+        $c.workflow.delivery_confirmed=($Mode -in @('static','static-demo','embedded-static','backend'))
+        $c.workflow.phase='Requirements'
+        $c.workflow.requirements_confirmed=$false
+        $c.workflow.next_action='Collect and confirm prototype design requirements; do not implement yet'
         $c.original_system_change.applies_to_extension=$id
         Write-Config (Join-Path $dest 'extension.yaml') $c
         Write-Output $dest
         $issues=@(Get-Issues $w $c)
         if ($issues.Count) { Write-Output 'Pending confirmation:'; $issues | Write-Output }
-        Write-Output 'Next questions: goal and user scenario; inputs/data source; target module/menu/page; UI and interaction; acceptance criteria; constraints and out of scope.'
-        Write-Output 'Loading applicable knowledge into the current context before design.'
+        Write-Output 'Delivery mode is recorded. STOP before design or implementation.'
+        Write-Output 'Next: ask the user for prototype design requirements: goal and user scenario; inputs/data source; PLM click path and technical mount sequence; page/UI/interaction; data preview pattern; acceptance criteria; constraints and out of scope.'
+        Write-Output 'After requirements are confirmed, run prototype-preflight. Implementation may start only when that gate passes.'
+        Write-Output 'Loading applicable knowledge for discovery only; this does not authorize design before requirements confirmation.'
         & "$script:StudioRoot/skills/knowledge-context/run.ps1" -Extension $id -Facet Auto
     } catch {
         if (Test-Path -LiteralPath $dest) { Remove-Item -LiteralPath $dest -Recurse -Force }

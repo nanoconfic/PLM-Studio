@@ -3,11 +3,12 @@ id: "KNOW-EXT001-IC96-BOM-CLASSIC-STYLE"
 status: Verified
 category: page-style
 applicability:
-  workspace_id: "xindazhou-honda-inforcenter-9.6"
-  product: "inforcenter"
+  workspace_id: "plm-studio"
+  product: "InforCenter"
   version: "9.6"
   profiles: ["DEV"]
   source_fingerprint: "9285FAED8B19556A5BEC48887BDF48FC046240C7964074C49D56997AB422D78D"
+  navigation_path: "系统导航 > 产品数据管理 > BOM管理 > Design"
   constraints:
     - "Verified for the current DEV blue theme and current verified user role only."
     - "Verified on the BOM management work area and the loaded Design view for the specified sample object."

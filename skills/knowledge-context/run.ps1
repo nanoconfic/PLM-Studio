@@ -29,8 +29,10 @@ function Same-Value($Expected,$Actual) {
 
 $w=Get-Workspace
 $ext=Get-Extension $w $Extension
-$profileId=[string]$ext.Config.profile
+$extensionConfig=Initialize-ExtensionWorkflow $ext.Config
+$profileId=[string]$extensionConfig.profile
 $profile=Get-Profile $w $profileId
+$currentNavigationPath=Get-NormalizedNavigationPath $extensionConfig.target.navigation_path
 
 $allowedFacets=@('Auto','Style','Integration','Business','Data','Environment','All')
 $selected=@($Facet.Split(',') | ForEach-Object {$_.Trim()} | Where-Object {$_})
@@ -53,6 +55,8 @@ $categories=@{
     Data=@('data-model','demo-data','interface','write-operation','database')
     Environment=@('environment','browser','deployment','source-fingerprint')
 }
+$styleCategories=@($categories.Style)
+$styleGateCategories=@('page-style')
 $wanted=@()
 foreach($name in $selected) { if ($categories.ContainsKey($name)) { $wanted+=@($categories[$name]) } }
 $wanted=@($wanted | Select-Object -Unique)
@@ -86,13 +90,24 @@ if (Test-Path -LiteralPath $patternRoot) {
         $recordVersion=Get-MetaValue $meta 'version'
         $recordProfiles=@(Get-MetaProfiles $meta)
         $recordFingerprint=Get-MetaValue $meta 'source_fingerprint'
-        $scopeMatches=(Same-Value $recordWorkspace $w.Id) -and (Same-Value $recordProduct $profile.product.name) -and (Same-Value $recordVersion $profile.product.version) -and (!$recordProfiles.Count -or $profileId -in $recordProfiles)
-        $record=[pscustomobject]@{id=$id;status=$status;category=$category;path=$file.FullName.Substring($w.Path.Length).TrimStart('\').Replace('\','/');content=$content;fingerprint=$recordFingerprint}
+        $recordNavigationPath=Get-NormalizedNavigationPath (Get-MetaValue $meta 'navigation_path')
+        $isStyleRecord=$category -in $styleCategories
+        $scopeMatches=$(if ($isStyleRecord) {
+            ![string]::IsNullOrWhiteSpace($recordWorkspace) -and $recordWorkspace.Equals([string]$w.Id,[StringComparison]::OrdinalIgnoreCase) -and
+            ![string]::IsNullOrWhiteSpace($recordProduct) -and $recordProduct.Equals([string]$profile.product.name,[StringComparison]::OrdinalIgnoreCase) -and
+            ![string]::IsNullOrWhiteSpace($recordVersion) -and $recordVersion.Equals([string]$profile.product.version,[StringComparison]::OrdinalIgnoreCase) -and
+            $recordProfiles.Count -gt 0 -and $profileId -in $recordProfiles
+        } else {
+            (Same-Value $recordWorkspace $w.Id) -and (Same-Value $recordProduct $profile.product.name) -and (Same-Value $recordVersion $profile.product.version) -and (!$recordProfiles.Count -or $profileId -in $recordProfiles)
+        })
+        $pathExact=(!$isStyleRecord) -or (![string]::IsNullOrWhiteSpace($currentNavigationPath) -and ![string]::IsNullOrWhiteSpace($recordNavigationPath) -and $recordNavigationPath.Equals($currentNavigationPath,[StringComparison]::OrdinalIgnoreCase))
+        $record=[pscustomobject]@{id=$id;status=$status;category=$category;path=$file.FullName.Substring($w.Path.Length).TrimStart('\').Replace('\','/');content=$content;fingerprint=$recordFingerprint;navigation_path=$recordNavigationPath;path_exact=$pathExact}
         if (!$scopeMatches) { $skipped+=$record; continue }
+        if ($isStyleRecord -and !$pathExact) { $skipped+=$record; continue }
         if ($status -eq 'Deprecated') { $deprecated+=$record; continue }
         if ($status -ne 'Verified') { $candidate+=$record; continue }
-        if ($recordFingerprint -and !$currentFingerprint) { $conditional+=$record; continue }
-        if ($recordFingerprint -and $recordFingerprint -ne $currentFingerprint) { $skipped+=$record; continue }
+        if (!$isStyleRecord -and $recordFingerprint -and !$currentFingerprint) { $conditional+=$record; continue }
+        if (!$isStyleRecord -and $recordFingerprint -and $recordFingerprint -ne $currentFingerprint) { $skipped+=$record; continue }
         $applicable+=$record
     }
 }
@@ -107,12 +122,14 @@ $lines=@()
 $lines+='# Knowledge context'
 $lines+="Extension: $Extension | Profile: $profileId | Product: $($profile.product.name) $($profile.product.version) | Facets: $($selected -join ', ')"
 $lines+="Current source fingerprint: $(if($currentFingerprint){$currentFingerprint}else{'not available'})"
+$lines+="PLM navigation path: $(if($currentNavigationPath){$currentNavigationPath}else{'not recorded'})"
 $lines+=''
 $lines+='Rules injected into this task:'
 $lines+='- Applicable Verified records are default design and implementation constraints.'
 $lines+='- Candidate or fingerprint-unconfirmed records may guide questions and verification, but are not facts.'
 $lines+='- Deprecated or scope-mismatched records must not be applied.'
 $lines+='- If the user explicitly requires a deviation, identify it and preserve new evidence instead of silently overriding knowledge.'
+$lines+='- Style knowledge is directly reusable only when its Verified navigation_path exactly matches the extension PLM click path.'
 $lines+=''
 $lines+='## Environment scope (secrets omitted)'
 $lines+="- Deployment: $($profile.deployment.mode) / $($profile.deployment.host)"
@@ -120,6 +137,16 @@ $lines+="- PLM local path: $($profile.deployment.plm_local_path)"
 $lines+="- Application: $($profile.application_server.kind) $($profile.application_server.version) / $($profile.application_server.host)"
 $lines+="- Web: $($profile.web.url) / login=$($profile.web.login_mode)"
 $lines+="- Accessible source path: $($profile.source.access_path)"
+$lines+=''
+$lines+='## Style extension-point path check'
+$exactVerifiedStyles=@($applicable | Where-Object {$_.category -in $styleGateCategories -and $_.path_exact})
+if ($exactVerifiedStyles.Count) {
+    $lines+="Exact-path Verified style knowledge: $(@($exactVerifiedStyles.id) -join ', ')"
+} elseif ($extensionConfig.style_context.status -eq 'source-confirmed' -and $extensionConfig.style_context.user_confirmed -eq $true) {
+    $lines+='No exact-path Verified style knowledge yet; original-product style inspection is user-confirmed and may be used with the recorded evidence. Capture it as path-scoped knowledge during this iteration.'
+} else {
+    $lines+='STYLE_PATH_CONFIRMATION_REQUIRED: no exact-path Verified style knowledge. Before prototype design, ask whether to inspect the original PLM page. If approved, capture the style, obtain user confirmation, and record the evidence.'
+}
 $lines+=''
 $lines+='## Knowledge index (discovery only; applicability is decided below)'
 $indexPath=Join-Path $w.Path 'knowledge/_index.md'
@@ -141,7 +168,7 @@ foreach($relative in $contradictionPaths) {
 }
 $lines+=''
 $lines+='## Excluded records'
-$lines+=$(if($skipped.Count){(@($skipped | ForEach-Object {"- $($_.id) [$($_.category)]: applicability or source fingerprint mismatch"}) -join "`n")}else{'(none)'})
+$lines+=$(if($skipped.Count){(@($skipped | ForEach-Object {"- $($_.id) [$($_.category)]: applicability, navigation path, or source fingerprint mismatch"}) -join "`n")}else{'(none)'})
 if ($deprecated.Count) { $lines+=(@($deprecated | ForEach-Object {"- $($_.id) [$($_.category)]: Deprecated"}) -join "`n") }
 
 Write-Output ($lines -join "`n")

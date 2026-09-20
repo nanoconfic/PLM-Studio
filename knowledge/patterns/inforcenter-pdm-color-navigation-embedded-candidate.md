@@ -1,6 +1,6 @@
 ---
 id: "KNOW-EXT002-IC96-PDM-COLOR-NAV-EMBEDDED"
-status: Candidate
+status: Deprecated
 category: menu-mechanism
 applicability:
   workspace_id: "plm-studio"
@@ -22,8 +22,11 @@ evidence:
 environment_snapshot: null
 verified_at: null
 supersedes: null
+superseded_by: "KNOW-EXT002-IC96-PDM-COLOR-MOUNT, KNOW-EXT002-IC96-PDM-COLOR-STYLE, KNOW-EXT002-IC96-COLOR-EXCEL-TABLE"
 ---
-# InforCenter 9.6 产品数据管理的已加载模块导航模式
+# 已拆分：颜色件导航、样式与 Excel 展示混合记录
+
+本记录把集成路径、页面样式和 Excel 解析展示混在一起，现已拆分为三个带明确点击路径和适用范围的知识记录。保留本文只用于追溯，不再作为设计或集成依据。
 
 当前 DEV 中，`InforCenter/PDM/Change/Config/WorkGroup.nav` 已在 `ProductDataManagement` 父导航下加载“变更库”。将 `ColorPartManagement` 作为同一文件、同一父级下排序 `042` 的子项，并在对应 `.dic` 和 `ChangeFileRef.fileref` 注册字典、页面创建脚本，可使颜色件页面进入已加载模块的导航配置链。
 

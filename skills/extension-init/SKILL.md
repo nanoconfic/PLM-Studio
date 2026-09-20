@@ -27,9 +27,17 @@ description: 在当前 PLM-Studio 工作区初始化新的原型扩展，先绑�
 
 初始化时还要确认交付模式、演示数据来源、系统嵌入目标和原系统文件修改授权状态。新扩展初始只创建 `extension.yaml` 和 `brief.md`。
 
+## 交付模式之后必须停在需求阶段
+
+交付模式明确后，只能创建扩展骨架并进入 `Requirements`。必须提示用户提供本轮原型设计需求，记录目标、场景、输入、PLM 点击顺序路径、技术嵌入顺序、页面与交互、批量数据展示方式、验收标准、约束和不做范围。收到并确认这些需求之前，不得开始页面结构、视觉设计或代码实现。
+
+需求确认后运行 `skills/prototype-preflight/run.ps1 -Extension EXT-nnn`。门禁未通过时继续补齐需求或样式来源，不得绕过。
+
 ## 知识上下文门禁
 
-扩展创建后，初始化脚本自动运行 `knowledge-context -Facet Auto`，把当前 profile、产品版本和源码指纹适用的知识注入上下文。需求明确后、开始设计前，必须根据实际内容再次加载精确 facet。页面或交互设计至少加载 `Style`；只看到知识索引而没有读取筛选后的完整记录，不能开始设计。
+扩展创建后，初始化脚本自动运行 `knowledge-context -Facet Auto`，此时仅用于发现已有知识，不能替代需求确认。需求明确后、开始设计前，必须根据实际内容再次加载精确 facet。页面或交互设计至少加载 `Style`；只看到知识索引而没有读取筛选后的完整记录，不能开始设计。
+
+`target.navigation_path` 保存用户在 PLM 中的点击顺序；`target.mount_sequence` 保存菜单、页面注册、脚本、Iframe/容器和目标页面的技术解析顺序。样式知识只有在 `navigation_path` 精确相同时才能直接复用；新路径必须先询问用户是否从原产品拉取样式，获得确认后把证据写入 `style_context` 和 knowledge。
 
 ```powershell
 powershell -NoProfile -File skills/extension-init/run.ps1 -Title "新原型" -Profile DEV -Mode static-demo -DemoData generated -NonInteractive
