@@ -1,0 +1,201 @@
+{
+  "schema_version": 4,
+  "workspace_id": "plm-studio",
+  "extension_id": "EXT-002",
+  "profile": "DEV",
+  "generated_at": "2026-09-18T16:30:34.7389232+08:00",
+  "deployment_mode": "virtual-machine",
+  "plm_local_path": "\\192.168.40.76\\1_Server",
+  "access_path": "\\\\192.168.40.76\\1_Server",
+  "candidates": [
+    {
+      "path": "\\\\192.168.40.76\\1_Server",
+      "markers": [
+        "Default.aspx",
+        "Default.aspx.cs",
+        "error.aspx",
+        "error.aspx.cs",
+        "Global.asax.cs",
+        "H5Default.aspx",
+        "H5Default.aspx.cs",
+        "IntegrationBasePage.aspx",
+        "IntegrationBasePage.aspx.cs",
+        "MobileDefault.aspx",
+        "MobileDefault.aspx.cs",
+        "S6_HD!Integrate!Bin!Hoteam.HD.Integrate.Business.dll",
+        "S6_HD!Integrate!Bin!Hoteam.HD.Integrate.Parameter.dll",
+        "Web.config"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\Base",
+      "markers": [
+        "BasePage.aspx",
+        "BasePage.aspx.cs",
+        "H5BasePage.aspx",
+        "H5BasePage.aspx.cs"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\CodeGenerator",
+      "markers": [
+        "CodeSmith.Engine.dll",
+        "CodeSmith.Gui.dll",
+        "CodeSmith.Insight.Client.Windows.dll",
+        "Hoteam.InforCenter.Developer.Interface.dll"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\Interface",
+      "markers": [
+        "Hoteam.InforCenter.AccessRecord.Interface.dll",
+        "Hoteam.InforCenter.Base.Interface.dll",
+        "Hoteam.InforCenter.BaseLine.Interface.dll",
+        "Hoteam.InforCenter.BaseLine.ObjectValue.dll",
+        "Hoteam.InforCenter.BomStatistics.Interface.dll",
+        "Hoteam.InforCenter.BomValidity.Interface.dll",
+        "Hoteam.InforCenter.BomVariable.Interface.dll",
+        "Hoteam.InforCenter.CAD.Interface.dll",
+        "Hoteam.InforCenter.CADCIS.Interface.dll",
+        "Hoteam.InforCenter.Capp.Interface.dll",
+        "Hoteam.InforCenter.CappResource.Interface.dll",
+        "Hoteam.InforCenter.ChangeApply.Interface.dll",
+        "Hoteam.InforCenter.ChangeNotice.Interface.dll",
+        "Hoteam.InforCenter.ChangeProblem.Interface.dll",
+        "Hoteam.InforCenter.ChangeRelation.Interface.dll",
+        "Hoteam.InforCenter.ClassifyAttrbute.Interface.dll",
+        "Hoteam.InforCenter.ClassifyEdit.Interface.dll",
+        "Hoteam.InforCenter.ClassifyUse.Interface.dll",
+        "Hoteam.InforCenter.Coding.Maintenance.Interface.dll",
+        "Hoteam.InforCenter.CommandServiceExtendsion.Interface.dll",
+        "Hoteam.InforCenter.Common.ImportInitDataInterface.dll",
+        "Hoteam.InforCenter.Communication.Interface.dll",
+        "Hoteam.InforCenter.CompanyRule.Interface.dll",
+        "Hoteam.InforCenter.ConsumptionStation.Interface.dll",
+        "Hoteam.InforCenter.Coordination.Interface.dll",
+        "Hoteam.InforCenter.CReportEdit.Interface.dll",
+        "Hoteam.InforCenter.CrownIntegrate.Interface.dll",
+        "Hoteam.InforCenter.DataSetType.Interface.dll",
+        "Hoteam.InforCenter.DeployCode.Interface.dll",
+        "Hoteam.InforCenter.Distribute.Interface.dll",
+        "Hoteam.InforCenter.DocModel.Interface.dll",
+        "Hoteam.InforCenter.DocTemplate.Interface.dll",
+        "Hoteam.InforCenter.Enumeration.Interface.dll",
+        "Hoteam.InforCenter.Favorite.Interface.dll",
+        "Hoteam.InforCenter.FileManage.Interface.dll",
+        "Hoteam.InforCenter.FlatDisplay.Interface.dll",
+        "Hoteam.InforCenter.Formula.Interface.dll",
+        "Hoteam.InforCenter.GrManagement.Interface.dll",
+        "Hoteam.InforCenter.ImportExport.Interface.dll",
+        "Hoteam.InforCenter.IntegrationERP.Interface.dll",
+        "Hoteam.InforCenter.IntergrationCommunication.Interface.dll",
+        "Hoteam.InforCenter.InternalMail.Interface.dll",
+        "Hoteam.InforCenter.Interval.Interface.dll",
+        "Hoteam.InforCenter.Issue.Interface.dll",
+        "Hoteam.InforCenter.ISTF16949.Interface.dll",
+        "Hoteam.InforCenter.ItemPortal.Interface.dll",
+        "Hoteam.InforCenter.MazyTable.Interface.dll",
+        "Hoteam.InforCenter.MessageQueuing.Interface.dll",
+        "Hoteam.InforCenter.MobilePermission.Interface.dll",
+        "Hoteam.InforCenter.ModelGenerator.Interface.dll",
+        "Hoteam.InforCenter.ModelGenerator.Utility.dll",
+        "Hoteam.InforCenter.ModulePermission.Interface.dll",
+        "Hoteam.InforCenter.MSE.Interface.dll",
+        "Hoteam.InforCenter.MSEConfig.Interface.dll",
+        "Hoteam.InforCenter.MSEParaDesign.Interface.dll",
+        "Hoteam.InforCenter.MyProject.Interface.dll",
+        "Hoteam.InforCenter.Organization.GroupInterface.dll",
+        "Hoteam.InforCenter.Organization.GroupRuleInterface.dll",
+        "Hoteam.InforCenter.PDMInternalMail.Interface.dll",
+        "Hoteam.InforCenter.PMTask.Interface.dll",
+        "Hoteam.InforCenter.PositionManager.Interface.dll",
+        "Hoteam.InforCenter.ProcessPlanEdit.Interface.dll",
+        "Hoteam.InforCenter.ProcessPlanTemplate.Inteface.dll",
+        "Hoteam.InforCenter.ProcessRoute.Interface.dll",
+        "Hoteam.InforCenter.ProjectBaseLine.Interface.dll",
+        "Hoteam.InforCenter.ProjectChange.Interface.dll",
+        "Hoteam.InforCenter.ProjectCost.Interface.dll",
+        "Hoteam.InforCenter.ProjectEps.Interface.dll",
+        "Hoteam.InforCenter.ProjectFolderTemplate.Interface.dll",
+        "Hoteam.InforCenter.ProjectPlan.Interface.dll",
+        "Hoteam.InforCenter.ProjectTask.Interface.dll",
+        "Hoteam.InforCenter.ProjectTeam.Interface.dll",
+        "Hoteam.InforCenter.ProjectTemplate.Interface.dll",
+        "Hoteam.InforCenter.ProjectWorkflow.Interface.dll",
+        "Hoteam.InforCenter.PSEBom.Interface.dll",
+        "Hoteam.InforCenter.PSEItem.Interface.dll",
+        "Hoteam.InforCenter.PseValidity.Interface.dll",
+        "Hoteam.InforCenter.QProblem.Interface.dll",
+        "Hoteam.InforCenter.QProblemLibrary.Interface.dll",
+        "Hoteam.InforCenter.Registered.Interface.dll",
+        "Hoteam.InforCenter.RegisteredCompanyLink.Interface.dll",
+        "Hoteam.InforCenter.Resource.Interface.dll",
+        "Hoteam.InforCenter.Risk.Interface.dll",
+        "Hoteam.InforCenter.Rule.Interface.dll",
+        "Hoteam.InforCenter.SuOrganize.Interface.dll",
+        "Hoteam.InforCenter.SystemSettings.Interface.dll",
+        "Hoteam.InforCenter.ThreeManagement.Interface.dll",
+        "Hoteam.InforCenter.ThreeRoleAuthPlatform.Interface.dll",
+        "Hoteam.InforCenter.TimeQuota.Interface.dll",
+        "Hoteam.InforCenter.Tooling.Interface.dll",
+        "Hoteam.InforCenter.TSManagement.Interface.dll",
+        "Hoteam.InforCenter.TSManagementNew.Interface.dll",
+        "Hoteam.InforCenter.VirtualTreeWorkSpace.Interface.dll",
+        "Hoteam.InforCenter.WebStudio.View.Interface.dll",
+        "Hoteam.InforCenter.WorkFlowExtend.Interface.dll",
+        "Hoteam.InforCenter.WorkReport.Interface.dll",
+        "Hoteam.InforCenter.WorkSpace.Interface.dll",
+        "Hoteam.InforCenterCrownCADIntegrate.CAD.Interface.dll"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\MobileBase",
+      "markers": [
+        "MobileBasePage.aspx",
+        "MobileBasePage.aspx.cs",
+        "MobileBasePageNoCache.aspx",
+        "MobileBasePageNoCache.aspx.cs"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\Registered\\ResetPassword",
+      "markers": [
+        "CheckChangeUser.aspx",
+        "CheckChangeUser.aspx.cs",
+        "CodeGif.aspx",
+        "CodeGif.aspx.cs",
+        "GetLoginUrl.aspx",
+        "GetLoginUrl.aspx.cs",
+        "IdentityVerification.aspx",
+        "IdentityVerification.aspx.cs"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\InforCenter\\PLMAI\\Extend",
+      "markers": [
+        "Hoteam.Inforcenter.PLMAI.SimilarityFunctions.dll"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\Platform\\ReportMangement\\aspx",
+      "markers": [
+        "DesignReport.aspx",
+        "DesignReport.aspx.cs",
+        "ViewByDataSource.aspx",
+        "ViewByDataSource.aspx.cs",
+        "ViewReport.aspx",
+        "ViewReport.aspx.cs"
+      ]
+    },
+    {
+      "path": "\\\\192.168.40.76\\1_Server\\Example\\Config\\Pages\\ReportExample",
+      "markers": [
+        "Designer.aspx",
+        "Designer.aspx.cs",
+        "View.aspx",
+        "View.aspx.cs"
+      ]
+    }
+  ],
+  "unavailable_roots": []
+}
