@@ -258,8 +258,8 @@ try {
     $dest=Join-Path $extensions $id
     New-Item -ItemType Directory -Path $dest | Out-Null
     try {
-        Copy-Item -LiteralPath "$script:StudioRoot/templates/extension/extension.yaml" -Destination (Join-Path $dest 'extension.yaml')
-        Copy-Item -LiteralPath "$script:StudioRoot/templates/extension/brief.md" -Destination (Join-Path $dest 'brief.md')
+        Copy-Item -LiteralPath "$script:StudioRoot/tools/extension/templates/extension.yaml" -Destination (Join-Path $dest 'extension.yaml')
+        Copy-Item -LiteralPath "$script:StudioRoot/tools/extension/templates/brief.md" -Destination (Join-Path $dest 'brief.md')
         $c=Read-Config (Join-Path $dest 'extension.yaml')
         $c.id=$id; $c.title=$Title; $c.workspace_id=$w.Id; $c.profile=$Profile; $c.created_at=(Get-Date).ToUniversalTime().ToString('o')
         $c.target.module=$Module; $c.target.menu=$Menu; $c.target.page=$Page

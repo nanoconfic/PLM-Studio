@@ -22,9 +22,8 @@ PLM-Studio/
 ├─ agents/                     自然语言入口和 Agent 职责
 ├─ controller/                 状态机、动作与门禁
 ├─ skills/                     工作流说明及兼容入口
-├─ tools/                      命令、配置、源码、浏览器等执行实现
+├─ tools/                      命令、配置、源码、浏览器与所属模板
 ├─ scripts/                    旧入口和浏览器依赖
-├─ templates/                  新扩展和知识记录模板
 └─ AGENTS.md                   工作区使用规则
 ```
 
