@@ -1,5 +1,7 @@
 # PLM-Studio 工作区行为规范
 
+页面原型设计还须遵循根目录 `SYSTEM.md` 定义的顾问身份、页面内容与样式约束，以及完成标准。
+
 ## 基本概念
 
 - `PLM-Studio` 根目录是一个工作区。`workspace.yaml` 是 profile 注册表；每个 profile 描述产品版本和具体部署环境，不保存项目字段或原型默认值。工作区不存在全局活动 profile。
