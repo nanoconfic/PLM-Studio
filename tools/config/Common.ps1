@@ -31,11 +31,39 @@ function Write-Config($Path,$Value) {
     Write-Utf8Text $Path $json
 }
 
+function Merge-ConfigValue($Base,$Overlay) {
+    if ($null -eq $Overlay) { return $Base }
+    if ($null -eq $Base) { return $Overlay }
+    $baseIsObject=($Base -is [pscustomobject])
+    $overlayIsObject=($Overlay -is [pscustomobject])
+    if (!$baseIsObject -or !$overlayIsObject) { return $Overlay }
+    $merged=[ordered]@{}
+    foreach($property in $Base.PSObject.Properties) { $merged[$property.Name]=$property.Value }
+    foreach($property in $Overlay.PSObject.Properties) {
+        $merged[$property.Name]=$(if ($merged.Contains($property.Name)) { Merge-ConfigValue $merged[$property.Name] $property.Value } else { $property.Value })
+    }
+    [pscustomobject]$merged
+}
+
+function Get-WorkspacePaths {
+    [pscustomobject]@{
+        Shared=(Join-Path $script:StudioRoot 'workspace.yaml')
+        Local=(Join-Path $script:StudioRoot 'workspace.local.yaml')
+    }
+}
+
 function Get-Workspace {
-    $path=Join-Path $script:StudioRoot 'workspace.yaml'
-    if (!(Test-Path -LiteralPath $path)) { throw 'Missing workspace.yaml in the PLM-Studio workspace root.' }
-    $config=Read-Config $path
-    [pscustomobject]@{Id=$config.workspace_id;Path=$script:StudioRoot;Config=$config}
+    $paths=Get-WorkspacePaths
+    if (!(Test-Path -LiteralPath $paths.Shared)) { throw 'Missing workspace.yaml in the PLM-Studio workspace root.' }
+    $shared=Read-Config $paths.Shared
+    $local=$(if (Test-Path -LiteralPath $paths.Local) { Read-Config $paths.Local } else { $null })
+    $config=Merge-ConfigValue $shared $local
+    [pscustomobject]@{Id=$config.workspace_id;Path=$script:StudioRoot;Config=$config;SharedPath=$paths.Shared;LocalPath=$paths.Local}
+}
+
+function Write-WorkspaceConfig($W,$Value) {
+    if (!$W.LocalPath) { throw 'Workspace local configuration path is unavailable.' }
+    Write-Config $W.LocalPath $Value
 }
 
 function Get-Profile($W,[string]$Name) {

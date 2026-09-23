@@ -14,7 +14,8 @@ PLM-Studio 根目录就是一个工作区。每个任务是一个可长期迭代
 
 ```text
 PLM-Studio/
-├─ workspace.yaml              profile 注册表；每个 profile 保存产品版本和部署环境
+├─ workspace.yaml              Git 提交的空工作区壳，不含环境配置
+├─ workspace.local.yaml        本机 profile 配置，Git 忽略
 ├─ extensions/                 每个原型设计及其交付、授权、部署历史
 ├─ knowledge/                  已验证知识、证据、冲突和环境快照
 ├─ sources/                    源码同步范围与 manifest
@@ -30,6 +31,10 @@ PLM-Studio/
 `controller/` 中的 `run.ps1`、`state-machine.ps1`、`guards.ps1`、`actions.ps1` 分别承担查询入口、状态判定、执行门禁和动作清单。实际执行脚本按职责放在 `tools/{workspace,extension,config,source,prototype,knowledge,validation,delivery,browser}/`。`skills/<name>/SKILL.md` 保留每项工作的操作规范，原 `run.ps1` 作为兼容入口转发到 `tools/`。
 
 现有 `runtime/` 与浏览器依赖目录暂沿用原路径，避免中断正在使用的扩展和浏览器安装；新增结构没有迁移或回填既有 `extensions/EXT-nnn`。
+
+## 本地环境配置
+
+仓库中的 `workspace.yaml` 只保存 `workspace_id` 和空 `profiles`。本机完整环境配置保存在 `workspace.local.yaml`，该文件已被 Git 忽略。`Get-Workspace` 自动把本地配置覆盖到仓库壳上，因此 `git pull`、分支切换和同步不会删除或覆盖本机环境信息。
 
 
 ## 标准会话流程

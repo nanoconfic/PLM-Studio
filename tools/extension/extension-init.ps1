@@ -195,12 +195,12 @@ function Add-WorkspaceProfile($W,[string]$ProfileId) {
         Write-Host "- 应用服务器：$($profileConfig.application_server.kind) / $($profileConfig.application_server.host)"
         Write-Host "- Web：$($profileConfig.web.url)"
         Write-Host "- 数据库：$(if($profileConfig.database.required){$profileConfig.database.version+' / '+$profileConfig.database.host+' / '+$profileConfig.database.name}else{'不使用'})"
-        $confirmation=Read-Host '确认写入 workspace.yaml 并创建扩展？（y/N）'
+        $confirmation=Read-Host '确认写入本地环境配置并创建扩展？（y/N）'
         if ($confirmation -notmatch '^(?i:y|yes)$') { throw 'Profile creation cancelled. No profile or extension was created.' }
     }
 
     $W.Config.profiles | Add-Member -NotePropertyName $ProfileId -NotePropertyValue $profileConfig
-    Write-Config (Join-Path $W.Path 'workspace.yaml') $W.Config
+    Write-WorkspaceConfig $W $W.Config
     Write-Output "Profile created: $ProfileId"
 }
 

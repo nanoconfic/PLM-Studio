@@ -7,7 +7,7 @@ $root=Split-Path (Split-Path $PSScriptRoot -Parent) -Parent
 if (!$SandboxRoot) { $SandboxRoot=[IO.Path]::GetTempPath() }
 $sandbox=Join-Path $SandboxRoot ('plm-studio-test-'+[guid]::NewGuid().ToString('N'))
 New-Item -ItemType Directory -Path $sandbox | Out-Null
-$excludedWorkspaceRoots=@('.git','archive','extensions','runtime','sources','tools')
+$excludedWorkspaceRoots=@('.git','archive','extensions','runtime','sources','tools','workspace.local.yaml')
 Get-ChildItem -LiteralPath $root -Force | Where-Object {$_.Name -notin $excludedWorkspaceRoots} | ForEach-Object {
     Copy-Item -LiteralPath $_.FullName -Destination $sandbox -Recurse
 }
@@ -43,7 +43,19 @@ New-Item -ItemType Directory -Path "$sandbox/extensions" | Out-Null
 $config="$sandbox/workspace.yaml"
 . "$sandbox/scripts/Common.ps1"
 $c=Read-Config $config
-$c.workspace_id='fixture'; $c.profiles.DEV.product.name='PLM'; $c.profiles.DEV.product.version='1'
+$fixtureProfile=[pscustomobject]@{
+    label='DEV';product=[pscustomobject]@{name='PLM';version='1'}
+    deployment=[pscustomobject]@{mode='virtual-machine';host='192.168.40.76';plm_local_path='\\192.168.40.76\1_Server';service_name=$null;secret_ref=$null}
+    os=[pscustomobject]@{name='Windows Server';version='2025';username=$null;password=$null}
+    database=[pscustomobject]@{required=$true;version='SQL Server 2025';host='192.168.40.76';name='SQLHD';secret_ref=$null;username=$null;password=$null}
+    application_server=[pscustomobject]@{kind='IIS';version='unknown';host='192.168.40.76';username=$null;password=$null}
+    web=[pscustomobject]@{url='http://192.168.40.76/';login_mode='manual';secret_ref=$null;username=$null;password=$null;token=$null}
+    browser=[pscustomobject]@{enabled=$true;driver='playwright';mode='launch';cdp_endpoint=$null;storage_state_ref=$null;executable_path='tools/browser/chromium/chrome-win64/chrome.exe'}
+    source=[pscustomobject]@{auto_discover=$false;candidate_paths=@('\\192.168.40.76\1_Server');access_path='\\192.168.40.76\1_Server';discovery_depth=2;exclude=@('logs','cache','tmp','node_modules','.git');exclude_files=@('.env','*.pfx','*.key','*.pem');review_sensitive_configs=$true;secret_ref=$null;username=$null;password=$null;domain=$null}
+    capabilities=[pscustomobject]@{frontend=$true;backend=$true;backend_decision='pending user confirmation'}
+    commands=[pscustomobject]@{build='not-applicable';run='not-applicable';test='not-applicable'};secret_refs=[pscustomobject]@{}
+}
+$c.workspace_id='fixture'; $c.profiles | Add-Member -NotePropertyName DEV -NotePropertyValue $fixtureProfile; $c.profiles.DEV.product.name='PLM'; $c.profiles.DEV.product.version='1'
 $c.profiles.DEV.label='中文环境 UTF-8 验证'
 Write-Config $config $c
 $roundTrip=Read-Config $config
@@ -108,11 +120,12 @@ $ErrorActionPreference='Continue'
 $unconfirmedOutput=& $shell -NoProfile -File "$sandbox/skills/extension-init/run.ps1" -Title 'Unconfirmed profile' -Profile UAT -CreateProfile -CopyEnvironmentFrom DEV -ProfileLabel 'Fixture UAT' -ProductName PLM -ProductVersion 1 -Mode static -NonInteractive 2>$null
 $unconfirmedExitCode=$LASTEXITCODE
 $ErrorActionPreference=$previousErrorAction
-Check ($unconfirmedExitCode -ne 0 -and !$((Read-Config $config).profiles.PSObject.Properties['UAT']) -and !(Test-Path "$sandbox/extensions/EXT-003")) 'automation cannot create an unconfirmed profile'
+Check ($unconfirmedExitCode -ne 0 -and !$((Get-Workspace).Config.profiles.PSObject.Properties['UAT']) -and !(Test-Path "$sandbox/extensions/EXT-003")) 'automation cannot create an unconfirmed profile'
 Run 'extension-init' @('-Title','Copied environment','-Profile','UAT','-CreateProfile','-CopyEnvironmentFrom','DEV','-ProfileLabel','Fixture UAT','-ProductName','PLM','-ProductVersion','1','-ProfileSetupConfirmed','-Mode','static','-NonInteractive')
-$workspaceAfterProfile=Read-Config $config
+$workspaceAfterProfile=(Get-Workspace).Config
 $createdWithProfile=Read-Config "$sandbox/extensions/EXT-003/extension.yaml"
-Check ($workspaceAfterProfile.profiles.UAT.application_server.kind -eq $workspaceAfterProfile.profiles.DEV.application_server.kind -and $createdWithProfile.profile -eq 'UAT') 'new profile can reuse environment and is bound before extension creation'
+$sharedAfterProfile=Read-Config $config
+Check ($workspaceAfterProfile.profiles.UAT.application_server.kind -eq $workspaceAfterProfile.profiles.DEV.application_server.kind -and $createdWithProfile.profile -eq 'UAT' -and !$sharedAfterProfile.profiles.PSObject.Properties['UAT'] -and (Test-Path "$sandbox/workspace.local.yaml")) 'new profile is local-only and bound before extension creation'
 $newPath=Initialize-ExtensionWorkflow $createdWithProfile
 $newPath.target.navigation_path=@('系统导航','产品数据管理','新解析页')
 $newPath.requirements.change_goal='Parse a user-selected Excel workbook'
@@ -146,8 +159,8 @@ Check ($legacy.workflow.current_iteration -eq 'ITER-001' -and @($legacy.iteratio
 
 $source=Join-Path $sandbox 'fixture-source'; New-Item -ItemType Directory "$source/App","$source/Other" -Force | Out-Null
 Write-Utf8Text "$source/App/app.cs" 'class Example {}'; Write-Utf8Text "$source/Other/ignored.cs" 'class Ignored {}'
-$c=Read-Config $config; $c.profiles.DEV.deployment.mode='local'; $c.profiles.DEV.deployment.host='localhost'; $c.profiles.DEV.deployment.plm_local_path=$source; $c.profiles.DEV.source.auto_discover=$false; $c.profiles.DEV.source.candidate_paths=@(); $c.profiles.DEV.source.access_path=$source
-Write-Config $config $c
+$workspaceForSource=Get-Workspace; $c=$workspaceForSource.Config; $c.profiles.DEV.deployment.mode='local'; $c.profiles.DEV.deployment.host='localhost'; $c.profiles.DEV.deployment.plm_local_path=$source; $c.profiles.DEV.source.auto_discover=$false; $c.profiles.DEV.source.candidate_paths=@(); $c.profiles.DEV.source.access_path=$source
+Write-WorkspaceConfig $workspaceForSource $c
 Run 'source-sync' @('-Extension','EXT-001','-Scope','App')
 Check ((Test-Path "$sandbox/sources/mirror/DEV/App/app.cs") -and !(Test-Path "$sandbox/sources/mirror/DEV/Other/ignored.cs") -and (Test-Path "$sandbox/sources/manifests/EXT-001/source-manifest-DEV.yaml")) 'scoped extension source sync'
 Run 'analyze-target' @('-Extension','EXT-001')

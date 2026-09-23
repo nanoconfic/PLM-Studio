@@ -6,4 +6,4 @@ tools/browser/chromium/**
 archive/**
 **/.env*
 **/storage-state*.json
-/workspace.yaml
+/workspace.local.yaml

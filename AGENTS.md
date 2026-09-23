@@ -9,11 +9,11 @@
 - `workflow.capability_mode` 明确为 `prototype`（只做原型）、`integration`（只嵌入已有静态页）或 `linked`（原型验收后嵌入）；旧扩展缺少该字段时按 `legacy` 解释，不回填。`workflow.stage` 是当前阶段能力，`workflow.phase` 是需求、实现或验收状态。Controller 从它们计算允许动作，不另存状态。
 - `Requirements` 且 `requirements_confirmed=false` 时只进行当前 stage 的需求更新、知识与环境只读检查，以及交付模式已确认后的需求确认。原型经 `prototype-preflight`、嵌入经 `integration-preflight` 后才进入 `Implementation`。Controller 只负责阶段权限，各 Skill 继续检查知识、样式、路径、授权等细节。
 
-- `PLM-Studio` 根目录是一个工作区。`workspace.yaml` 是 profile 注册表；每个 profile 描述产品版本和具体部署环境，不保存项目字段或原型默认值。工作区不存在全局活动 profile。
+- `workspace.yaml` 是提交到 Git 的无环境配置壳，只保留工作区标识与空 `profiles`；`workspace.local.yaml` 是本机完整 profile 注册表，受 Git 忽略。读取配置时 `tools/config/Common.ps1` 自动叠加本地文件，写入环境配置只写入本地文件。每个 profile 描述产品版本和具体部署环境，不保存项目字段或原型默认值。工作区不存在全局活动 profile。
 - 每个新原型设计都是一个扩展，位于 `extensions/EXT-nnn`。使用 `extension-init` 新建扩展，不再创建嵌套工作区。
 - 入口统一为 `controller/run.ps1 -Json`。Agent 解析自然语言并选择能力模式与目标扩展；未明确目标时读取 Controller 返回的 Active 扩展和入口模式，再针对缺失信息提问。不依赖固定触发词。
 - 所有 `lifecycle.status=Active` 的扩展始终可选。状态仅表示当前迭代所处流程，不能因为 Completed 或 Accepted 拒绝继续修改扩展。
-- 开始工作时读取 `workspace.yaml`、目标扩展的 `extension.yaml`、`knowledge/_index.md` 和所需 Skill。
+- 开始工作时通过 `Get-Workspace` 读取合并后的工作区配置、目标扩展的 `extension.yaml`、`knowledge/_index.md` 和所需 Skill。
 - 每个扩展必须明确交付模式：`static`、`static-demo`、`embedded-static` 或 `backend`。校验和追问应根据交付模式调整。
 - 仅优化 PLM-Studio 工作区自身的规范、脚本、Skill、模板或知识治理时，默认不得迁移、回填或修改任何既有 `extensions/EXT-nnn` 的配置、状态和产物；既有扩展只能作为只读案例或证据。只有用户明确指定修改某个扩展时，才进入该扩展的迭代流程。工作区优化也不得因此修改原 PLM 产品或部署环境。
 
@@ -37,12 +37,12 @@
 
 ## Profile 与初始化
 
-- `workspace.yaml.profiles.<id>` 保存 profile 的具体信息。扩展通过 `extension.yaml.profile` 绑定 profile。
+- `workspace.local.yaml.profiles.<id>` 保存本机 profile 的具体信息；`workspace.yaml` 保持空 profile 注册表。扩展通过 `extension.yaml.profile` 绑定 profile。
 - 新建扩展前必须完成 profile 选择和验证。不得先创建未绑定 profile 的扩展，再让用户补配置。
 - 交互使用 `extension-init` 时可以省略 `-Profile`，脚本会列出现有 profile 和“新增 profile”。
 - CLI、Harness 和其他非交互工具应传入 `-NonInteractive -Profile <id>`。缺少 profile 时，初始化必须失败且不能留下半成品目录。
 - 新 profile 必须通过对话交互完成信息收集与最终确认。可以用 `-CopyEnvironmentFrom <id>` 复用环境，或用 `-ProfileConfigPath <file>` 导入完整环境配置；无复用来源时必须收集核心环境信息。自动化执行只能写入已经确认的数据，并显式传入 `-ProfileSetupConfirmed`，该参数不能代替实际确认。
-- 读取或写入 `workspace.yaml`、`extension.yaml` 以及其他配置文件时，必须调用 `tools/config/Common.ps1` 中的 `Read-Config` 和 `Write-Config`；`scripts/Common.ps1` 仅为兼容入口。严格使用 UTF-8，禁止依赖 PowerShell 默认编码，也禁止用未指定编码的 `Get-Content`、`Set-Content` 或 `Out-File` 修改配置。
+- 读取工作区配置必须调用 `Get-Workspace`，写入 profile 必须调用 `Write-WorkspaceConfig`；其他配置文件使用 `Read-Config` 和 `Write-Config`。`scripts/Common.ps1` 仅为兼容入口。严格使用 UTF-8，禁止依赖 PowerShell 默认编码，也禁止用未指定编码的 `Get-Content`、`Set-Content` 或 `Out-File` 修改配置。
 - `Read-Config` 必须拒绝无效 UTF-8；`Write-Config` 统一输出无 BOM 的 UTF-8。写入后应重新读取并确认 profile ID、环境名称、产品版本、部署模式和关键环境字段没有乱码或丢失。
 
 ## PowerShell 与文本编码
