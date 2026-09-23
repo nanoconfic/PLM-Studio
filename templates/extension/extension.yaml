@@ -1,5 +1,5 @@
 {
-  "schema_version": 2,
+  "schema_version": 3,
   "id": null,
   "title": null,
   "workspace_id": null,
@@ -31,6 +31,19 @@
       "interaction": []
     }
   },
+  "integration_requirements": {
+    "source_artifact": null,
+    "source_kind": "pending",
+    "entry_behavior": null,
+    "acceptance_criteria": [],
+    "constraints": [],
+    "out_of_scope": []
+  },
+  "integration_evidence": {
+    "changes": [],
+    "verification": [],
+    "rollback": null
+  },
   "delivery": {
     "mode": "pending",
     "backend": "pending",
@@ -49,6 +62,9 @@
   },
   "workflow": {
     "current_iteration": "ITER-001",
+    "capability_mode": "legacy",
+    "stage": "prototype",
+    "prototype_accepted": false,
     "phase": "Requirements",
     "delivery_confirmed": false,
     "requirements_confirmed": false,
@@ -77,6 +93,7 @@
   "result": {
     "summary": null,
     "artifacts": [],
+    "prototype_review": null,
     "completed_at": null
   },
   "status": "Draft",

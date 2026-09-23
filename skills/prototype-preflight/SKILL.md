@@ -15,7 +15,7 @@ powershell -NoProfile -File skills/prototype-preflight/run.ps1 -Extension EXT-00
 门禁要求：
 
 - 目标、场景、输入/数据来源、页面与交互、验收标准、约束和不做范围完整；
-- `target.navigation_path` 是 PLM 用户点击顺序；嵌入式交付还要有 `target.mount_sequence`；
+- `target.navigation_path` 是用于匹配原产品样式的 PLM 用户点击顺序；联动模式的 `target.mount_sequence` 在后续嵌入阶段核对；
 - 同路径存在 Verified 样式知识时自动登记匹配；新路径必须先询问用户是否拉取原产品样式，并在用户确认样式后记录 `style_context.status=source-confirmed`、`user_confirmed=true` 和 evidence；
 - Excel 约束只在本轮需求实际出现 Excel/XLS/XLSX 或其他批量条目解析时触发。触发后 `requirements.data_preview` 必须选择 `table` 或原产品 `native-grid`，并明确列清单和解析、滚动、逐行校验反馈；默认推荐原产品网格。未涉及解析的扩展保持 `required=false`、`mode=none`，无需配置列或交互。
 

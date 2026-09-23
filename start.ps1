@@ -1,3 +1,3 @@
 ﻿param([switch]$Json,[switch]$IncludeArchived)
-& "$PSScriptRoot/skills/studio-guide/run.ps1" -Json:$Json -IncludeArchived:$IncludeArchived
+& "$PSScriptRoot/controller/run.ps1" -Json:$Json
 exit $LASTEXITCODE

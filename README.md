@@ -1,13 +1,13 @@
 # PLM-Studio
 
-PLM-Studio 根目录就是一个工作区。每个新的原型设计是一个独立扩展，以 `EXT-nnn` 编号保存。
+PLM-Studio 根目录就是一个工作区。每个任务是一个可长期迭代的 `EXT-nnn` 扩展，可选择只做原型、只嵌入已有静态页，或原型验收后再嵌入 PLM。
 
 ## 快速开始
 
 1. 在代码仓库页面选择 **Code → Download ZIP**。
 2. 将下载的压缩包解压到本地目录。
 3. 使用本地 Agent 工具（如 Pi、Codex 或 Harness）打开解压后的 `PLM-Studio` 工作区。
-4. 在 Agent 对话中输入 `/start`，按引导新增扩展或选择已有扩展。
+4. 直接用自然语言描述任务，例如“做一个颜色件查询原型”“把这个 HTML 页面嵌入 BOM 菜单”，或“先做原型，确认后嵌入”。Agent 会读取 Controller 状态并只追问缺失信息。
 
 
 ## 目录
@@ -18,20 +18,37 @@ PLM-Studio/
 ├─ extensions/                 每个原型设计及其交付、授权、部署历史
 ├─ knowledge/                  已验证知识、证据、冲突和环境快照
 ├─ sources/                    源码同步范围与 manifest
-├─ skills/                     工作流入口
-├─ scripts/                    公共实现与自检
+├─ agents/                     自然语言入口和 Agent 职责
+├─ controller/                 状态机、动作与门禁
+├─ skills/                     工作流说明及兼容入口
+├─ tools/                      命令、配置、源码、浏览器等执行实现
+├─ scripts/                    旧入口和浏览器依赖
 ├─ templates/                  新扩展和知识记录模板
 └─ AGENTS.md                   工作区使用规则
 ```
 
+`controller/` 中的 `run.ps1`、`state-machine.ps1`、`guards.ps1`、`actions.ps1` 分别承担查询入口、状态判定、执行门禁和动作清单。实际执行脚本按职责放在 `tools/{workspace,extension,config,source,prototype,knowledge,validation,delivery,browser}/`。`skills/<name>/SKILL.md` 保留每项工作的操作规范，原 `run.ps1` 作为兼容入口转发到 `tools/`。
+
+现有 `runtime/` 与浏览器依赖目录暂沿用原路径，避免中断正在使用的扩展和浏览器安装；新增结构没有迁移或回填既有 `extensions/EXT-nnn`。
+
 
 ## 标准会话流程
 
-1. 先选择迭代某个现有扩展，或新增扩展。
-2. 现有扩展：全部可以选择。已验收的开启下一轮，未完成的继续当前轮；读取绑定 profile，不重复询问环境。
-3. 新增扩展：选择已有环境或新增环境；Agent 收集必要信息并确认后创建扩展，再完成本轮需求梳理。
-4. 工作中同步保存证据和知识，满足条件时立即晋升，不等用户最终验收。
-5. 交付后提示用户检查并反馈；反馈反写到扩展 `validation`，作为下一轮迭代和依赖验收的知识依据。
+自然语言请求由 Agent 解析为扩展和能力模式。`controller/run.ps1 -Json` 返回三个入口模式和 Active 扩展；选定扩展后返回 `capability_mode`、`stage`、`phase`、`allowed`、`blocked` 与 `missing`。`-Action implement` 等检查动作并在拒绝时返回非零退出码。现有 `skills/<name>/run.ps1` 保留为兼容入口，实际 PowerShell 实现位于 `tools/`。
+
+```text
+用户 → PLM Agent → Workspace Controller → Skill → Tool
+                           ↓
+                 Extension 状态 / Knowledge 事实
+```
+
+| 模式 | 需求与门禁 | 完成条件 |
+| --- | --- | --- |
+| `prototype` | 确认数据来源、后端需求、页面交互及样式路径；运行 `prototype-preflight` | 静态 HTML 验收通过 |
+| `integration` | 指定已有 HTML、PLM 点击路径、挂载顺序、环境和修改范围；运行 `integration-preflight` | 嵌入证据与原产品操作验收通过 |
+| `linked` | 先完成原型阶段；原型验收后自动进入嵌入需求阶段 | 两个阶段分别验收通过 |
+
+原型设计始终加载适用的 `Style` 知识；嵌入原产品加载 `Integration,Environment,Business`。修改原系统文件时记录快照、哈希、差异、验证和回滚。旧扩展继续按 `legacy` 流程解释，无需迁移。
 
 
 ## 每扩展一次的原系统修改授权
@@ -48,4 +65,3 @@ PLM-Studio/
 ## 知识
 
 通用页面风格、挂载点和菜单机制在证据充分时可直接晋升 `Verified`。业务流程、写入、数据库和接口行为仍需完整验证。所有记录都要明确产品版本、profile、证据、源指纹和适用限制。
-

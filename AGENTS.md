@@ -4,9 +4,14 @@
 
 ## 基本概念
 
+- 自然语言是入口：`agents/plm-agent.md` 说明 Agent 如何判断意图和目标扩展；Workspace Controller 从 `extension.yaml` 计算并限制当前允许动作；Skill 规定动作的流程；Tool 执行读写、命令与浏览器操作；Knowledge 保存经过验证的事实；Extension 保存任务长期状态。Controller 不另存一份阶段状态。
+- 进入具体扩展后、执行 Skill 或直接使用 Tool 修改扩展产物前，先运行 `controller/run.ps1 -Extension EXT-nnn -Json`，并用 `-Action` 校验拟执行动作。`skills/workspace-controller/run.ps1` 是兼容入口。被拒绝时停止该动作，不能通过直接编辑 `workflow.phase`、跳过 Skill 或改用其他 Tool 绕过。工作区自身维护不对应某个扩展，不进入扩展 Controller。
+- `workflow.capability_mode` 明确为 `prototype`（只做原型）、`integration`（只嵌入已有静态页）或 `linked`（原型验收后嵌入）；旧扩展缺少该字段时按 `legacy` 解释，不回填。`workflow.stage` 是当前阶段能力，`workflow.phase` 是需求、实现或验收状态。Controller 从它们计算允许动作，不另存状态。
+- `Requirements` 且 `requirements_confirmed=false` 时只进行当前 stage 的需求更新、知识与环境只读检查，以及交付模式已确认后的需求确认。原型经 `prototype-preflight`、嵌入经 `integration-preflight` 后才进入 `Implementation`。Controller 只负责阶段权限，各 Skill 继续检查知识、样式、路径、授权等细节。
+
 - `PLM-Studio` 根目录是一个工作区。`workspace.yaml` 是 profile 注册表；每个 profile 描述产品版本和具体部署环境，不保存项目字段或原型默认值。工作区不存在全局活动 profile。
 - 每个新原型设计都是一个扩展，位于 `extensions/EXT-nnn`。使用 `extension-init` 新建扩展，不再创建嵌套工作区。
-- 用户输入 `/start`、表示开始使用 PLM-Studio，或没有明确指定新建扩展/修改哪个扩展时，必须先运行 `skills/studio-guide/run.ps1`，不能直接开始分析。
+- 入口统一为 `controller/run.ps1 -Json`。Agent 解析自然语言并选择能力模式与目标扩展；未明确目标时读取 Controller 返回的 Active 扩展和入口模式，再针对缺失信息提问。不依赖固定触发词。
 - 所有 `lifecycle.status=Active` 的扩展始终可选。状态仅表示当前迭代所处流程，不能因为 Completed 或 Accepted 拒绝继续修改扩展。
 - 开始工作时读取 `workspace.yaml`、目标扩展的 `extension.yaml`、`knowledge/_index.md` 和所需 Skill。
 - 每个扩展必须明确交付模式：`static`、`static-demo`、`embedded-static` 或 `backend`。校验和追问应根据交付模式调整。
@@ -14,17 +19,19 @@
 
 ## 标准用户流程
 
-每次会话开始先确定分支。用户尚未选择扩展时，不能直接分析或实现。
+每次任务先由 Agent 判定目标扩展和能力模式，并由 Controller 返回当前允许动作与 `missing` 需求清单。尚未选定扩展时，只进行入口选择和必要信息收集。
 
-1. `/start` 首屏只列出所有 Active 扩展的 ID 和名称，不展示 profile/环境列表；随后提示用户选择“新增扩展”或“修改现有扩展”，也允许直接输入扩展 ID。用户已经明确分支或扩展时不重复询问。只有进入新增扩展分支后，才提示选择“使用现有 profile/环境”或“新增 profile/环境”。
+1. **入口**：运行 `controller/run.ps1 -Json`。若用户意图已明确，不重复问；否则列出 Active 扩展 ID、名称及“只做原型 / 只做嵌入 / 原型后嵌入”，让用户选择。扩展选定后运行 `controller/run.ps1 -Extension EXT-nnn -Json` 并按 `allowed` 与 `missing` 继续。
 2. **修改现有扩展**：列出所有 Active 扩展供选择。调用 `skills/extension-iterate/run.ps1 -Extension EXT-nnn -Action Auto`。当前迭代为 Accepted/Completed 时，归档并开始下一迭代；处于 Draft、Requirements、Implementation、ChangesRequested 或 PendingUserReview 时，继续当前迭代。读取扩展绑定的 profile，不重复询问已有环境信息。
 3. **新增扩展**：先让用户明确选择“使用现有 profile”或“新增 profile”。新增 profile 不收集项目，也不收集原型默认值。选择环境信息来源时，不直接展示 profile 列表；应展示所有 Active 扩展的 ID、名称、绑定环境、产品和部署模式，让用户选择复用某个历史扩展所绑定的环境，或选择逐项补充新环境。选中扩展后由系统解析其 `extension.yaml.profile`，不得让用户再次选择 profile。逐项补充新环境时采用分组式多轮引导，不要求用户填写整张表，也不得每次只问一个字段：每轮合并 2–5 个相近条目，优先让用户用一行自然语言回答；提供简短示例、候选项和推荐默认值，允许用户只回答与默认值不同的部分。建议顺序为“环境标识与产品”“部署与访问”“应用服务器与数据库”；数据库选择使用时，再补问数据库版本/产品、地址和名称。Agent 必须解析用户已经给出的信息、自动跳过不适用字段，且不得重复询问已确认内容；只有存在歧义或缺少条件必填项时才针对该组补问。字段范围包括 profile ID/环境名称、产品/版本、部署模式（`virtual-machine`、`local`、`remote-server`）、条件必填的主机地址、PLM 软件本地文件路径、可选的 Agent 可访问路径、Web 地址、应用服务器类型/版本，以及数据库是否使用、数据库版本/产品、地址和名称。数据库不单设类型字段，`database.version` 直接保存 `SQL Server 2019`、`Oracle 11g` 一类值。全部收集后展示完整摘要并取得一次确认。在 profile 决策和必要信息完整前，不得创建扩展目录。随后调用 `skills/extension-init/run.ps1`。自动化工具必须显式传入 `-Profile`，或使用 `-CreateProfile` 参数写入已经由用户交互确认的数据；不得绕过初始化器直接建立 `EXT-nnn`。
 4. profile 选择完成后才创建扩展，并把 profile ID 写入扩展的 `extension.yaml.profile`。禁止通过全局状态切换 profile。
-5. 两个分支在交付模式明确后都必须停留在需求阶段，主动提示用户输入本轮原型设计需求；不能因为交付模式、环境或旧扩展已经存在就直接分析页面或实现。需求必须覆盖目标、用户场景、输入和数据来源、目标模块/菜单/页面、PLM 用户点击顺序路径、技术嵌入解析顺序、页面与交互、批量数据展示方式、验收标准、约束和不在范围。需要嵌入原系统时，还要取得本扩展的原系统文件修改授权。
-6. 收到需求后先写入 `extension.yaml.requirements`，只在用户明确确认摘要后设置 `workflow.requirements_confirmed=true`。随后按实际场景运行 `skills/knowledge-context/run.ps1` 注入完整知识，并运行 `skills/prototype-preflight/run.ps1 -Extension EXT-nnn`。门禁通过前不得制定原型视觉、创建页面或编写实现代码。
+   原型单独使用时，profile 仅确定产品、版本和知识适用范围，不要求访问部署环境；嵌入模式才检查应用服务器、源码和目标路径。新流程调用 `extension-init` 时显式传入 `-CapabilityMode prototype|integration|linked`，并使用相容的 `-Mode`。
+   原型输入未说明时，先合并询问是否需要用户提供数据、演示数据来源和是否需要后端，再决定 `-Mode`、`-DemoData` 与后端审批状态；不得默认排除后端。
+5. **原型阶段**：收集目标、场景、用户数据与演示数据来源、后端需求、样式点击路径、页面交互、批量展示、验收标准、约束及不在范围，写入 `requirements`。用户确认摘要后才设置 `workflow.requirements_confirmed=true`；注入 `Style` 及相关知识，运行 `prototype-preflight`。缺少适用样式时先取得来源并确认。只做原型时，验收后完成迭代。
+6. **嵌入阶段**：收集已完成 HTML 的来源、PLM 点击路径、挂载顺序、打开与返回行为、目标环境、修改范围、快照、验收标准与约束，写入 `integration_requirements`。用户确认摘要后才设置当前 stage 的 `workflow.requirements_confirmed=true`；注入 `Integration,Environment,Business` 等知识，运行 `integration-preflight`。修改原系统前记录哈希和备份，完成后记录差异、验证及回滚到 `integration_evidence`。只做嵌入时不强制重新设计页面。
 7. 页面和交互至少读取 `Style`；嵌入原系统读取 `Integration`；业务规则读取 `Business`；数据、接口或写入读取 `Data,Business`；环境、源码或部署分析读取 `Environment`。只读取 `knowledge/_index.md` 不算完成知识注入。多个场景同时发生时合并 facet。
 8. 工作期间同步沉淀证据和可复用知识。证据充分的技术事实可立即记录；需要用户验收的业务结论保持 Candidate，不要把知识积累推迟到用户验收之后。
-9. 交付前按本轮全部 facet 再次加载知识并核对产物。运行 `skills/extension-deliver/run.ps1`，将当前迭代置为 `PendingUserReview` 并输出验收清单。收到用户结果后运行 `skills/extension-review/run.ps1` 回写 `validation`，再根据证据晋升知识。Accepted 只关闭当前迭代，扩展 lifecycle 仍保持 Active。
+9. 交付前按当前 stage 的全部 facet 再次加载知识并核对产物。运行 `extension-deliver` 置为 `PendingUserReview`，收到结果后运行 `extension-review`。`linked` 的原型验收通过后自动进入嵌入需求阶段，嵌入验收通过才关闭迭代；其余模式在本能力验收通过后关闭。扩展 lifecycle 始终保持 Active。
 
 如果用户没有返回验收结果，已经具备客观证据的知识仍正常保存；只有依赖用户结论的内容保持 Candidate。
 
@@ -35,7 +42,7 @@
 - 交互使用 `extension-init` 时可以省略 `-Profile`，脚本会列出现有 profile 和“新增 profile”。
 - CLI、Harness 和其他非交互工具应传入 `-NonInteractive -Profile <id>`。缺少 profile 时，初始化必须失败且不能留下半成品目录。
 - 新 profile 必须通过对话交互完成信息收集与最终确认。可以用 `-CopyEnvironmentFrom <id>` 复用环境，或用 `-ProfileConfigPath <file>` 导入完整环境配置；无复用来源时必须收集核心环境信息。自动化执行只能写入已经确认的数据，并显式传入 `-ProfileSetupConfirmed`，该参数不能代替实际确认。
-- 读取或写入 `workspace.yaml`、`extension.yaml` 以及其他配置文件时，必须调用 `scripts/Common.ps1` 中的 `Read-Config` 和 `Write-Config`，严格使用 UTF-8。禁止依赖 PowerShell 默认编码，也禁止用未指定编码的 `Get-Content`、`Set-Content` 或 `Out-File` 修改配置。
+- 读取或写入 `workspace.yaml`、`extension.yaml` 以及其他配置文件时，必须调用 `tools/config/Common.ps1` 中的 `Read-Config` 和 `Write-Config`；`scripts/Common.ps1` 仅为兼容入口。严格使用 UTF-8，禁止依赖 PowerShell 默认编码，也禁止用未指定编码的 `Get-Content`、`Set-Content` 或 `Out-File` 修改配置。
 - `Read-Config` 必须拒绝无效 UTF-8；`Write-Config` 统一输出无 BOM 的 UTF-8。写入后应重新读取并确认 profile ID、环境名称、产品版本、部署模式和关键环境字段没有乱码或丢失。
 
 ## PowerShell 与文本编码
@@ -91,5 +98,3 @@
 - `business-flow`、`write-operation` 等业务路径、权限和写入时机必须等待业务验收和回写证据。
 - 每次工作更新 `knowledge/_index.md` 和 `knowledge/changelog.md`。冲突写入 `knowledge/contradictions`；旧记录保留并标记 Deprecated，不直接删除。
 - 跨产品和版本的知识只作为候选参考。源码或环境变化时必须重新验证受影响知识。
-
-

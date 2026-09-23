@@ -25,13 +25,13 @@ description: 在当前 PLM-Studio 工作区初始化新的原型扩展，先绑�
 
 用户选中历史扩展后，读取该扩展的 `extension.yaml.profile`，将对应 profile 作为 `-CopyEnvironmentFrom` 的值；不要再向用户展示或询问 profile ID。交付模式、演示数据、集成要求和原系统修改授权在扩展需求阶段写入 `extension.yaml`，不得从 profile 推断。
 
-初始化时还要确认交付模式、演示数据来源、系统嵌入目标和原系统文件修改授权状态。新扩展初始只创建 `extension.yaml` 和 `brief.md`。
+初始化时明确 `-CapabilityMode prototype|integration|linked`：只做原型使用 `-Mode static|static-demo|backend`；嵌入或联动使用 `-Mode embedded-static|backend`。选择 `backend` 时还须确认后端范围与数据库信息；选择静态模式时记录后端不在范围。交付模式、演示数据来源、系统嵌入目标和原系统文件修改授权状态属于扩展需求。新扩展初始只创建 `extension.yaml` 和 `brief.md`。未传 `-CapabilityMode` 仅为旧自动化保留 `legacy` 行为。
 
 ## 交付模式之后必须停在需求阶段
 
-交付模式明确后，只能创建扩展骨架并进入 `Requirements`。必须提示用户提供本轮原型设计需求，记录目标、场景、输入、PLM 点击顺序路径、技术嵌入顺序、页面与交互、批量数据展示方式、验收标准、约束和不做范围。收到并确认这些需求之前，不得开始页面结构、视觉设计或代码实现。
+交付模式明确后，只能创建扩展骨架并进入 `Requirements`。原型阶段收集目标、场景、数据来源、后端决策、样式路径、页面交互和验收；嵌入阶段收集已有 HTML、PLM 点击路径、技术挂载顺序、环境、文件范围、快照和验收。联动先收集原型需求，原型验收后再收集嵌入需求。
 
-需求确认后运行 `skills/prototype-preflight/run.ps1 -Extension EXT-nnn`。门禁未通过时继续补齐需求或样式来源，不得绕过。
+当前阶段需求确认后运行对应的 `prototype-preflight` 或 `integration-preflight`。门禁未通过时继续补齐需求和证据，不得绕过。
 
 ## 知识上下文门禁
 
@@ -40,5 +40,5 @@ description: 在当前 PLM-Studio 工作区初始化新的原型扩展，先绑�
 `target.navigation_path` 保存用户在 PLM 中的点击顺序；`target.mount_sequence` 保存菜单、页面注册、脚本、Iframe/容器和目标页面的技术解析顺序。样式知识只有在 `navigation_path` 精确相同时才能直接复用；新路径必须先询问用户是否从原产品拉取样式，获得确认后把证据写入 `style_context` 和 knowledge。
 
 ```powershell
-powershell -NoProfile -File skills/extension-init/run.ps1 -Title "新原型" -Profile DEV -Mode static-demo -DemoData generated -NonInteractive
+powershell -NoProfile -File skills/extension-init/run.ps1 -Title "新原型" -Profile DEV -CapabilityMode prototype -Mode static-demo -DemoData generated -NonInteractive
 ```
