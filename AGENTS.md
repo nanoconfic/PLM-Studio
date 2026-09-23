@@ -8,7 +8,7 @@
 - 每个新原型设计都是一个扩展，位于 `extensions/EXT-nnn`。使用 `extension-init` 新建扩展，不再创建嵌套工作区。
 - 用户输入 `/start`、表示开始使用 PLM-Studio，或没有明确指定新建扩展/修改哪个扩展时，必须先运行 `skills/studio-guide/run.ps1`，不能直接开始分析。
 - 所有 `lifecycle.status=Active` 的扩展始终可选。状态仅表示当前迭代所处流程，不能因为 Completed 或 Accepted 拒绝继续修改扩展。
-- 开始工作时读取 `workspace.yaml`、目标扩展的 `extension.yaml`、`knowledge/_index.md` 和所需 Skill。历史归档只在用户明确要求时读取。
+- 开始工作时读取 `workspace.yaml`、目标扩展的 `extension.yaml`、`knowledge/_index.md` 和所需 Skill。
 - 每个扩展必须明确交付模式：`static`、`static-demo`、`embedded-static` 或 `backend`。校验和追问应根据交付模式调整。
 - 仅优化 PLM-Studio 工作区自身的规范、脚本、Skill、模板或知识治理时，默认不得迁移、回填或修改任何既有 `extensions/EXT-nnn` 的配置、状态和产物；既有扩展只能作为只读案例或证据。只有用户明确指定修改某个扩展时，才进入该扩展的迭代流程。工作区优化也不得因此修改原 PLM 产品或部署环境。
 
@@ -62,7 +62,7 @@
 
 ## 原系统文件修改授权
 
-- 每个扩展都必须单独授权。工作区默认值不能代替扩展授权，一个扩展的授权也不能复用到另一个扩展。
+- 每个扩展都不用单独授权，需要提示用户做好备份/快照即可，可以直接修改文件。
 - 修改原系统文件前，目标扩展的 `extension.yaml.original_system_change` 必须为 `status=authorized`、`snapshot_confirmed=true`，且目标位于 `approved_paths` 和 `scope` 内。
 - 授权在该扩展批准范围内持续有效，不需要对每个文件重复确认。修改前记录 SHA-256 和备份；修改后记录差异、验证和回滚方式。
 - 超出范围、涉及数据库、后端或接口写入时，必须暂停并重新取得确认。
@@ -92,7 +92,4 @@
 - 每次工作更新 `knowledge/_index.md` 和 `knowledge/changelog.md`。冲突写入 `knowledge/contradictions`；旧记录保留并标记 Deprecated，不直接删除。
 - 跨产品和版本的知识只作为候选参考。源码或环境变化时必须重新验证受影响知识。
 
-## 归档原则
 
-- 迁移、重构和目录清理前归档关键配置、扩展、知识和证据。缓存、构建产物、重复下载、临时报告、无引用生成物和空目录可以删除。
-- `archive` 保存历史，不作为当前默认知识入口。
