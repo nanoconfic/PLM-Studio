@@ -10,9 +10,56 @@ $media=Join-Path $script:StudioRoot 'tools/browser/media/chrome-win64.zip'
 $browserRoot=Join-Path $script:StudioRoot 'tools/browser/chromium'
 $exe=Join-Path $browserRoot 'chrome-win64/chrome.exe'
 if ($p.browser.PSObject.Properties['executable_path'] -and $p.browser.executable_path) { $exe=Join-Path $script:StudioRoot $p.browser.executable_path }
+
+function Get-ChromiumDownloadUrl {
+    $metadataUrl='https://googlechromelabs.github.io/chrome-for-testing/last-known-good-versions-with-downloads.json'
+    try {
+        $metadata=Invoke-RestMethod -Uri $metadataUrl -Method Get -TimeoutSec 30
+    } catch {
+        throw "Cannot reach Chrome for Testing release metadata ($metadataUrl): $($_.Exception.Message)"
+    }
+    $stable=$metadata.channels.Stable
+    $download=$stable.downloads.chrome | Where-Object { $_.platform -eq 'win64' } | Select-Object -First 1
+    if (!$stable.version -or !$download.url) { throw 'Chrome for Testing metadata did not provide a Stable win64 Chrome download.' }
+    [pscustomobject]@{Version=$stable.version;Url=$download.url}
+}
+
+function Test-ChromiumDownloadUrl([string]$Uri) {
+    try {
+        $response=Invoke-WebRequest -Uri $Uri -Method Head -TimeoutSec 30 -UseBasicParsing
+        if ([int]$response.StatusCode -lt 200 -or [int]$response.StatusCode -ge 400) {
+            throw "HTTP status $($response.StatusCode)"
+        }
+    } catch {
+        throw "Chromium download address is unreachable ($Uri): $($_.Exception.Message)"
+    }
+}
+
 if ($Initialize) {
-    if (!(Test-Path -LiteralPath $exe)) {
-        if (!(Test-Path -LiteralPath $media)) { throw "Missing shared Chromium media: $media" }
+    if ($p.browser.mode -eq 'cdp') {
+        Write-Output 'CDP mode uses the configured browser endpoint; skipping local Chromium media.'
+    } elseif (Test-Path -LiteralPath $exe) {
+        Write-Output "Using existing Chromium executable: $exe"
+    } else {
+        if (!(Test-Path -LiteralPath $media)) {
+            $release=Get-ChromiumDownloadUrl
+            Write-Output "Checking Chromium download address for Stable $($release.Version)..."
+            Test-ChromiumDownloadUrl $release.Url
+            $mediaDirectory=Split-Path -Parent $media
+            New-Item -ItemType Directory -Force -Path $mediaDirectory | Out-Null
+            $downloadTemp="$media.download"
+            try {
+                Write-Output "Downloading Chromium Stable $($release.Version)..."
+                Invoke-WebRequest -Uri $release.Url -Method Get -OutFile $downloadTemp -TimeoutSec 1800 -UseBasicParsing
+                if (!(Test-Path -LiteralPath $downloadTemp) -or (Get-Item -LiteralPath $downloadTemp).Length -le 0) {
+                    throw 'The Chromium download completed without a usable archive.'
+                }
+                Move-Item -LiteralPath $downloadTemp -Destination $media -Force
+            } catch {
+                Remove-Item -LiteralPath $downloadTemp -Force -ErrorAction SilentlyContinue
+                throw "Chromium download failed: $($_.Exception.Message)"
+            }
+        }
         New-Item -ItemType Directory -Force -Path $browserRoot | Out-Null
         Expand-Archive -LiteralPath $media -DestinationPath $browserRoot -Force
     }
